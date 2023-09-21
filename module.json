@@ -1,0 +1,23 @@
+{
+  "authors": [{
+    "name": "soty",
+    "discord": "soty"
+  }],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "download": "https://github.com/casualsoty/fates-heir-character-sheet/releases/latest/download/module.zip",
+  "esmodules": ["fates-heir-character-sheet.js"],
+  "id": "fates-heir-character-sheet",
+  "languages": [{
+    "lang": "en",
+    "name": "English",
+    "path": "lang/en.json"
+  }],
+  "manifest": "https://github.com/casualsoty/fates-heir-character-sheet/releases/latest/download/module.json",
+  "readme": "https://github.com/casualsoty/fates-heir-character-sheet/blob/main/README.md",
+  "title": "Fate's Heir Character Sheet",
+  "url": "https://github.com/casualsoty/fates-heir-character-sheet",
+  "version": "1.0.0"
+}
