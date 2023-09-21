@@ -37,16 +37,34 @@
   color: purple;
   font-family: losing-grip;
   font-size: 28px;
-  height: 28px;
-  width: 246px;
 }
 
 .character-name {
+  height: 28px !important;
   left: 419px;
   top: calc(30px + 213px);
+  width: 246px !important;
 }
 
 .character-level {
+  height: 28px;
   left: 419px;
   top: calc(30px + 251px);
+  width: 246px;
+}
+
+.character-hp-value {
+  height: 28px !important;
+  left: 88px;
+  text-align: center !important;
+  top: calc(30px + 454px);
+  width: 30px !important;
+}
+
+.character-hp-max {
+  height: 28px !important;
+  left: 119px;
+  text-align: center !important;
+  top: calc(30px + 483px);
+  width: 30px !important;
 }

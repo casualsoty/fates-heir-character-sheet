@@ -1,8 +1,27 @@
-<link href="modules/fates-heir-character-sheet/styles/fates-heir-character-sheet.css" rel="stylesheet" type="text/css">
-<form autocomplete="off" class="{{cssClass}}">
+<link href="modules/fates-heir-character-sheet/styles/fates-heir-character-sheet.css"
+      rel="stylesheet"
+      type="text/css">
+<form autocomplete="off"
+      class="{{cssClass}}">
   <div class="background-image">
-    <img class="character-img position-absolute" data-edit="img" data-tooltip="{{actor.name}}" src="{{actor.img}}">
-    <input class="character-name position-absolute text" name="name" placeholder="{{ localize 'FHCS.Name' }}" type="text" value="{{actor.name}}">
+    <img class="character-img position-absolute"
+         data-edit="img"
+         data-tooltip="{{actor.name}}"
+         src="{{actor.img}}">
+    <input class="character-name position-absolute text"
+           name="name"
+           placeholder="{{localize 'FHCS.Name'}}"
+           type="text"
+           value="{{actor.name}}"
+           width="246">
     <div class="character-level position-absolute text">&nbsp;{{system.details.level}}</div>
+    <input class="character-hp-value position-absolute text"
+           data-dtype="Number"
+           data-tooltip="FHCS.HitPointsCurrent"
+           name="system.attributes.hp.value"
+           placeholder="10"
+           type="text"
+           value="{{getHpValue hp.value system.details.level}}">
+    <div class="character-hp-max position-absolute text">{{getHpMax system.details.level}}</div>
   </div>
 </form>
