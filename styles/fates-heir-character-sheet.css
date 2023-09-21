@@ -1,0 +1,52 @@
+.dnd5e.sheet .window-content {
+  padding: 0;
+}
+
+.dnd5e.sheet .window-resizable-handle {
+  display: none;
+}
+
+.background-image {
+  background-image: url('../artwork/fates-heir-character-sheet.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.character-img {
+  border: 0;
+  height: 242px;
+  left: 56px;
+  top: calc(30px + 150px);
+  width: 242px;
+}
+
+@font-face {
+  font-family: losing-grip;
+  src: url(losing-grip.ttf);
+}
+
+.dnd5e.sheet input[type="text"],
+.fates-heir-sheet .text {
+  color: purple;
+  font-family: losing-grip;
+  font-size: 28px;
+  height: 28px;
+  width: 246px;
+}
+
+.character-name {
+  left: 419px;
+  top: calc(30px + 213px);
+}
+
+.character-level {
+  left: 419px;
+  top: calc(30px + 251px);
+}

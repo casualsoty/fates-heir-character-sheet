@@ -1,0 +1,8 @@
+<link href="modules/fates-heir-character-sheet/styles/fates-heir-character-sheet.css" rel="stylesheet" type="text/css">
+<form autocomplete="off" class="{{cssClass}}">
+  <div class="background-image">
+    <img class="character-img position-absolute" data-edit="img" data-tooltip="{{actor.name}}" src="{{actor.img}}">
+    <input class="character-name position-absolute text" name="name" placeholder="{{ localize 'FHCS.Name' }}" type="text" value="{{actor.name}}">
+    <div class="character-level position-absolute text">&nbsp;{{system.details.level}}</div>
+  </div>
+</form>
