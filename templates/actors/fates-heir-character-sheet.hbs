@@ -18,10 +18,12 @@
     <input class="character-hp-value position-absolute text"
            data-dtype="Number"
            data-tooltip="FHCS.HitPointsCurrent"
+           max="{{getHpMax system.details.level}}"
            name="system.attributes.hp.value"
-           placeholder="10"
-           type="text"
+           placeholder="8"
+           type="number"
            value="{{getHpValue hp.value system.details.level}}">
-    <div class="character-hp-max position-absolute text">{{getHpMax system.details.level}}</div>
+    <div class="character-hp-max position-absolute text"
+         data-tooltip="FHCS.HitPointsMax">{{getHpMax system.details.level}}</div>
   </div>
 </form>

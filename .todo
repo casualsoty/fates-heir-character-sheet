@@ -1,0 +1,14 @@
+Global
+  [Not done]      Replace d20s by d100s
+
+HP
+  [Visually done] Change maximum hit points rule from hit dice + constitution to 8 + level * 3
+  [Visually done] Limit current hit points to maximum hit points
+  Questions:
+    Are current hit points handled automatically or manually?
+    Could automatic overheal exceed maximum hit points? 
+
+Skills
+  [Not done]      Replace skill names like acrobatics and animal handling by editable text boxes
+  [Not done]      Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
+  [Not done]      Limit skill slots to 1 per level

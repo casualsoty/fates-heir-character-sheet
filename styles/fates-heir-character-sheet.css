@@ -32,6 +32,7 @@
   src: url(losing-grip.ttf);
 }
 
+.dnd5e.sheet input[type="number"],
 .dnd5e.sheet input[type="text"],
 .fates-heir-sheet .text {
   color: purple;
