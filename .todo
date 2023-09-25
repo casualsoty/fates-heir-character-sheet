@@ -6,7 +6,7 @@ Level
   [Not done]      Make the level number box editable
 
 Player name
-  [Add note]      Add a player name editable text box
+  [Note done]      Add a player name editable text box
 
 HP
   [Visually done] Change maximum hit points rule from hit dice + constitution to 8 + level * 3
