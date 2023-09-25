@@ -4,18 +4,25 @@
 <form autocomplete="off"
       class="{{cssClass}}">
   <div class="background-image">
+    {{!-- img --}}
     <img class="character-img position-absolute"
          data-edit="img"
          data-tooltip="{{actor.name}}"
          src="{{actor.img}}">
-    <input class="character-name position-absolute text"
+
+    {{!-- name --}}
+    <input class="character-name height28px position-absolute text"
+           data-tooltip="{{localize 'FHCS.Name'}}"
            name="name"
            placeholder="{{localize 'FHCS.Name'}}"
            type="text"
-           value="{{actor.name}}"
-           width="246">
-    <div class="character-level position-absolute text">&nbsp;{{system.details.level}}</div>
-    <input class="character-hp-value position-absolute text"
+           value="{{actor.name}}">
+
+    {{!-- level --}}
+    <div class="character-level height28px position-absolute text">&nbsp;{{system.details.level}}</div>
+
+    {{!-- hp-value --}}
+    <input class="character-hp-value height28px position-absolute text text-align-center width30px"
            data-dtype="Number"
            data-tooltip="FHCS.HitPointsCurrent"
            max="{{getHpMax system.details.level}}"
@@ -23,7 +30,33 @@
            placeholder="8"
            type="number"
            value="{{getHpValue hp.value system.details.level}}">
-    <div class="character-hp-max position-absolute text"
+
+    {{!-- hp-max --}}
+    <div class="character-hp-max height28px position-absolute text text-align-center width30px"
          data-tooltip="FHCS.HitPointsMax">{{getHpMax system.details.level}}</div>
+
+    {{!-- cp --}}
+    <input class="character-cp height28px position-absolute text text-align-center width30px"
+           data-dtype="Number"
+           data-tooltip="FHCS.Copper"
+           name="system.currency.cp"
+           type="text"
+           value="{{system.currency.cp}}">
+
+    {{!-- sp --}}
+    <input class="character-sp height28px position-absolute text text-align-center width30px"
+           data-dtype="Number"
+           data-tooltip="FHCS.Silver"
+           name="system.currency.sp"
+           type="text"
+           value="{{system.currency.sp}}">
+
+    {{!-- gp --}}
+    <input class="character-gp height28px position-absolute text text-align-center width30px"
+           data-dtype="Number"
+           data-tooltip="FHCS.Gold"
+           name="system.currency.gp"
+           type="text"
+           value="{{system.currency.gp}}">
   </div>
 </form>

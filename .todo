@@ -1,14 +1,41 @@
 Global
   [Not done]      Replace d20s by d100s
 
+Level
+  [Not done]      Change base level to 1
+  [Not done]      Make the level number box editable
+
+Player name
+  [Add note]      Add a player name editable text box
+
 HP
   [Visually done] Change maximum hit points rule from hit dice + constitution to 8 + level * 3
   [Visually done] Limit current hit points to maximum hit points
-  Questions:
-    Are current hit points handled automatically or manually?
-    Could automatic overheal exceed maximum hit points? 
+
+Inventory
+  [Not done]      Embed default inventory with just "Qty", "Charges" and "+ Add"
+
+Signature power
+  [Not done]      Add a signature power editable text box
 
 Skills
-  [Not done]      Replace skill names like acrobatics and animal handling by editable text boxes
+  [Not done]      Replace skill names like acrobatics and animal handling by text boxes
+  [Not done]      Add an edit button next to the skill name
+  [Not done]      Clicking the skill name should open a custom window without formula and modifiers
   [Not done]      Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
-  [Not done]      Limit skill slots to 1 per level
+
+Powers
+  [Not done]      Name: add dropdown menus based on the rule sheet
+  [Not done]      Add an edit button next to the power name
+  [Not done]      Level: add number boxes with a minimum of 1 and a maximum of 10
+  [Not done]      Invocation: add number boxes with a minimum of 1 and a maximum equals to the power level
+  [Not done]      Clicking the power name should open a custom window without formula and modifiers
+  [Not done]      Replace power proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
+  [Not done]      Add an exclusive radio button with "Power Infusion" or "Advantage Infusion" as choices
+  [Not done]      Consume an invocation on infused power check
+  [Not done]      Display a warning before an infused power check at 0 invocations
+
+Others
+  [Not done]      Add a rest button that refills current hit points and sets invocations to maximum
+  [Not done]      Embed the spellbook tab
+  [Not done]      Embed the biography tab as a journal tab
