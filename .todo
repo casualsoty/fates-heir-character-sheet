@@ -16,10 +16,10 @@ HP
     Should the maximum hit points be editable? In case an item, skill or power gives some.
 
 Inventory
-  [Not done]      Embed default inventory with just "Qty", "Charges" and "+ Add"
+  [Done]      Embed default inventory with just "Qty", "Charges" and "+ Add"
 
 Signature power
-  [Not done]      Add a signature power editable text box
+  [Done]      Add a signature power editable text box
 
 Skills
   [Not done]      Replace skill names like acrobatics and animal handling by text boxes

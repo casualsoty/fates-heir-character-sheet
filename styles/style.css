@@ -39,7 +39,7 @@
 }
 
 .fhcs-background-image {
-  background-image: url('../artwork/fates-heir-character-sheet.png');
+  background-image: url('../artwork/fhcs.min.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -49,9 +49,11 @@
 
 .fhcs-character-img {
   border: 0;
+  border-radius: 1em 1em 0 0;
   height: 242px;
   left: 56px;
-  top: calc(30px + 150px);
+  object-fit: contain;
+  top: calc(30px + 151px);
   width: 242px;
 }
 
@@ -96,4 +98,22 @@
 .fhcs-character-gp {
   left: 285px;
   top: calc(30px + 505px);
+}
+
+.fhcs-inventory {
+  height: 116px !important;
+  left: 342px;
+  overflow: auto;
+  top: calc(30px + 418px);
+  width: 294px !important;
+}
+
+.fhcs-character-signature-power {
+  border: 0;
+  font-size: 17.25px !important;
+  height: 116px !important;
+  left: 49px;
+  resize: none;
+  top: calc(30px + 639px);
+  width: 620px !important;
 }

@@ -1,4 +1,4 @@
-<link href="modules/fates-heir-character-sheet/styles/fates-heir-character-sheet.css"
+<link href="modules/fates-heir-character-sheet/styles/style.css"
       rel="stylesheet"
       type="text/css">
 <form autocomplete="off"
@@ -14,21 +14,18 @@
     <input class="fhcs-character-name height28px position-absolute text"
            data-tooltip="{{localize 'FHCS.Name'}}"
            name="name"
-           placeholder="{{localize 'FHCS.Name'}}"
            type="text"
            value="{{actor.name}}">
 
     {{!-- level --}}
     <input class="fhcs-character-level height28px position-absolute text"
            data-tooltip="FHCS.Level"
-           placeholder="1"
            type="number"
            value="{{actor.flags.fates-heir-character-sheet.level}}">
 
     {{!-- player-name --}}
     <input class="fhcs-player-name height28px position-absolute text"
-           data-tooltip="{{localize 'FHCS.PlayerName'}}"
-           placeholder="{{localize 'FHCS.PlayerName'}}"
+           data-tooltip="FHCS.PlayerName"
            type="text"
            value="{{actor.flags.fates-heir-character-sheet.player-name}}">
 
@@ -38,7 +35,6 @@
            data-tooltip="FHCS.HitPointsCurrent"
            max="{{getHpMax actor.flags.fates-heir-character-sheet.level}}"
            name="system.attributes.hp.value"
-           placeholder="11"
            type="number"
            value="{{system.attributes.hp.value}}">
 
@@ -69,5 +65,14 @@
            name="system.currency.gp"
            type="text"
            value="{{system.currency.gp}}">
+
+    {{!-- inventory --}}
+    <div class="fhcs-inventory flexcol inventory position-absolute">
+      {{> 'fates-heir-character-sheet.inventory' sections=inventory}}
+    </div>
+
+    {{!-- signature-power --}}
+    <textarea class="fhcs-character-signature-power position-absolute text text-align-center"
+              data-tooltip="FHCS.SignaturePower">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
   </div>
 </form>

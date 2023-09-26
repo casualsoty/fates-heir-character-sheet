@@ -1,0 +1,103 @@
+<ol class="items-list inventory-list"
+    style="color: black; padding: 0;">
+  {{#each sections as |section sid|}}
+    <li class="items-header flexrow"
+        style="border: 0; margin: 0;">
+      <h3 class="item-name flexrow">{{localize section.label}}</h3>
+
+      {{#if section.columns}}
+        {{#each section.columns}}
+          <div class="item-detail {{css}}">{{label}}</div>
+        {{/each}}
+      {{else}}
+        <div class="item-detail item-quantity">{{localize "DND5E.QuantityAbbr"}}</div>
+        <div class="item-detail item-uses">{{localize "DND5E.Charges"}}</div>
+      {{/if}}
+
+      {{#if ../owner}}
+        <div class="item-controls flexrow">
+          <a class="item-control item-create" data-action="itemCreate" data-tooltip="DND5E.ItemCreate"
+            {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+            <i class="fas fa-plus"></i> {{localize "DND5E.Add"}}
+          </a>
+        </div>
+      {{/if}}
+    </li>
+
+    <ol class="item-list">
+      {{#each section.items as |item iid|}}
+        {{#dnd5e-itemContext item as |ctx|}}
+          <li class="item flexrow {{section.css}} {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}"
+            {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}
+            style="border: 0; padding: 2px">
+            <div class="item-name flexrow {{@root.rollableClass}}">
+              {{#if section.editableName}}
+                <input type="text" value="{{item.name}}">
+              {{else}}
+                <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}'); border-radius: .5em;"></div>
+                <p style="font-size: 12px; margin: 0;">{{item.name~}}</p>
+                {{#if ctx.attunement}}
+                  <div class="item-detail attunement">
+                    <i class="fas {{ctx.attunement.icon}} {{ctx.attunement.cls}}"
+                      data-tooltip="{{ctx.attunement.title}}"></i>
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+
+            {{#if section.columns}}
+              {{#each section.columns}}
+                <div class="item-detail {{css}}">
+                  {{#if editable}}
+                    <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
+                            value="{{#if (getProperty item property)}}{{getProperty item property}}
+                            {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
+                  {{else}}
+                    {{#if (getProperty item property)}}
+                      {{getProperty item property}}
+                    {{else}}
+                      {{getProperty ctx property}}
+                    {{/if}}
+                  {{/if}}
+                </div>
+              {{/each}}
+            {{else}}
+              <div class="item-detail item-quantity">
+                <input type="text" value="{{item.system.quantity}}" placeholder="0" data-dtype="Number" data-name="system.quantity">
+              </div>
+
+              <div class="item-detail item-uses">
+                {{#if ctx.hasUses }}
+                  <input type="text" value="{{item.system.uses.value}}" placeholder="0" data-dtype="Number" data-name="system.uses.value">
+                  / {{item.system.uses.max}}
+                {{/if}}
+              </div>
+            {{/if}}
+
+            {{#if @root.owner}}
+              <div class="item-controls flexrow">
+                {{#if ctx.canToggle}}
+                  <a class="item-control item-toggle {{ctx.toggleClass}}" data-action="itemToggle" data-tooltip='{{ctx.toggleTitle}}'>
+                    <i class="fas fa-shield-alt"></i>
+                  </a>
+                {{/if}}
+                {{#unless section.editableName}}
+                  <a class="item-control item-edit" data-action="itemEdit" data-tooltip="DND5E.ItemEdit">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                {{/unless}}
+                <a class="item-control item-delete" data-action="itemDelete" data-tooltip="DND5E.ItemDelete">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </div>
+            {{/if}}
+
+            {{#if ctx.isExpanded}}
+              {{> "dnd5e.item-summary" (lookup @root.expandedData item.id)}}
+            {{/if}}
+          </li>
+        {{/dnd5e-itemContext}}
+      {{/each}}
+    </ol>
+  {{/each}}
+</ol>

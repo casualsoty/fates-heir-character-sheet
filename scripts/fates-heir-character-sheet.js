@@ -11,7 +11,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   }
 
   get template() {
-    return 'modules/fates-heir-character-sheet/templates/actors/fates-heir-character-sheet.hbs';
+    return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';
   }
 
   static get defaultOptions() {
