@@ -1,6 +1,8 @@
 {
   "FHCS": {
     "Name": "Character Name",
+    "Level": "Level",
+    "PlayerName": "Player Name",
     "HitPointsCurrent": "Current Hit Points",
     "HitPointsMax": "Maximum Hit Points",
     "Copper": "Copper",

@@ -6,7 +6,12 @@
 }
 
 .position-absolute {
-  position: absolute;
+  position: absolute !important;
+}
+
+.text {
+  font-family: black-chancery !important;
+  font-size: 23px !important;
 }
 
 .text-align-center {
@@ -33,7 +38,7 @@
   display: none;
 }
 
-.background-image {
+.fhcs-background-image {
   background-image: url('../artwork/fates-heir-character-sheet.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -42,7 +47,7 @@
   width: 100%;
 }
 
-.character-img {
+.fhcs-character-img {
   border: 0;
   height: 242px;
   left: 56px;
@@ -50,48 +55,45 @@
   width: 242px;
 }
 
-.dnd5e.sheet input[type="number"],
-.dnd5e.sheet input[type="text"],
-.fates-heir-sheet .text {
-  font-family: black-chancery;
-  font-size: 23px;
-}
-
-.character-name {
-  height: 28px !important;
+.fhcs-character-name {
   left: 419px;
   top: calc(30px + 213px);
   width: 246px !important;
 }
 
-.character-level {
-  height: 28px;
+.fhcs-character-level {
   left: 419px;
   top: calc(30px + 251px);
-  width: 246px;
+  width: 246px !important;
 }
 
-.character-hp-value {
+.fhcs-player-name {
+  left: 478px;
+  top: calc(30px + 288px);
+  width: 187px !important;
+}
+
+.fhcs-character-hp-value {
   left: 88px;
   top: calc(30px + 454px);
 }
 
-.character-hp-max {
+.fhcs-character-hp-max {
   left: 119px;
   top: calc(30px + 483px);
 }
 
-.character-cp {
+.fhcs-character-cp {
   left: 183px;
   top: calc(30px + 504px);
 }
 
-.character-sp {
+.fhcs-character-sp {
   left: 234px;
   top: calc(30px + 505px);
 }
 
-.character-gp {
+.fhcs-character-gp {
   left: 285px;
   top: calc(30px + 505px);
 }

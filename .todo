@@ -2,15 +2,18 @@ Global
   [Not done]      Replace d20s by d100s
 
 Level
-  [Not done]      Change base level to 1
-  [Not done]      Make the level number box editable
+  [Done]          Change base level to 1
+  [Done]          Make the level number box editable
 
 Player name
-  [Note done]      Add a player name editable text box
+  [Done]          Add a player name editable text box
 
 HP
-  [Visually done] Change maximum hit points rule from hit dice + constitution to 8 + level * 3
-  [Visually done] Limit current hit points to maximum hit points
+  [Done]          Change maximum hit points rule from hit dice + constitution to 8 + level * 3
+  [Done]          Limit current hit points to maximum hit points
+  Questions:
+    Does leveling up increase the current hit points by 3?
+    Should the maximum hit points be editable? In case an item, skill or power gives some.
 
 Inventory
   [Not done]      Embed default inventory with just "Qty", "Charges" and "+ Add"
