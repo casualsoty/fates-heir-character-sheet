@@ -57,7 +57,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       });
 
       // skill
-      // html.find('.fhcs-skill-name').click(this._onRollSkillCheck.bind(this));
+      html.find('.fhcs-skill-name').click(this._onRollSkillCheck.bind(this));
 
       html.find('.fhcs-skill-input').on('focusout keypress', e => {
         if (e.type === 'focusout' || e.which === 13) {
