@@ -23,6 +23,8 @@
 .width122px { width: 122px !important; }  /* fhcs-skill-[6–10] */
 .width125px { width: 125px !important; }  /* fhcs-skill-[1–5] */
 
+.z-index9 { z-index: 9; } /* fhcs-skill-a, fhcs-skill-i */
+
 @font-face {
   font-family: black-chancery;
   src: url(black-chancery.ttf);
