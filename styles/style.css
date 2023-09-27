@@ -1,11 +1,11 @@
 /*  GLOBAL
  */
  
-.font-size12 { font-size: 12px !important; }  /* fhcs-skill-a, fhcs-skill-i */
+.font-size12 { font-size: 12px !important; }  /* fhcs-skill-a[2], fhcs-skill-i */
 .font-size20 { font-size: 20px !important; }  /* fhcs-skill-div, fhcs-skill-input */
 
 .height100 { height: 100% !important; }   /* fhcs-skill-div, fhcs-skill-input */
-.height23px { height: 23px !important; }  /* fhcs-skill, fhcs-skill-a */
+.height23px { height: 23px !important; }  /* fhcs-skill, fhcs-skill-a[2] */
 .height28px { height: 28px !important; }  /* fhcs-div, fhcs-input */
 
 .position-absolute { position: absolute !important; }
@@ -17,13 +17,13 @@
 
 .text-align-center { text-align: center !important; } /* fhcs-div, fhcs-input */
 
-.width23px { width: 23px !important; }    /* fhcs-a */
+.width23px { width: 23px !important; }    /* fhcs-a[2] */
 .width30px { width: 30px !important; }    /* fhcs-div, fhcs-input */
 .width99px { width: 99px !important; }    /* fhcs-skill-div, fhcs-skill-input */
 .width122px { width: 122px !important; }  /* fhcs-skill-[6–10] */
 .width125px { width: 125px !important; }  /* fhcs-skill-[1–5] */
 
-.z-index9 { z-index: 9; } /* fhcs-skill-a, fhcs-skill-i */
+.z-index9 { z-index: 9; } /* fhcs-skill-a[2], fhcs-skill-i */
 
 @font-face {
   font-family: black-chancery;
