@@ -1,5 +1,21 @@
 /*  GLOBAL
  */
+ 
+.font-size12 {
+  font-size: 12px !important;
+}
+
+.font-size20 {
+  font-size: 20px !important;
+}
+
+.height100 {
+height: 100% !important;
+}
+
+.height23px {
+  height: 23px !important;
+}
 
 .height28px {
   height: 28px !important;
@@ -18,8 +34,28 @@
   text-align: center !important;
 }
 
+.width100 {
+  width: 100% !important;
+}
+
+.width23px {
+  width: 23px !important;
+}
+
 .width30px {
   width: 30px !important;
+}
+
+.width99px {
+  width: 99px !important;
+}
+
+.width122px {
+  width: 122px !important;
+}
+
+.width125px {
+  width: 125px !important;
 }
 
 @font-face {
@@ -47,7 +83,7 @@
   width: 100%;
 }
 
-.fhcs-character-img {
+.fhcs-img {
   border: 0;
   border-radius: 1em 1em 0 0;
   height: 242px;
@@ -57,13 +93,13 @@
   width: 242px;
 }
 
-.fhcs-character-name {
+.fhcs-name {
   left: 419px;
   top: calc(30px + 213px);
   width: 246px !important;
 }
 
-.fhcs-character-level {
+.fhcs-level {
   left: 419px;
   top: calc(30px + 251px);
   width: 246px !important;
@@ -75,27 +111,27 @@
   width: 187px !important;
 }
 
-.fhcs-character-hp-value {
+.fhcs-hp-value {
   left: 88px;
   top: calc(30px + 454px);
 }
 
-.fhcs-character-hp-max {
+.fhcs-hp-max {
   left: 119px;
   top: calc(30px + 483px);
 }
 
-.fhcs-character-cp {
+.fhcs-cp {
   left: 183px;
   top: calc(30px + 504px);
 }
 
-.fhcs-character-sp {
+.fhcs-sp {
   left: 234px;
   top: calc(30px + 505px);
 }
 
-.fhcs-character-gp {
+.fhcs-gp {
   left: 285px;
   top: calc(30px + 505px);
 }
@@ -108,7 +144,7 @@
   width: 294px !important;
 }
 
-.fhcs-character-signature-power {
+.fhcs-signature-power {
   border: 0;
   font-size: 17.25px !important;
   height: 116px !important;
@@ -116,4 +152,54 @@
   resize: none;
   top: calc(30px + 639px);
   width: 620px !important;
+}
+
+.fhcs-skill-1 {
+  left: 77px;
+  top: calc(30px + 826px);
+}
+
+.fhcs-skill-2 {
+  left: 77px;
+  top: calc(30px + 854px);
+}
+
+.fhcs-skill-3 {
+  left: 77px;
+  top: calc(30px + 883px);
+}
+
+.fhcs-skill-4 {
+  left: 77px;
+  top: calc(30px + 911px);
+}
+
+.fhcs-skill-5 {
+  left: 77px;
+  top: calc(30px + 939px);
+}
+
+.fhcs-skill-6 {
+  left: 208px;
+  top: calc(30px + 826px);
+}
+
+.fhcs-skill-7 {
+  left: 208px;
+  top: calc(30px + 854px);
+}
+
+.fhcs-skill-8 {
+  left: 208px;
+  top: calc(30px + 883px);
+}
+
+.fhcs-skill-9 {
+  left: 208px;
+  top: calc(30px + 911px);
+}
+
+.fhcs-skill-10 {
+  left: 208px;
+  top: calc(30px + 939px);
 }
