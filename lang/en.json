@@ -9,6 +9,27 @@
     "Silver": "Silver",
     "Gold": "Gold",
     "SignaturePower": "Signature Power",
-    "EditSkill": "Edit Skill"
+    "EditSkill": "Edit Skill",
+    "EditPower": "Edit Power",
+    "Alacrity": "Alacrity",
+    "Artifice": "Artifice",
+    "BeastMastery": "Beast Mastery",
+    "Command": "Command",
+    "Death": "Death",
+    "Deception": "Deception",
+    "Earth": "Earth",
+    "Endurance": "Endurance",
+    "Fire": "Fire",
+    "Vitality": "Vitality",
+    "Knowledge": "Knowledge",
+    "Might": "Might",
+    "Moon": "Moon",
+    "Nature": "Nature",
+    "Water": "Water",
+    "Air": "Air",
+    "Sorcery": "Sorcery",
+    "Sun": "Sun",
+    "Weaponry": "Weaponry",
+    "Time": "Time"
   }
 }

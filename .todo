@@ -9,7 +9,7 @@ Player name
   [Done]          Add a player name editable text box
 
 HP
-  [Done]          Change maximum hit points rule from hit dice + constitution to 8 + level * 3
+  [Not done]      Change maximum hit points rule from hit dice + constitution to 8 + level * (2 + Endurance)
   [Done]          Limit current hit points to maximum hit points
   Questions:
     Does leveling up increase the current hit points by 3?
@@ -28,7 +28,7 @@ Skills
   [Done]          Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
 
 Powers
-  [Not done]      Name: add dropdown menus based on the rule sheet
+  [Done]          Name: add dropdown menus based on the rule sheet
   [Not done]      Add an edit button next to the power name
   [Not done]      Level: add number boxes with a minimum of 1 and a maximum of 10
   [Not done]      Invocation: add number boxes with a minimum of 1 and a maximum equals to the power level
@@ -37,6 +37,9 @@ Powers
   [Not done]      Add an exclusive radio button with "Power Infusion" or "Advantage Infusion" as choices
   [Not done]      Consume an invocation on infused power check
   [Not done]      Display a warning before an infused power check at 0 invocations
+  Questions:
+    Do we let the custom font or put the default one?
+    Should the power names be sorted alphabetically?
 
 Others
   [Not done]      Add a rest button that refills current hit points and sets invocations to maximum

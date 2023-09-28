@@ -1,0 +1,42 @@
+<a class="fhcs-power-ai fhcs-power-{{power-id}}-ai font-size12 height21px width21px z-index9"
+   data-power="{{power-id}}"
+   data-tooltip="FHCS.EditPower"
+   style="align-items: center; display: flex; justify-content: center;">
+  <i class="fa-edit fas fhcs-power-ai fhcs-power-{{power-id}}-ai z-index9"
+     data-power="{{power-id}}"></i>
+</a>
+
+<a class="fhcs-power-name-{{power-id}}-a font-size14 height21px margin-right5px width96px"
+   style="align-items: center; display: flex; padding: 2px 4px; {{#getStyle power-name-flag}}{{/getStyle}}"></a>
+<select class="border0 font-size14 height21px margin-right5px padding0 width96px"
+        data-power="{{power-id}}"
+        name="fhcs-power-name-{{power-id}}"
+        style="display: none;">
+  <option></option>
+  {{#each powers as |power pid|}}
+    <option value="{{power}}">{{power}}</option>
+  {{/each}}
+</select>
+
+<input class="fhcs-power-level font-size14 height21px margin-right5px text-align-center width40px"
+       data-power="{{power-id}}"
+       max="10"
+       style="{{#getStyle power-name-flag}}{{/getStyle}}"
+       type="number"
+       value="{{power-level-flag}}">
+<div class="display-flex font-size14 height21px width69px">
+  <input class="fhcs-power-invocation height21px text-align-center width31px"
+         data-power="{{power-id}}"
+         max="{{power-level-flag}}"
+         style="{{#getStyle power-name-flag}}{{/getStyle}}"
+         type="number"
+         value="{{power-invocation-flag}}">
+  <div style="align-items: center; display: flex;">
+    <span style="width: 7px">{{#getSeparator power-level-flag}}{{/getSeparator}}</span>
+  </div>
+
+  <input class="height21px text-align-center width31px"
+         disabled
+         type="number"
+         value="{{power-level-flag}}">
+</div>

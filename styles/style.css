@@ -1,12 +1,22 @@
 /*  GLOBAL
  */
- 
-.font-size12 { font-size: 12px !important; }  /* fhcs-skill-a[2], fhcs-skill-i */
-.font-size20 { font-size: 20px !important; }  /* fhcs-skill-div, fhcs-skill-input */
+
+.border0 { border: 0 !important; }  /* fhcs-power-select */
+
+.display-flex { display: flex !important; }  /* fhcs-power */
+
+.font-size12 { font-size: 12px !important; }  /* fhcs-skill-a[2], fhcs-skill-i, fhcs-power-a[1] */
+.font-size14 { font-size: 14px !important; }  /* fhcs-power-span */
+.font-size20 { font-size: 20px !important; }  /* fhcs-skill-div, fhcs-skill-input, fhcs-power-input */
 
 .height100 { height: 100% !important; }   /* fhcs-skill-div, fhcs-skill-input */
+.height21px { height: 21px !important; }  /* fhcs-power */
 .height23px { height: 23px !important; }  /* fhcs-skill, fhcs-skill-a[2] */
 .height28px { height: 28px !important; }  /* fhcs-div, fhcs-input */
+
+.margin-right5px { margin-right: 5px !important; } /* fhcs-power-select */
+
+.padding0 { padding: 0 !important; } /* fhcs-select */
 
 .position-absolute { position: absolute !important; }
 
@@ -17,11 +27,17 @@
 
 .text-align-center { text-align: center !important; } /* fhcs-div, fhcs-input */
 
-.width23px { width: 23px !important; }    /* fhcs-a[2] */
+.width21px { width: 21px !important; }    /* fhcs-power-a[1] */
+.width23px { width: 23px !important; }    /* fhcs-skill-a[2] */
 .width30px { width: 30px !important; }    /* fhcs-div, fhcs-input */
+.width31px { width: 31px !important; }    /* fhcs-power-input[2] */
+.width40px { width: 40px !important; }    /* fhcs-power-input[1] */
+.width69px { width: 69px !important; }    /* fhcs-power-div */
+.width96px { width: 96px !important; }    /* fhcs-power-a[2], fhcs-power-select */
 .width99px { width: 99px !important; }    /* fhcs-skill-div, fhcs-skill-input */
 .width122px { width: 122px !important; }  /* fhcs-skill-[6–10] */
 .width125px { width: 125px !important; }  /* fhcs-skill-[1–5] */
+.width236px { width: 236px !important; }  /* fhcs-power */
 
 .z-index9 { z-index: 9; } /* fhcs-skill-a[2], fhcs-skill-i */
 
@@ -164,4 +180,29 @@
 .fhcs-skill-10 {
   left: 208px;
   top: calc(30px + 939px);
+}
+
+.fhcs-power-1 {
+  left: 382px;
+  top: calc(30px + 844px);
+}
+
+.fhcs-power-2 {
+  left: 382px;
+  top: calc(30px + 869px);
+}
+
+.fhcs-power-3 {
+  left: 382px;
+  top: calc(30px + 894px);
+}
+
+.fhcs-power-4 {
+  left: 382px;
+  top: calc(30px + 919px);
+}
+
+.fhcs-power-5 {
+  left: 382px;
+  top: calc(30px + 945px);
 }

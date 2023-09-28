@@ -1,14 +1,14 @@
-<a class="fhcs-skill-{{skill}}-a fhcs-skill-name font-size20 height100 position-absolute width99px"
-   style="align-items: center; display: flex; padding: 2px 4px;">{{flag}}</a>
-<input class="fhcs-skill-input fhcs-skill-{{skill}}-input font-size20 height100 position-absolute width99px"
-       data-skill="{{skill}}"
+<a class="fhcs-skill-{{skill-id}}-a fhcs-skill-name font-size20 height100 position-absolute width99px"
+   style="align-items: center; display: flex; padding: 2px 4px; {{#getStyle skill-flag}}{{/getStyle}}">{{skill-flag}}</a>
+<input class="fhcs-skill-input fhcs-skill-{{skill-id}}-input font-size20 height100 position-absolute width99px"
+       data-skill="{{skill-id}}"
        style="display: none;"
        type="text"
-       value="{{flag}}">
-<a class="fhcs-skill-ai fhcs-skill-{{skill}}-ai font-size12 height23px width23px z-index9"
-   data-skill="{{skill}}"
+       value="{{skill-flag}}">
+<a class="fhcs-skill-ai fhcs-skill-{{skill-id}}-ai font-size12 height23px width23px z-index9"
+   data-skill="{{skill-id}}"
    data-tooltip="FHCS.EditSkill"
    style="align-items: center; display: flex; float: right; justify-content: center;">
-  <i class="fa-edit fas fhcs-skill-ai fhcs-skill-{{skill}}-ai z-index9"
-     data-skill="{{skill}}"></i>
+  <i class="fa-edit fas fhcs-skill-ai fhcs-skill-{{skill-id}}-ai z-index9"
+     data-skill="{{skill-id}}"></i>
 </a>

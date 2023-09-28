@@ -12,14 +12,15 @@ Hooks.once('init', _ => {
     types: ["character"]
   });
 
-  Handlebars.registerHelper('getHpMax', level => {
-    return 8 + level * 3;
-  });
+  Handlebars.registerHelper('getHpMax', level => 8 + level * 2);
+  Handlebars.registerHelper('getSeparator', level => level ? '/' : '');
+  Handlebars.registerHelper('getStyle', skillOrPower => skillOrPower ? '' : 'cursor: default; pointer-events: none;');
 
   loadTemplates({
     'fates-heir-character-sheet.character-sheet': 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs',
     'fates-heir-character-sheet.inventory': 'modules/fates-heir-character-sheet/templates/actors/parts/inventory.hbs',
     'fates-heir-character-sheet.skill': 'modules/fates-heir-character-sheet/templates/actors/parts/skill.hbs',
-    'fates-heir-character-sheet.roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/roll-dialog.hbs'
+    'fates-heir-character-sheet.roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/roll-dialog.hbs',
+    'fates-heir-character-sheet.power': 'modules/fates-heir-character-sheet/templates/actors/parts/power.hbs'
   });
 });
