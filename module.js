@@ -1,7 +1,7 @@
 /*  IMPORTS
  */
 
-import { FatesHeirCharacterSheet } from './scripts/fates-heir-character-sheet.js';
+import { FatesHeirCharacterSheet } from './module/applications/actor/character-sheet.js';
 
 /*  MAIN
  */
@@ -17,7 +17,9 @@ Hooks.once('init', _ => {
   });
 
   loadTemplates({
+    'fates-heir-character-sheet.character-sheet': 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs',
     'fates-heir-character-sheet.inventory': 'modules/fates-heir-character-sheet/templates/actors/parts/inventory.hbs',
-    'fates-heir-character-sheet.skill': 'modules/fates-heir-character-sheet/templates/actors/parts/skill.hbs'
+    'fates-heir-character-sheet.skill': 'modules/fates-heir-character-sheet/templates/actors/parts/skill.hbs',
+    'fates-heir-character-sheet.roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/roll-dialog.hbs'
   });
 });

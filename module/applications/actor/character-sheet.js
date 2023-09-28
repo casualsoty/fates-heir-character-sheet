@@ -10,6 +10,10 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }
   }
 
+  get template() {
+    return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';
+  }
+
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['actor', 'character', 'dnd5e', 'fhcs', 'sheet'],
@@ -18,8 +22,30 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  get template() {
-    return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';
+  async _onRollSkillCheck(e) {
+    if (this.actor.isOwner) {
+      new Dialog({
+        buttons: {
+          advantage: {
+            label: game.i18n.localize("DND5E.Advantage"),
+            callback: html => this.rollSkill(html, '2d100kh', e.target.innerText + ' Skill Check (Advantage)')
+          },
+          normal: {
+            label: game.i18n.localize("DND5E.Normal"),
+            callback: html => this.rollSkill(html, '1d100', e.target.innerText + ' Skill Check')
+          },
+          disadvantage: {
+            label: game.i18n.localize("DND5E.Disadvantage"),
+            callback: html => this.rollSkill(html, '2d100kl', e.target.innerText + ' Skill Check (Disadvantage)')
+          }
+        },
+        content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/roll-dialog.hbs', {
+          defaultRollMode: game.settings.get("core", "rollMode"),
+          rollModes: CONFIG.Dice.rollModes,
+        }),
+        title: e.target.innerText + ' Skill Check: ' + this.actor.name
+      }).render(true);
+    }
   }
 
   activateListeners(html) {
@@ -80,5 +106,18 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     if (html.find('.fhcs-hp-value').val() > 8 + html.find('.fhcs-level').val() * 3) {
       html.find('.fhcs-hp-value').val(8 + html.find('.fhcs-level').val() * 3);
     }
+  }
+
+  rollSkill = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'level',) + ' * 3' + BONUS).evaluate();
+    return ROLL.toMessage({
+      flavor: flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
+    });
   }
 }

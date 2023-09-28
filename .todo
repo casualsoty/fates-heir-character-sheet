@@ -24,8 +24,8 @@ Signature power
 Skills
   [Done]          Replace skill names like acrobatics and animal handling by text boxes
   [Done]          Add an edit button next to the skill name
-  [Not done]      Clicking the skill name should open a custom window without formula and modifiers
-  [Not done]      Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
+  [Done]          Clicking the skill name should open a custom window without formula and modifiers
+  [Done]          Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
 
 Powers
   [Not done]      Name: add dropdown menus based on the rule sheet
