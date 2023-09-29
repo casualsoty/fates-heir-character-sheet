@@ -70,7 +70,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         if (html.find('.fhcs-level').val() !== this.actor.getFlag('fates-heir-character-sheet', 'level')) {
           if (e.type === 'focusout' || e.which === 13) {
             this.actor.setFlag('fates-heir-character-sheet', 'level', html.find('.fhcs-level').val());
-            this.checkHpValue(html);
           }
         }
       });
@@ -79,16 +78,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       html.find('.fhcs-player-name').on('focusout keypress', e => {
         if (e.type === 'focusout' || e.which === 13) {
           this.actor.setFlag('fates-heir-character-sheet', 'player-name', html.find('.fhcs-player-name').val());
-        }
-      });
-
-      // hp-value
-      html.find('.fhcs-hp-value').on('focusout keypress', e => {
-        if (e.type === 'focusout' || e.which === 13) {
-          this.checkHpValue(html);
-        }
-        if (e.which === 13) {
-          html.find('.fhcs-hp-value').focus();
         }
       });
 
@@ -205,14 +194,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
   /*
    */
-  checkHpValue = html => {
-    if (html.find('.fhcs-hp-value').val() > 8 + html.find('.fhcs-level').val() * 2) {
-      html.find('.fhcs-hp-value').val(8 + html.find('.fhcs-level').val() * 2);
-    }
-  }
-
-  /*
-   */
   rollSkill = async (html, command, flavor) => {
     const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
     const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'level') + ' * 3' + BONUS).evaluate();
@@ -235,7 +216,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     const POWER_INVOCATION = this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + powerId);
     let roll = '';
 
-    switch (html.find('[name="infusion"]:checked').attr('id')) {
+    switch (html.find('[name="invocation"]:checked').attr('id')) {
       case 'none':
         roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
         break;

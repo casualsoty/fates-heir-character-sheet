@@ -1,5 +1,5 @@
-<ol class="inventory-list items-list"
-    style="color: black; padding: 0;">
+<ol class="color inventory-list items-list"
+    style="padding: 0;">
   {{#each sections as |section sid|}}
     {{!-- header --}}
     <li class="flexrow items-header"
@@ -36,7 +36,8 @@
               style="border: 0; padding: 2px">
             <div class="flexrow item-name {{@root.rollableClass}}">
               {{#if section.editableName}}
-                <input type="text"
+                <input class="color"
+                       type="text"
                        value="{{item.name}}">
               {{else}}
                 <div aria-label="{{item.name}}"
@@ -44,7 +45,8 @@
                      role="button"
                      style="background-image: url('{{item.img}}'); border-radius: .5em;"
                      tabindex="0"></div>
-                <p style="font-size: 12px; margin: 0;">{{item.name~}}</p>
+                <p class="color"
+                   style="font-size: 12px; margin: 0;">{{item.name~}}</p>
                 {{#if ctx.attunement}}
                   <div class="attunement item-detail">
                     <i class="fas"
@@ -60,10 +62,10 @@
               {{#each section.columns}}
                 <div class="item-detail {{css}}">
                   {{#if editable}}
-                    <input type="text"
-                           data-dtype="{{editable}}"
+                    <input data-dtype="{{editable}}"
                            data-property="{{property}}"
                            placeholder="&mdash;"
+                           type="text"
                            value="{{#if (getProperty item property)}}
                                     {{getProperty item property}}
                                   {{~else}}
@@ -80,7 +82,8 @@
               {{/each}}
             {{else}}
               <div class="item-detail item-quantity">
-                <input data-dtype="Number"
+                <input class="color"
+                       data-dtype="Number"
                        data-name="system.quantity"
                        placeholder="0"
                        type="text"
@@ -89,7 +92,8 @@
 
               <div class="item-detail item-uses">
                 {{#if ctx.hasUses}}
-                  <input data-dtype="Number"
+                  <input class="color"
+                         data-dtype="Number"
                          data-name="system.uses.value"
                          placeholder="0"
                          type="text"

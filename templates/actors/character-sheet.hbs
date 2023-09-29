@@ -29,18 +29,34 @@
            type="text"
            value="{{actor.flags.fates-heir-character-sheet.player-name}}">
 
+    {{!-- rest --}}
+    <div class="align-items-end display-flex fhcs-rest flex-direction-column height123px justify-content-center position-absolute width50px"
+         style="color: #501e44;">
+      {{!-- short-rest --}}
+      <a class="font-size20 rest short-rest"
+         data-tooltip="{{localize 'FHCS.ShortRest'}}">
+        <i class="fa-fire fas"></i>
+      </a>
+      
+      &nbsp;
+      {{!-- long-rest --}}
+      <a class="font-size20 long-rest rest"
+         data-tooltip="{{localize 'FHCS.LongRest'}}">
+        <i class="fa-moon fas"></i>
+      </a>
+    </div>
+
     {{!-- hp-value --}}
     <input class="fhcs-hp-value height28px position-absolute text text-align-center width30px"
            data-dtype="Number"
            data-tooltip="FHCS.HitPointsCurrent"
-           max="{{getHpMax actor.flags.fates-heir-character-sheet.level}}"
            name="system.attributes.hp.value"
            type="number"
            value="{{system.attributes.hp.value}}">
 
     {{!-- hp-max --}}
     <div class="fhcs-hp-max height28px position-absolute text text-align-center width30px"
-         data-tooltip="FHCS.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet.level}}</div>
+         data-tooltip="FHCS.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
 
     {{!-- cp --}}
     <input class="fhcs-cp height28px position-absolute text text-align-center width30px"

@@ -1,6 +1,3 @@
-Global
-  [Not done]      Replace d20s by d100s
-
 Level
   [Done]          Change base level to 1
   [Done]          Make the level number box editable
@@ -9,7 +6,7 @@ Player name
   [Done]          Add a player name editable text box
 
 HP
-  [Not done]      Change maximum hit points rule from hit dice + constitution to 8 + level * (2 + Endurance)
+  [Done]          Change maximum hit points rule from hit dice + constitution to 8 + @level * (2 + @powerEndurance)
   [Done]          Limit current hit points to maximum hit points
   Questions:
     Does leveling up increase the current hit points by 3?
@@ -25,7 +22,7 @@ Skills
   [Done]          Replace skill names like acrobatics and animal handling by text boxes
   [Done]          Add an edit button next to the skill name
   [Done]          Clicking the skill name should open a custom window without formula and modifiers
-  [Done]          Replace skill proficiencies and modifiers from d20 + proficiency + modifier to d100 + level * 3
+  [Done]          Replace skill proficiencies and modifiers from d20 + proficiency + modifier to 1d100 + @level * 3
 
 Powers
   [Done]          Name: add dropdown menus based on the rule sheet
@@ -33,8 +30,8 @@ Powers
   [Done]          Level: add number boxes with a minimum of 1 and a maximum of 10
   [Done]          Invocation: add number boxes with a minimum of 1 and a maximum equals to the power level
   [Done]          Clicking the power name should open a custom window without formula and modifiers
-  [Done]          Replace power proficiencies and modifiers from d20 + proficiency + modifier to d100 + powerLevel * 5
-  [Done]          Add an exclusive radio button with "Power Infusion" or "Advantage Infusion" as choices
+  [Done]          Replace power proficiencies and modifiers from d20 + proficiency + modifier to 1d100 + (@powerLevel + @powerInvocation) * 5
+  [Done]          Add an exclusive radio button with "Power" or "Advantage" as choices
   [Done]          Consume an invocation on infused power check
   [Done]          Display a warning before an infused power check at 0 invocations
   Questions:
@@ -42,6 +39,11 @@ Powers
     Should the power names be sorted alphabetically or let them like in the rule sheet?
 
 Others
-  [Not done]      Add a rest button that refills current hit points and sets invocations to maximum
+  [Done]          Add a rest button that refills current hit points and sets invocations to maximum
+  [Not done]      Fix .color
   [Not done]      Embed the spellbook tab
   [Not done]      Embed the biography tab as a journal tab
+  Questions:
+    Should the rest windows be custom?
+    What do you want the rest buttons to look like?
+    Where do you want to place the rest buttons?

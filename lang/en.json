@@ -31,11 +31,12 @@
     "Sun": "Sun",
     "Weaponry": "Weaponry",
     "Time": "Time",
-    "Infusion": "Infusion",
+    "Invocation": "Invocation",
     "None": "None",
     "Power": "Power",
     "Advantage": "Advantage",
-    "WarningLabel": "Warning",
-    "WarningInput": "No invocation charges left"
+    "Warning": "No Invocation Charges remaining",
+    "ShortRest": "Short Rest",
+    "LongRest": "Long Rest"
   }
 }

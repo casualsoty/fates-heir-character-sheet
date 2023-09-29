@@ -6,37 +6,38 @@
     <input disabled
            name="formula"
            type="text"
-           value="1d100 + (@powerLevel + @powerInfusion) * 5 + @bonus">
+           value="1d100 + (@powerLevel + @powerInvocation) * 5 + @bonus">
   </div>
 
   <div class="form-group">
     <label>
-      {{localize 'FHCS.Infusion'}}
+      {{localize 'FHCS.Invocation'}}
     </label>
     <div>
       <input checked
              id="none"
-             name="infusion"
+             name="invocation"
              type="radio">
       <label for="none">
         {{localize 'FHCS.None'}}
       </label>
       <input id="power"
-             name="infusion"
+             name="invocation"
              type="radio">
       <label for="power">
         {{localize 'FHCS.Power'}}
       </label>
       <input id="advantage"
-             name="infusion"
+             name="invocation"
              type="radio">
       <label for="advantage">
         {{localize 'FHCS.Advantage'}}
       </label>
     </div>
+    
+    {{#getWarning powerInvocationFlag}}{{/getWarning}}
   </div>
 
-  {{#getWarning powerInvocationFlag}}{{/getWarning}}
   <div class="form-group">
     <label>
       {{localize 'DND5E.RollSituationalBonus'}}

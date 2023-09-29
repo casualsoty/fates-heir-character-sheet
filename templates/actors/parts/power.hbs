@@ -19,14 +19,14 @@
   {{/each}}
 </select>
 
-<input class="fhcs-power-level font-size14 height21px margin-right5px text-align-center width40px"
+<input class="color fhcs-power-level font-size14 height21px margin-right5px text-align-center width40px"
        data-power="{{power-id}}"
        max="10"
        style="{{#getStyle power-name-flag}}{{/getStyle}}"
        type="number"
        value="{{power-level-flag}}">
 <div class="display-flex font-size14 height21px width69px">
-  <input class="fhcs-power-invocation height21px text-align-center width31px"
+  <input class="color fhcs-power-invocation height21px text-align-center width31px"
          data-power="{{power-id}}"
          max="{{power-level-flag}}"
          style="{{#getStyle power-name-flag}}{{/getStyle}}"
@@ -36,7 +36,7 @@
     <span style="width: 7px">{{#getSeparator power-level-flag}}{{/getSeparator}}</span>
   </div>
 
-  <input class="height21px text-align-center width31px"
+  <input class="color height21px text-align-center width31px"
          disabled
          type="number"
          value="{{power-level-flag}}">
