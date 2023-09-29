@@ -10,8 +10,8 @@
           <div class="item-detail {{css}}">{{label}}</div>
         {{/each}}
       {{else}}
-        <div class="item-detail item-quantity">{{localize "DND5E.QuantityAbbr"}}</div>
-        <div class="item-detail item-uses">{{localize "DND5E.Charges"}}</div>
+        <div class="item-detail item-quantity">{{localize 'DND5E.QuantityAbbr'}}</div>
+        <div class="item-detail item-uses">{{localize 'DND5E.Charges'}}</div>
       {{/if}}
 
       {{#if ../owner}}
@@ -20,7 +20,7 @@
              data-action="itemCreate"
              data-tooltip="DND5E.ItemCreate"
             {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
-            <i class="fa-plus fas"></i> {{localize "DND5E.Add"}}
+            <i class="fa-plus fas"></i> {{localize 'DND5E.Add'}}
           </a>
         </div>
       {{/if}}
@@ -126,7 +126,7 @@
             {{/if}}
 
             {{#if ctx.isExpanded}}
-              {{> "dnd5e.item-summary" (lookup @root.expandedData item.id)}}
+              {{> 'dnd5e.item-summary' (lookup @root.expandedData item.id)}}
             {{/if}}
           </li>
         {{/dnd5e-itemContext}}

@@ -1,17 +1,17 @@
 <form>
   <div class="form-group">
     <label>
-      {{localize "DND5E.Formula"}}
+      {{localize 'DND5E.Formula'}}
     </label>
     <input disabled
            name="formula"
            type="text"
-           value="1d100 + @level * 3">
+           value="1d100 + @powerLevel * 5 + @bonus">
   </div>
 
   <div class="form-group">
     <label>
-      {{localize "DND5E.RollSituationalBonus"}}
+      {{localize 'DND5E.RollSituationalBonus'}}
     </label>
     <input name="bonus"
            placeholder="{{localize 'DND5E.RollExample'}}"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="form-group">
-    <label>{{localize "DND5E.RollMode"}}</label>
+    <label>{{localize 'DND5E.RollMode'}}</label>
     <select name="rollMode">
       {{selectOptions rollModes localize=true selected=defaultRollMode}}
     </select>
