@@ -30,6 +30,12 @@
     "Sorcery": "Sorcery",
     "Sun": "Sun",
     "Weaponry": "Weaponry",
-    "Time": "Time"
+    "Time": "Time",
+    "Infusion": "Infusion",
+    "None": "None",
+    "Power": "Power",
+    "Advantage": "Advantage",
+    "WarningLabel": "Warning",
+    "WarningInput": "No invocation charges left"
   }
 }

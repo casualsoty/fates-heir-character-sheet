@@ -15,6 +15,16 @@ Hooks.once('init', _ => {
   Handlebars.registerHelper('getHpMax', level => 8 + level * 2);
   Handlebars.registerHelper('getSeparator', level => level ? '/' : '');
   Handlebars.registerHelper('getStyle', skillOrPower => skillOrPower ? '' : 'cursor: default; pointer-events: none;');
+  Handlebars.registerHelper('getWarning', invocation => {
+    if (invocation < 1) {
+      return '' +
+        '<div class="form-group">' +
+          '<label style="color: red;">' + game.i18n.localize('FHCS.WarningLabel') + '</label>' +
+          '<input disabled style="color: red;" type="text" value="' + game.i18n.localize('FHCS.WarningInput') + '">' +
+        '</div>';
+    }
+    return;
+  });
 
   loadTemplates({
     'fates-heir-character-sheet.character-sheet':   'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs',

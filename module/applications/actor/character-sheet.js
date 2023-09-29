@@ -185,25 +185,17 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
    *    @private
    */
   async _onRollPowerCheck(e) {
-    console.log(e.target)
     if (this.actor.isOwner) {
       new Dialog({
         buttons: {
-          advantage: {
-            label: game.i18n.localize('DND5E.Advantage'),
-            callback: html => this.rollPower(html, '2d100kh', e.target.dataset.power, e.target.innerText + ' Power Check (Advantage)')
-          },
           normal: {
             label: game.i18n.localize('DND5E.Normal'),
-            callback: html => this.rollPower(html, '1d100', e.target.dataset.power, e.target.innerText + ' Power Check')
-          },
-          disadvantage: {
-            label: game.i18n.localize('DND5E.Disadvantage'),
-            callback: html => this.rollPower(html, '2d100kl', e.target.dataset.power, e.target.innerText + ' Power Check (Disadvantage)')
+            callback: html => this.rollPower(html, e.target.dataset.power, e.target.innerText + ' Power Check')
           }
         },
         content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs', {
           defaultRollMode: game.settings.get('core', 'rollMode'),
+          powerInvocationFlag: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
           rollModes: CONFIG.Dice.rollModes,
         }),
         title: e.target.innerText + ' Power Check: ' + this.actor.name
@@ -237,11 +229,27 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
   /*
    */
-  rollPower = async (html, command, powerId, flavor) => {
+  rollPower = async (html, powerId, flavor) => {
     const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
-    const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + powerId) + ' * 5' + BONUS).evaluate();
+    const POWER_LEVEL = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + powerId);
+    const POWER_INVOCATION = this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + powerId);
+    let roll = '';
 
-    return ROLL.toMessage({
+    switch (html.find('[name="infusion"]:checked').attr('id')) {
+      case 'none':
+        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
+        break;
+      case 'power':
+        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 1) * 5' + BONUS).evaluate();
+        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
+        break;
+      case 'advantage':
+        roll = await new Roll('2d100kh + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
+        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
+        break;
+    }
+
+    return roll.toMessage({
       flavor: flavor,
       speaker: {
         alias: this.actor.name
