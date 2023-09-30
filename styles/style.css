@@ -1,60 +1,12 @@
 /*  GLOBAL
  */
 
-.align-items-end { align-items: end !important; } /* fhcs-rest */
-
-.border0 { border: 0 !important; }  /* fhcs-power-select */
-
-.color {
-  color: #501e44 !important;
-  font-weight: bold !important;
-}
-
-.display-flex { display: flex !important; } /* fhcs-power */
-
-.flex-direction-column { flex-direction: column !important; } /* fhcs-rest */
-
-.font-size12 { font-size: 12px !important; }  /* fhcs-skill-a[2], fhcs-skill-i, fhcs-power-a[1] */
-.font-size14 { font-size: 14px !important; }  /* fhcs-power-span */
-.font-size20 { font-size: 20px !important; }  /* fhcs-skill-div, fhcs-skill-input, fhcs-power-input */
-
-.height100 { height: 100% !important; }     /* fhcs-skill-div, fhcs-skill-input */
-.height21px { height: 21px !important; }    /* fhcs-power */
-.height23px { height: 23px !important; }    /* fhcs-skill, fhcs-skill-a[2] */
-.height28px { height: 28px !important; }    /* fhcs-div, fhcs-input */
-.height123px { height: 123px !important; }  /* fhcs-rest */
-
-.justify-content-center { justify-content: center !important; }  /* fhcs-rest */
-
-.margin-right5px { margin-right: 5px !important; }  /* fhcs-power-select */
-
-.padding0 { padding: 0 !important; }      /* fhcs-select */
-
-.position-absolute { position: absolute !important; }
-
-.text {
-  color: #501e44 !important;
-  font-family: black-chancery !important;
-  font-size: 22px !important;
-  font-weight: bold;
-}
-
-.text-align-center { text-align: center !important; } /* fhcs-div, fhcs-input */
-
-.width21px { width: 21px !important; }    /* fhcs-power-a[1] */
-.width23px { width: 23px !important; }    /* fhcs-skill-a[2] */
-.width30px { width: 30px !important; }    /* fhcs-div, fhcs-input */
-.width31px { width: 31px !important; }    /* fhcs-power-input[2] */
-.width40px { width: 40px !important; }    /* fhcs-power-input[1] */
-.width50px { width: 50px !important; }    /* fhcs-rest */
-.width69px { width: 69px !important; }    /* fhcs-power-div */
-.width96px { width: 96px !important; }    /* fhcs-power-a[2], fhcs-power-select */
-.width99px { width: 99px !important; }    /* fhcs-skill-div, fhcs-skill-input */
-.width122px { width: 122px !important; }  /* fhcs-skill-[6–10] */
-.width125px { width: 125px !important; }  /* fhcs-skill-[1–5] */
-.width236px { width: 236px !important; }  /* fhcs-power */
-
-.z-index9 { z-index: 9 !important; }  /* fhcs-skill-a[2], fhcs-skill-i */
+.border0            { border: 0           !important; } /* fhcs-inventory */
+.border-radius05    { border-radius: .5em !important; } /* fhcs-inventory */
+.color1             { color: #45193d    !important; } /* fhcs-inventory */
+.font-size12        { font-size: 12px     !important; } /* fhcs-inventory */
+.margin0            { margin: 0           !important; } /* fhcs-inventory */
+.padding0           { padding: 0          !important; } /* fhcs-inventory */
 
 @font-face {
   font-family: black-chancery;
@@ -64,165 +16,271 @@
 /*  CLASSES
 */
 
-.dnd5e.sheet .window-content { padding: 0; }
-.dnd5e.sheet .window-resizable-handle { display: none; }
+.dnd5e.sheet .window-content          { padding: 0    !important; }
+.dnd5e.sheet .window-resizable-handle { display: none !important; }
 
 .fhcs-background-image {
-  background-image: url('../artwork/fhcs.min.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 100%;
-  width: 100%;
+  background-image: url('../artwork/fhcs.png')  !important;
+  background-position: center                   !important;
+  background-repeat: no-repeat                  !important;
+  background-size: contain                      !important;
+  height: 100%                                  !important;
+  width: 100%                                   !important;
 }
 
 .fhcs-img {
-  border: 0;
-  border-radius: 1em 1em 0 0;
-  height: 242px;
-  left: 56px;
-  object-fit: contain;
-  top: calc(30px + 151px);
-  width: 242px;
+  border: 0                   !important;
+  border-radius: 1em 1em 0 0  !important;
+  height: 242px               !important;
+  left: 56px                  !important;
+  object-fit: contain         !important;
+  position: absolute          !important;
+  top: calc(30px + 150px)     !important;
+  width: 242px                !important;
 }
 
 .fhcs-name {
-  left: 419px;
-  top: calc(30px + 213px);
-  width: 246px !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 22px             !important;
+  font-weight: bold           !important;
+  height: 26px                !important;
+  left: 420px                 !important;
+  position: absolute          !important;
+  top: calc(30px + 214px)     !important;
+  width: 243px                !important;
 }
 
 .fhcs-level {
-  left: 419px;
-  top: calc(30px + 251px);
-  width: 246px !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 22px             !important;
+  font-weight: bold           !important;
+  height: 26px                !important;
+  left: 415px                 !important;
+  position: absolute          !important;
+  top: calc(30px + 252px)     !important;
+  width: 248px                !important;
 }
 
 .fhcs-player-name {
-  left: 478px;
-  top: calc(30px + 288px);
-  width: 187px !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 22px             !important;
+  font-weight: bold           !important;
+  height: 26px                !important;
+  left: 480px                 !important;
+  position: absolute          !important;
+  top: calc(30px + 292px)     !important;
+  width: 183px                !important;
 }
 
 .fhcs-rest {
-  left: 0px;
-  top: calc(30px + 417px);
+  align-items: end              !important;
+  color: #4b1b27              !important;
+  display: flex                 !important;
+  flex-direction: column        !important;
+  font-size: 22px               !important;
+  height: 123px                 !important;
+  justify-content: space-around !important;
+  left: 0px                     !important;
+  position: absolute            !important;
+  top: calc(30px + 417px)       !important;
+  width: 50px                   !important;
 }
 
 .fhcs-hp-value {
-  left: 88px;
-  top: calc(30px + 454px);
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 24px                !important;
+  left: 91px                  !important;
+  position: absolute          !important;
+  text-align: center          !important;
+  top: calc(30px + 453px)     !important;
+  width: calc(24px + 12px)    !important;
 }
 
 .fhcs-hp-max {
-  left: 119px;
-  top: calc(30px + 483px);
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 24px                !important;
+  left: calc(121px - 12px)    !important;
+  position: absolute          !important;
+  text-align: center          !important;
+  top: calc(30px + 481px)     !important;
+  width: calc(24px + 12px)    !important;
 }
 
 .fhcs-cp {
-  left: 183px;
-  top: calc(30px + 504px);
+  border-radius: 9em          !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 44px                !important;
+  left: 176px                 !important;
+  position: absolute          !important;
+  text-align: center          !important;
+  top: calc(30px + 497px)     !important;
+  width: 44px                 !important;
 }
 
 .fhcs-sp {
-  left: 234px;
-  top: calc(30px + 505px);
+  border-radius: 9em          !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 44px                !important;
+  left: 228px                 !important;
+  position: absolute          !important;
+  text-align: center          !important;
+  top: calc(30px + 497px)     !important;
+  width: 44px                 !important;
 }
 
 .fhcs-gp {
-  left: 285px;
-  top: calc(30px + 505px);
+  border-radius: 9em          !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 44px                !important;
+  left: 278px                 !important;
+  position: absolute          !important;
+  text-align: center          !important;
+  top: calc(30px + 497px)     !important;
+  width: 44px                 !important;
 }
 
 .fhcs-inventory {
-  height: 116px !important;
-  left: 342px;
-  overflow: auto;
-  top: calc(30px + 418px);
-  width: 294px !important;
+  height: 118px           !important;
+  left: 340px             !important;
+  position: absolute      !important;
+  overflow: auto          !important;
+  top: calc(30px + 417px) !important;
+  width: 295px            !important;
 }
 
 .fhcs-signature-power {
-  border: 0;
-  font-size: 17.25px !important;
-  height: 116px !important;
-  left: 49px;
-  resize: none;
-  top: calc(30px + 639px);
-  width: 620px !important;
+  border: 0                   !important;
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 20px             !important;
+  font-weight: bold           !important;
+  height: 103px               !important;
+  left: 50px                  !important;
+  position: absolute          !important;
+  resize: none                !important;
+  text-align: center          !important;
+  top: calc(30px + 642px)     !important;
+  width: 621px                !important;
 }
 
-.fhcs-skill-1 {
-  left: 77px;
-  top: calc(30px + 826px);
+.fhcs-skill {
+  color: #d0b0a1            !important;
+  font-family: black-chancery !important;
+  height: 26px                !important;
+  position: absolute          !important;
 }
 
-.fhcs-skill-2 {
-  left: 77px;
-  top: calc(30px + 854px);
+.fhcs-skill-1   { left: 75px;   top: calc(30px + 824px);  width: 129px; }
+.fhcs-skill-2   { left: 75px;   top: calc(30px + 852px);  width: 129px; }
+.fhcs-skill-3   { left: 75px;   top: calc(30px + 881px);  width: 129px; }
+.fhcs-skill-4   { left: 75px;   top: calc(30px + 910px);  width: 129px; }
+.fhcs-skill-5   { left: 75px;   top: calc(30px + 939px);  width: 129px; }
+.fhcs-skill-6   { left: 208px;  top: calc(30px + 824px);  width: 124px; }
+.fhcs-skill-7   { left: 208px;  top: calc(30px + 852px);  width: 124px; }
+.fhcs-skill-8   { left: 208px;  top: calc(30px + 881px);  width: 124px; }
+.fhcs-skill-9   { left: 208px;  top: calc(30px + 910px);  width: 124px; }
+.fhcs-skill-10  { left: 208px;  top: calc(30px + 939px);  width: 124px; }
+
+.fhcs-skill-name, .fhcs-skill-input {
+  align-items: center       !important;
+  color: #d0b0a1          !important;
+  font-size: 20px           !important;
+  height: 100%              !important;
+  position: absolute        !important;
+  width: calc(124px - 26px) !important;
 }
 
-.fhcs-skill-3 {
-  left: 77px;
-  top: calc(30px + 883px);
+.fhcs-skill-name { padding: 2px 4px; }
+
+.fhcs-skill-ai {
+  align-items: center     !important;
+  display: flex           !important;
+  float: right            !important;
+  font-size: 11px         !important;
+  height: 100%            !important;
+  justify-content: center !important;
+  width: 26px             !important;
+  z-index: 9              !important;
 }
 
-.fhcs-skill-4 {
-  left: 77px;
-  top: calc(30px + 911px);
+.fhcs-power {
+  color: #d0b0a1            !important;
+  display: flex               !important;
+  font-family: black-chancery !important;
+  height: 22px                !important;
+  position: absolute          !important;
 }
 
-.fhcs-skill-5 {
-  left: 77px;
-  top: calc(30px + 939px);
+.fhcs-power-1 { left: calc(403px - 22px); top: calc(30px + 843px);  width: calc(22px + 218px); }
+.fhcs-power-2 { left: calc(403px - 22px); top: calc(30px + 868px);  width: calc(22px + 218px); }
+.fhcs-power-3 { left: calc(403px - 22px); top: calc(30px + 893px);  width: calc(22px + 218px); }
+.fhcs-power-4 { left: calc(403px - 22px); top: calc(30px + 919px);  width: calc(22px + 218px); }
+.fhcs-power-5 { left: calc(403px - 22px); top: calc(30px + 945px);  width: calc(22px + 218px); }
+
+.fhcs-power-ai {
+  align-items: center     !important;
+  color: #45193d        !important;
+  display: flex           !important;
+  font-size: 11px         !important;
+  height: 100%            !important;
+  justify-content: center !important;
+  width: 22px             !important;
+  z-index: 9              !important;
 }
 
-.fhcs-skill-6 {
-  left: 208px;
-  top: calc(30px + 826px);
+.fhcs-power-name, .fhcs-power-select {
+  align-items: center !important;
+  border: 0           !important;
+  color: #d0b0a1    !important;
+  font-size: 14px     !important;
+  height: 100%        !important;
+  margin-right: 4px   !important;
+  width: 97px         !important;
 }
 
-.fhcs-skill-7 {
-  left: 208px;
-  top: calc(30px + 854px);
+.fhcs-power-name { padding-left:7px; }
+
+.fhcs-power-select option { color: #45193d; } 
+
+.fhcs-power-level {
+  color: #d0b0a1    !important;
+  font-size: 14px     !important;
+  height: 100%        !important;
+  margin-right: 4px   !important;
+  text-align: center  !important;
+  width: 41px         !important;
 }
 
-.fhcs-skill-8 {
-  left: 208px;
-  top: calc(30px + 883px);
+.fhcs-power-invocation-input {
+  color: #d0b0a1              !important;
+  font-size: 14px               !important;
+  height: 100%                  !important;
+  text-align: center            !important;
+  width: calc((72px - 6px) / 2) !important;
 }
 
-.fhcs-skill-9 {
-  left: 208px;
-  top: calc(30px + 911px);
+.fhcs-power-invocation-separator {
+  align-items: center !important;
+  display: flex       !important;
+  margin-top: 1px     !important;
 }
 
-.fhcs-skill-10 {
-  left: 208px;
-  top: calc(30px + 939px);
-}
-
-.fhcs-power-1 {
-  left: 382px;
-  top: calc(30px + 844px);
-}
-
-.fhcs-power-2 {
-  left: 382px;
-  top: calc(30px + 869px);
-}
-
-.fhcs-power-3 {
-  left: 382px;
-  top: calc(30px + 894px);
-}
-
-.fhcs-power-4 {
-  left: 382px;
-  top: calc(30px + 919px);
-}
-
-.fhcs-power-5 {
-  left: 382px;
-  top: calc(30px + 945px);
-}
+.fhcs-power-invocation-separator div { width: 6px; }

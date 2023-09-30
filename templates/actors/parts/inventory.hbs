@@ -1,9 +1,7 @@
-<ol class="color inventory-list items-list"
-    style="padding: 0;">
+<ol class="color1 inventory-list items-list padding0">
   {{#each sections as |section sid|}}
     {{!-- header --}}
-    <li class="flexrow items-header"
-        style="border: 0; margin: 0;">
+    <li class="border0 flexrow items-header margin0">
       <h3 class="flexrow item-name">{{localize section.label}}</h3>
       {{#if section.columns}}
         {{#each section.columns}}
@@ -16,7 +14,7 @@
 
       {{#if ../owner}}
         <div class="flexrow item-controls">
-          <a class="item-create item-control"
+          <a class="item-control item-create"
              data-action="itemCreate"
              data-tooltip="DND5E.ItemCreate"
             {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
@@ -31,22 +29,19 @@
       {{#each section.items as |item iid|}}
         {{#dnd5e-itemContext item as |ctx|}}
           <li {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}
-              class="flexrow item {{#if ctx.isExpanded}}expanded{{/if}} {{section.css}}"
-              data-item-id="{{item.id}}"
-              style="border: 0; padding: 2px">
+              class="border0 flexrow item padding0 {{#if ctx.isExpanded}}expanded{{/if}} {{section.css}}"
+              data-item-id="{{item.id}}">
             <div class="flexrow item-name {{@root.rollableClass}}">
               {{#if section.editableName}}
-                <input class="color"
-                       type="text"
+                <input type="text"
                        value="{{item.name}}">
               {{else}}
                 <div aria-label="{{item.name}}"
-                     class="item-image"
+                     class="border-radius05 item-image"
                      role="button"
-                     style="background-image: url('{{item.img}}'); border-radius: .5em;"
+                     style="background-image: url('{{item.img}}');"
                      tabindex="0"></div>
-                <p class="color"
-                   style="font-size: 12px; margin: 0;">{{item.name~}}</p>
+                <p class="color1 font-size12 margin0">{{item.name~}}</p>
                 {{#if ctx.attunement}}
                   <div class="attunement item-detail">
                     <i class="fas"
@@ -62,7 +57,8 @@
               {{#each section.columns}}
                 <div class="item-detail {{css}}">
                   {{#if editable}}
-                    <input data-dtype="{{editable}}"
+                    <input class="color1"
+                           data-dtype="{{editable}}"
                            data-property="{{property}}"
                            placeholder="&mdash;"
                            type="text"
@@ -82,7 +78,7 @@
               {{/each}}
             {{else}}
               <div class="item-detail item-quantity">
-                <input class="color"
+                <input class="color1"
                        data-dtype="Number"
                        data-name="system.quantity"
                        placeholder="0"
@@ -92,7 +88,7 @@
 
               <div class="item-detail item-uses">
                 {{#if ctx.hasUses}}
-                  <input class="color"
+                  <input class="color1"
                          data-dtype="Number"
                          data-name="system.uses.value"
                          placeholder="0"

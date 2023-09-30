@@ -17,7 +17,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['actor', 'character', 'dnd5e', 'fhcs', 'sheet'],
-      height: 30 + (1305 * 720 / 922),
+      height: 30 + (3508 * 720 / 2480),
       width: 720
     });
   }
@@ -93,12 +93,12 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         if (e.type === 'focusout' || e.which === 13) {
           html.find('.fhcs-skill-' + e.target.dataset.skill + '-input').css('display', 'none');
           this.actor.setFlag('fates-heir-character-sheet', 'skill-' + e.target.dataset.skill, html.find('.fhcs-skill-' + e.target.dataset.skill + '-input').val());
-          html.find('.fhcs-skill-' + e.target.dataset.skill + '-a').css('display', 'flex');
+          html.find('.fhcs-skill-' + e.target.dataset.skill + '-name').css('display', 'flex');
         }
       });
 
       html.find('.fhcs-skill-ai').on('click', e => {
-        html.find('.fhcs-skill-' + e.target.dataset.skill + '-a').css('display', 'none');
+        html.find('.fhcs-skill-' + e.target.dataset.skill + '-name').css('display', 'none');
         html.find('.fhcs-skill-' + e.target.dataset.skill + '-input').css('display', 'block').focus();
       });
 
