@@ -1,10 +1,17 @@
 {
   "FHCS": {
+    "Spellbook": "Spellbook",
+    "Journal": "Journal",
     "Name": "Character Name",
     "Level": "Level",
     "PlayerName": "Player Name",
     "Rest": "Rest",
     "RestHint": "Take a rest? On a rest you will recover hit points, limited use item charges, spell slots and invocation charges.",
+    "RestLongContent1": " takes a rest and recovers ",
+    "RestLongContent2": " Hit Points.",
+    "RestShortContent": " takes a rest.",
+    "RestFlavorNormal": "Rest (8 hours)",
+    "RestFlavorOvernight": "Rest (New Day)",
     "HitPointsCurrent": "Current Hit Points",
     "HitPointsMax": "Maximum Hit Points",
     "Copper": "Copper",

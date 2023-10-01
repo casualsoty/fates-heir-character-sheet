@@ -53,6 +53,20 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   /*  @inheritDoc ActorSheet5eCharacter
    */
   activateListeners(html) {
+    console.log('test')
+    // header
+    html.find('[class^="fhcs-header-"]').on('click', e => {
+      html.find('[class^="fhcs-header-"] i').css('opacity', '.5');
+      html.find(e.target).css('opacity', '1');
+      html.find('[class^="fhcs-body-"]').css('display', 'none');
+      html.find('.fhcs-body-' + e.currentTarget.className.split('-')[2]).css('display', 'block');
+    });
+
+    // body
+    html.find('[class^="fhcs-header-"]').each((i, e) => {
+      html.find('.' + html.find(e).attr('class').replace('header' ,'body')).css('display', html.find(e).children().css('opacity') == 1 ? 'block' : 'none');
+    });
+
     // power
     for (let i = 1; i < 6; i++) {
       if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {
@@ -147,7 +161,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         rest: {
           icon: '<i class="fa-bed fas"></i>',
           label: game.i18n.localize('DND5E.Rest'),
-          callback: html => this.rest()
+          callback: html => this.rest(html)
         },
         cancel: {
           icon: '<i class="fa-times fas"></i>',
@@ -211,13 +225,30 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
   /*
    */
-  rest = _ => {
+  rest = html => {
     const FLAGS = this.actor.flags['fates-heir-character-sheet'];
     const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
-    
-    this.actor._rest(1, 1, 1, 0, HP_MAX).then(_ => {
-      this.actor.system.attributes.hp.value = HP_MAX;
+    const HP_VALUE = this.actor.system.attributes.hp.value;
+
+    this.actor._rest(0, html.find('[name="new-day"]').is(':checked'), 1, 0, HP_MAX).then(_ => {
       $('#' + this.id).find('.fhcs-hp-value').val(HP_MAX);
+      this.actor.system.attributes.hp.value = HP_MAX;
+    });
+
+    for (let i = 1; i < 6; i++) {
+      this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + i, this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i));
+    }
+
+    ChatMessage.create({
+      content: HP_VALUE < HP_MAX ?
+        this.actor.name + ' ' + game.i18n.localize('FHCS.RestLongContent1') + (HP_MAX - HP_VALUE) + game.i18n.localize('FHCS.RestLongContent2') :
+        this.actor.name + game.i18n.localize('FHCS.RestShortContent'),
+      flavor: html.find('[name="new-day"]').is(':checked') ? game.i18n.localize('FHCS.RestFlavorOvernight') : game.i18n.localize('FHCS.RestFlavorNormal'),
+      speaker: {
+        actor: this.actor,
+        alias: this.actor.name
+      },
+      user: game.user.id
     });
   }
 

@@ -19,7 +19,26 @@
 .dnd5e.sheet .window-content          { padding: 0    !important; }
 .dnd5e.sheet .window-resizable-handle { display: none !important; }
 
-.fhcs-background-image {
+.fhcs-header {
+  align-items: end          !important;
+  color: #97574d          !important;
+  display: flex             !important;
+  flex-direction: row       !important;
+  font-size: 25px           !important;
+  height: calc(43px - 3px)  !important;
+  justify-content: end      !important;
+  left: 563px               !important;
+  position: absolute        !important;
+  top: calc(30px + 69px)    !important;
+  width: 104px              !important;
+}
+
+.fhcs-header a {
+  height: 25px        !important;
+  margin: 0 0 0 .5em  !important;
+}
+
+.fhcs-body-main {
   background-image: url('../artwork/fhcs.png')  !important;
   background-position: center                   !important;
   background-repeat: no-repeat                  !important;
@@ -284,3 +303,20 @@
 }
 
 .fhcs-power-invocation-separator div { width: 6px; }
+
+.fhcs-body-spellbook, .fhcs-body-journal {
+  background-image: url('../artwork/empty-fhcs.png')  !important;
+  background-position: center                         !important;
+  background-repeat: no-repeat                        !important;
+  background-size: contain                            !important;
+  height: 100%                                        !important;
+  width: 100%                                         !important;
+}
+
+.fhcs-spellbook, .fhcs-journal {
+  height: calc(1018.44px - 150px - 56px)  !important;
+  left: 56px                              !important;
+  position: absolute                      !important;
+  top: calc(30px + 150px)                 !important;
+  width: calc(720px - 56px * 2)           !important;
+}
