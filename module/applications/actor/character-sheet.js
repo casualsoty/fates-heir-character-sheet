@@ -7,9 +7,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     if (!this.actor.getFlag('fates-heir-character-sheet', 'level')) {
       this.actor.setFlag('fates-heir-character-sheet', 'level', 1);
     }
-    if (!this.actor.system.attributes.hp.value) {
-      this.actor.system.attributes.hp.value = 11;
-    }
   }
 
   /*  @inheritDoc ActorSheet5eCharacter
@@ -81,6 +78,9 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         }
       });
 
+      // rest
+      html.find('.fhcs-rest-a').click(this._onRest.bind(this));
+
       // signature-power
       html.find('.fhcs-signature-power').on('focusout', _ => {
         this.actor.setFlag('fates-heir-character-sheet', 'signature-power', html.find('.fhcs-signature-power').val());
@@ -138,58 +138,87 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';
   }
 
+  /*  Handle taking a rest
+   *    @param {Event} e      The originating click event.
+   */
+  async _onRest(e) {
+    new Dialog({
+      buttons: {
+        rest: {
+          icon: '<i class="fa-bed fas"></i>',
+          label: game.i18n.localize('DND5E.Rest'),
+          callback: html => this.rest()
+        },
+        cancel: {
+          icon: '<i class="fa-times fas"></i>',
+          label: game.i18n.localize('Cancel')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/apps/rest.hbs'),
+      title: game.i18n.localize('FHCS.Rest') + ': ' + this.actor.name
+    }).render(true);
+  }
+
   /*  Handle rolling a Skill check.
    *    @override ActorSheet5e
-   *    @param {Event} event  The originating click event.
+   *    @param {Event} e  The originating click event.
    *    @private
    */
   async _onRollSkillCheck(e) {
-    if (this.actor.isOwner) {
-      new Dialog({
-        buttons: {
-          advantage: {
-            label: game.i18n.localize('DND5E.Advantage'),
-            callback: html => this.rollSkill(html, '2d100kh', e.target.innerText + ' Skill Check (Advantage)')
-          },
-          normal: {
-            label: game.i18n.localize('DND5E.Normal'),
-            callback: html => this.rollSkill(html, '1d100', e.target.innerText + ' Skill Check')
-          },
-          disadvantage: {
-            label: game.i18n.localize('DND5E.Disadvantage'),
-            callback: html => this.rollSkill(html, '2d100kl', e.target.innerText + ' Skill Check (Disadvantage)')
-          }
+    new Dialog({
+      buttons: {
+        advantage: {
+          label: game.i18n.localize('DND5E.Advantage'),
+          callback: html => this.rollSkill(html, '2d100kh', e.target.innerText + ' Skill Check (Advantage)')
         },
-        content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/skill-roll-dialog.hbs', {
-          defaultRollMode: game.settings.get('core', 'rollMode'),
-          rollModes: CONFIG.Dice.rollModes,
-        }),
-        title: e.target.innerText + ' Skill Check: ' + this.actor.name
-      }).render(true);
-    }
+        normal: {
+          label: game.i18n.localize('DND5E.Normal'),
+          callback: html => this.rollSkill(html, '1d100', e.target.innerText + ' Skill Check')
+        },
+        disadvantage: {
+          label: game.i18n.localize('DND5E.Disadvantage'),
+          callback: html => this.rollSkill(html, '2d100kl', e.target.innerText + ' Skill Check (Disadvantage)')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/skill-roll-dialog.hbs', {
+        defaultRollMode: game.settings.get('core', 'rollMode'),
+        rollModes: CONFIG.Dice.rollModes,
+      }),
+      title: e.target.innerText + ' Skill Check: ' + this.actor.name
+    }).render(true);
   }
 
   /*  Handle rolling a Power check.
-   *    @param {Event} event  The originating click event.
+   *    @param {Event} e  The originating click event.
    *    @private
    */
   async _onRollPowerCheck(e) {
-    if (this.actor.isOwner) {
-      new Dialog({
-        buttons: {
-          normal: {
-            label: game.i18n.localize('DND5E.Normal'),
-            callback: html => this.rollPower(html, e.target.dataset.power, e.target.innerText + ' Power Check')
-          }
-        },
-        content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs', {
-          defaultRollMode: game.settings.get('core', 'rollMode'),
-          powerInvocationFlag: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
-          rollModes: CONFIG.Dice.rollModes,
-        }),
-        title: e.target.innerText + ' Power Check: ' + this.actor.name
-      }).render(true);
-    }
+    new Dialog({
+      buttons: {
+        normal: {
+          label: game.i18n.localize('DND5E.Normal'),
+          callback: html => this.rollPower(html, e.target.dataset.power, e.target.innerText + ' Power Check')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs', {
+        defaultRollMode: game.settings.get('core', 'rollMode'),
+        powerInvocationFlag: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
+        rollModes: CONFIG.Dice.rollModes,
+      }),
+      title: e.target.innerText + ' Power Check: ' + this.actor.name
+    }).render(true);
+  }
+
+  /*
+   */
+  rest = _ => {
+    const FLAGS = this.actor.flags['fates-heir-character-sheet'];
+    const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
+    
+    this.actor._rest(1, 1, 1, 0, HP_MAX).then(_ => {
+      this.actor.system.attributes.hp.value = HP_MAX;
+      $('#' + this.id).find('.fhcs-hp-value').val(HP_MAX);
+    });
   }
 
   /*

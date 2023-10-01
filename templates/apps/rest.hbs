@@ -1,0 +1,11 @@
+<form class="dialog-content"
+      onsubmit="event.preventDefault();">
+  <p>{{localize 'FHCS.RestHint'}}</p>
+  <div class="form-group">
+    <label>{{localize 'DND5E.NewDay'}}</label>
+    <input name="newDay"
+           type="checkbox"
+           {{checked newDay}}/>
+    <p class="hint">{{localize 'DND5E.NewDayHint'}}</p>
+  </div>
+</form>

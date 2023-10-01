@@ -35,7 +35,6 @@ Powers
   [Done]          Consume an invocation on infused power check
   [Done]          Display a warning before an infused power check at 0 invocations
   Questions:
-    Do we let the custom font or put the default one?
     Should the power names be sorted alphabetically or let them like in the rule sheet?
 
 Others

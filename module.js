@@ -15,6 +15,7 @@ Hooks.once('init', _ => {
 
   loadTemplates({
     'fates-heir-character-sheet.character-sheet':   'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs',
+    'fates-heir-character-sheet.rest':              'modules/fates-heir-character-sheet/templates/apps/rest.hbs',
     'fates-heir-character-sheet.inventory':         'modules/fates-heir-character-sheet/templates/actors/parts/inventory.hbs',
     'fates-heir-character-sheet.skill':             'modules/fates-heir-character-sheet/templates/actors/parts/skill.hbs',
     'fates-heir-character-sheet.skill-roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/skill-roll-dialog.hbs',
