@@ -4,240 +4,249 @@
 <form autocomplete="off"
       class="{{cssClass}}">
   {{!-- header --}}
-  <div class="fhcs-header">
-    <a class="fhcs-header-main"
+  <nav class="fhcs-header"
+       data-group="primary">
+    <a class="active fhcs-header-main item"
+       data-tab="main"
        data-tooltip="{{actor.name}}">
-      <i class="fa-user fas"></i>
+      <i class="active fa-user fas"></i>
     </a>
 
-    <a class="fhcs-header-spellbook"
-       data-tooltip="{{localize 'FHCS.Spellbook'}}">
-      <i class="fa-book-sparkles fas"
-         style="opacity: .5;"></i>
+    <a class="fhcs-header-spellbook item"
+       data-tab="spellbook"
+       data-tooltip="FHCS.Spellbook">
+      <i class="fa-book-sparkles fas"></i>
     </a>
 
-    <a class="fhcs-header-journal"
-       data-tooltip="{{localize 'FHCS.Journal'}}">
-      <i class="fa-feather-pointed fas"
-         style="opacity: .5;"></i>
+    <a class="fhcs-header-journal item"
+       data-tab="journal"
+       data-tooltip="FHCS.Journal">
+      <i class="fa-feather-pointed fas"></i>
     </a>
-  </div>
+  </nav>
+  
+  {{!-- body --}}
+  <div class="fhcs-body">
+    {{!-- main --}}
+    <div class="fhcs-body-main tab"
+        data-group="primary"
+        data-tab="main">
+      {{!-- img --}}
+      <img class="fhcs-img profile"
+          data-edit="img"
+          data-tooltip="{{actor.name}}"
+          src="{{actor.img}}">
 
-  {{!-- main --}}
-  <div class="fhcs-body-main">
-    {{!-- img --}}
-    <img class="fhcs-img profile"
-        data-edit="img"
-        data-tooltip="{{actor.name}}"
-        src="{{actor.img}}">
+      {{!-- name --}}
+      <input class="fhcs-name"
+            data-tooltip="{{localize 'FHCS.Name'}}"
+            name="name"
+            type="text"
+            value="{{actor.name}}">
 
-    {{!-- name --}}
-    <input class="fhcs-name"
-          data-tooltip="{{localize 'FHCS.Name'}}"
-          name="name"
-          type="text"
-          value="{{actor.name}}">
+      {{!-- level --}}
+      <input class="fhcs-level"
+            data-tooltip="FHCS.Level"
+            type="number"
+            value="{{actor.flags.fates-heir-character-sheet.level}}">
 
-    {{!-- level --}}
-    <input class="fhcs-level"
-          data-tooltip="FHCS.Level"
-          type="number"
-          value="{{actor.flags.fates-heir-character-sheet.level}}">
+      {{!-- player-name --}}
+      <input class="fhcs-player-name"
+            data-tooltip="FHCS.PlayerName"
+            type="text"
+            value="{{actor.flags.fates-heir-character-sheet.player-name}}">
 
-    {{!-- player-name --}}
-    <input class="fhcs-player-name"
-          data-tooltip="FHCS.PlayerName"
-          type="text"
-          value="{{actor.flags.fates-heir-character-sheet.player-name}}">
+      {{!-- rest --}}
+      <div class="fhcs-rest">
+        <div></div>
+        <{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-rest-a"
+          data-tooltip="{{localize 'FHCS.Rest'}}">
+          <i class="fa-moon fas"></i>
+        </{{#if @root.owner}}a{{else}}h4{{/if}}>
+      </div>
 
-    {{!-- rest --}}
-    <div class="fhcs-rest">
-      <div></div>
-      <a class="fhcs-rest-a"
-        data-tooltip="{{localize 'FHCS.Rest'}}">
-        <i class="fa-moon fas"></i>
-      </a>
+      {{!-- hp-value --}}
+      <input class="fhcs-hp-value"
+            data-dtype="Number"
+            data-tooltip="FHCS.HitPointsCurrent"
+            name="system.attributes.hp.value"
+            type="number"
+            value="{{system.attributes.hp.value}}">
+
+      {{!-- hp-max --}}
+      <div class="fhcs-hp-max"
+          data-tooltip="FHCS.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
+
+      {{!-- cp --}}
+      <input class="fhcs-cp"
+            data-dtype="Number"
+            data-tooltip="FHCS.Copper"
+            name="system.currency.cp"
+            type="text"
+            value="{{system.currency.cp}}">
+
+      {{!-- sp --}}
+      <input class="fhcs-sp"
+            data-dtype="Number"
+            data-tooltip="FHCS.Silver"
+            name="system.currency.sp"
+            type="text"
+            value="{{system.currency.sp}}">
+
+      {{!-- gp --}}
+      <input class="fhcs-gp"
+            data-dtype="Number"
+            data-tooltip="FHCS.Gold"
+            name="system.currency.gp"
+            type="text"
+            value="{{system.currency.gp}}">
+
+      {{!-- inventory --}}
+      <div class="fhcs-inventory flexcol inventory">
+        {{> 'fates-heir-character-sheet.inventory' sections=inventory}}
+      </div>
+
+      {{!-- signature-power --}}
+      <textarea class="fhcs-signature-power"
+                data-tooltip="FHCS.SignaturePower">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
+
+      {{!-- skill-1 --}}
+      <div class="fhcs-skill fhcs-skill-1">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-1
+          skill-id=1}}
+      </div>
+
+      {{!-- skill-2 --}}
+      <div class="fhcs-skill fhcs-skill-2">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-2
+          skill-id=2}}
+      </div>
+
+      {{!-- skill-3 --}}
+      <div class="fhcs-skill fhcs-skill-3">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-3
+          skill-id=3}}
+      </div>
+
+      {{!-- skill-4 --}}
+      <div class="fhcs-skill fhcs-skill-4">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-4
+          skill-id=4}}
+      </div>
+
+      {{!-- skill-5 --}}
+      <div class="fhcs-skill fhcs-skill-5">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-5
+          skill-id=5}}
+      </div>
+
+      {{!-- skill-6 --}}
+      <div class="fhcs-skill fhcs-skill-6">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-6
+          skill-id=6}}
+      </div>
+
+      {{!-- skill-7 --}}
+      <div class="fhcs-skill fhcs-skill-7">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-7
+          skill-id=7}}
+      </div>
+
+      {{!-- skill-8 --}}
+      <div class="fhcs-skill fhcs-skill-8">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-8
+          skill-id=8}}
+      </div>
+
+      {{!-- skill-9 --}}
+      <div class="fhcs-skill fhcs-skill-9">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-9
+          skill-id=9}}
+      </div>
+
+      {{!-- skill-10 --}}
+      <div class="fhcs-skill fhcs-skill-10">
+        {{> 'fates-heir-character-sheet.skill'
+          skill-flag=actor.flags.fates-heir-character-sheet.skill-10
+          skill-id=10}}
+      </div>
+
+      {{!-- power-1 --}}
+      <div class="fhcs-power fhcs-power-1">
+        {{> 'fates-heir-character-sheet.power'
+          power-id=1
+          power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-1
+          power-level-flag=actor.flags.fates-heir-character-sheet.power-level-1
+          power-name-flag=actor.flags.fates-heir-character-sheet.power-name-1
+          powers=powers}}
+      </div>
+
+      {{!-- power-2 --}}
+      <div class="fhcs-power fhcs-power-2">
+        {{> 'fates-heir-character-sheet.power'
+          power-id=2
+          power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-2
+          power-level-flag=actor.flags.fates-heir-character-sheet.power-level-2
+          power-name-flag=actor.flags.fates-heir-character-sheet.power-name-2
+          powers=powers}}
+      </div>
+
+      {{!-- power-3 --}}
+      <div class="fhcs-power fhcs-power-3">
+        {{> 'fates-heir-character-sheet.power'
+          power-id=3
+          power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-3
+          power-level-flag=actor.flags.fates-heir-character-sheet.power-level-3
+          power-name-flag=actor.flags.fates-heir-character-sheet.power-name-3
+          powers=powers}}
+      </div>
+
+      {{!-- power-4 --}}
+      <div class="fhcs-power fhcs-power-4">
+        {{> 'fates-heir-character-sheet.power'
+          power-id=4
+          power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-4
+          power-level-flag=actor.flags.fates-heir-character-sheet.power-level-4
+          power-name-flag=actor.flags.fates-heir-character-sheet.power-name-4
+          powers=powers}}
+      </div>
+
+      {{!-- power-5 --}}
+      <div class="fhcs-power fhcs-power-5">
+        {{> 'fates-heir-character-sheet.power'
+          power-id=5
+          power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-5
+          power-level-flag=actor.flags.fates-heir-character-sheet.power-level-5
+          power-name-flag=actor.flags.fates-heir-character-sheet.power-name-5
+          powers=powers}}
+      </div>
     </div>
 
-    {{!-- hp-value --}}
-    <input class="fhcs-hp-value"
-          data-dtype="Number"
-          data-tooltip="FHCS.HitPointsCurrent"
-          name="system.attributes.hp.value"
-          type="number"
-          value="{{system.attributes.hp.value}}">
-
-    {{!-- hp-max --}}
-    <div class="fhcs-hp-max"
-        data-tooltip="FHCS.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
-
-    {{!-- cp --}}
-    <input class="fhcs-cp"
-          data-dtype="Number"
-          data-tooltip="FHCS.Copper"
-          name="system.currency.cp"
-          type="text"
-          value="{{system.currency.cp}}">
-
-    {{!-- sp --}}
-    <input class="fhcs-sp"
-          data-dtype="Number"
-          data-tooltip="FHCS.Silver"
-          name="system.currency.sp"
-          type="text"
-          value="{{system.currency.sp}}">
-
-    {{!-- gp --}}
-    <input class="fhcs-gp"
-          data-dtype="Number"
-          data-tooltip="FHCS.Gold"
-          name="system.currency.gp"
-          type="text"
-          value="{{system.currency.gp}}">
-
-    {{!-- inventory --}}
-    <div class="fhcs-inventory flexcol inventory">
-      {{> 'fates-heir-character-sheet.inventory' sections=inventory}}
+    {{!-- spellbook --}}
+    <div class="fhcs-body-spellbook tab"
+        data-group="primary"
+        data-tab="spellbook">
+      <div class="fhcs-spellbook">
+        {{> 'fates-heir-character-sheet.spellbook'}}
+      </div>
     </div>
 
-    {{!-- signature-power --}}
-    <textarea class="fhcs-signature-power"
-              data-tooltip="FHCS.SignaturePower">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
-
-    {{!-- skill-1 --}}
-    <div class="fhcs-skill fhcs-skill-1">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-1
-        skill-id=1}}
-    </div>
-
-    {{!-- skill-2 --}}
-    <div class="fhcs-skill fhcs-skill-2">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-2
-        skill-id=2}}
-    </div>
-
-    {{!-- skill-3 --}}
-    <div class="fhcs-skill fhcs-skill-3">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-3
-        skill-id=3}}
-    </div>
-
-    {{!-- skill-4 --}}
-    <div class="fhcs-skill fhcs-skill-4">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-4
-        skill-id=4}}
-    </div>
-
-    {{!-- skill-5 --}}
-    <div class="fhcs-skill fhcs-skill-5">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-5
-        skill-id=5}}
-    </div>
-
-    {{!-- skill-6 --}}
-    <div class="fhcs-skill fhcs-skill-6">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-6
-        skill-id=6}}
-    </div>
-
-    {{!-- skill-7 --}}
-    <div class="fhcs-skill fhcs-skill-7">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-7
-        skill-id=7}}
-    </div>
-
-    {{!-- skill-8 --}}
-    <div class="fhcs-skill fhcs-skill-8">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-8
-        skill-id=8}}
-    </div>
-
-    {{!-- skill-9 --}}
-    <div class="fhcs-skill fhcs-skill-9">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-9
-        skill-id=9}}
-    </div>
-
-    {{!-- skill-10 --}}
-    <div class="fhcs-skill fhcs-skill-10">
-      {{> 'fates-heir-character-sheet.skill'
-        skill-flag=actor.flags.fates-heir-character-sheet.skill-10
-        skill-id=10}}
-    </div>
-
-    {{!-- power-1 --}}
-    <div class="fhcs-power fhcs-power-1">
-      {{> 'fates-heir-character-sheet.power'
-        power-id=1
-        power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-1
-        power-level-flag=actor.flags.fates-heir-character-sheet.power-level-1
-        power-name-flag=actor.flags.fates-heir-character-sheet.power-name-1
-        powers=powers}}
-    </div>
-
-    {{!-- power-2 --}}
-    <div class="fhcs-power fhcs-power-2">
-      {{> 'fates-heir-character-sheet.power'
-        power-id=2
-        power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-2
-        power-level-flag=actor.flags.fates-heir-character-sheet.power-level-2
-        power-name-flag=actor.flags.fates-heir-character-sheet.power-name-2
-        powers=powers}}
-    </div>
-
-    {{!-- power-3 --}}
-    <div class="fhcs-power fhcs-power-3">
-      {{> 'fates-heir-character-sheet.power'
-        power-id=3
-        power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-3
-        power-level-flag=actor.flags.fates-heir-character-sheet.power-level-3
-        power-name-flag=actor.flags.fates-heir-character-sheet.power-name-3
-        powers=powers}}
-    </div>
-
-    {{!-- power-4 --}}
-    <div class="fhcs-power fhcs-power-4">
-      {{> 'fates-heir-character-sheet.power'
-        power-id=4
-        power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-4
-        power-level-flag=actor.flags.fates-heir-character-sheet.power-level-4
-        power-name-flag=actor.flags.fates-heir-character-sheet.power-name-4
-        powers=powers}}
-    </div>
-
-    {{!-- power-5 --}}
-    <div class="fhcs-power fhcs-power-5">
-      {{> 'fates-heir-character-sheet.power'
-        power-id=5
-        power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-5
-        power-level-flag=actor.flags.fates-heir-character-sheet.power-level-5
-        power-name-flag=actor.flags.fates-heir-character-sheet.power-name-5
-        powers=powers}}
-    </div>
-  </div>
-
-  {{!-- spellbook --}}
-  <div class="fhcs-body-spellbook"
-      style="display: none;">
-    <div class="fhcs-spellbook">
-      {{> 'fates-heir-character-sheet.spellbook'}}
-    </div>
-  </div>
-
-  {{!-- journal --}}
-  <div class="fhcs-body-journal"
-      style="display: none;">
-    <div class="fhcs-journal">
-      {{> 'fates-heir-character-sheet.journal'}}
+    {{!-- journal --}}
+    <div class="fhcs-body-journal tab"
+        data-group="primary"
+        data-tab="journal">
+      <div class="fhcs-journal flexrow">
+        {{> 'fates-heir-character-sheet.journal'}}
+      </div>
     </div>
   </div>
 </form>

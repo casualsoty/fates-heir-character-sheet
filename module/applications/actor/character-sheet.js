@@ -15,6 +15,11 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     return mergeObject(super.defaultOptions, {
       classes: ['actor', 'character', 'dnd5e', 'fhcs', 'sheet'],
       height: 30 + (3508 * 720 / 2480),
+      tabs : [{
+        contentSelector: '.fhcs-body',
+        initial: 'main',
+        navSelector: '.fhcs-header'
+      }],
       width: 720
     });
   }
@@ -53,20 +58,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   /*  @inheritDoc ActorSheet5eCharacter
    */
   activateListeners(html) {
-    console.log('test')
-    // header
-    html.find('[class^="fhcs-header-"]').on('click', e => {
-      html.find('[class^="fhcs-header-"] i').css('opacity', '.5');
-      html.find(e.target).css('opacity', '1');
-      html.find('[class^="fhcs-body-"]').css('display', 'none');
-      html.find('.fhcs-body-' + e.currentTarget.className.split('-')[2]).css('display', 'block');
-    });
-
-    // body
-    html.find('[class^="fhcs-header-"]').each((i, e) => {
-      html.find('.' + html.find(e).attr('class').replace('header' ,'body')).css('display', html.find(e).children().css('opacity') == 1 ? 'block' : 'none');
-    });
-
     // power
     for (let i = 1; i < 6; i++) {
       if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {

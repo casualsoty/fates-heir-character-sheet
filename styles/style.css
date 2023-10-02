@@ -36,15 +36,23 @@
 .fhcs-header a {
   height: 25px        !important;
   margin: 0 0 0 .5em  !important;
+  opacity: .5         !important;
+}
+
+.fhcs-header a.active { opacity: 1 !important; }
+
+.fhcs-body {
+  height: 100%  !important;
+  width: 100%   !important;
 }
 
 .fhcs-body-main {
-  background-image: url('../artwork/fhcs.png')  !important;
-  background-position: center                   !important;
-  background-repeat: no-repeat                  !important;
-  background-size: contain                      !important;
-  height: 100%                                  !important;
-  width: 100%                                   !important;
+  background-image: url('../artwork/fhcs.min.png')  !important;
+  background-position: center                       !important;
+  background-repeat: no-repeat                      !important;
+  background-size: contain                          !important;
+  height: 100%                                      !important;
+  width: 100%                                       !important;
 }
 
 .fhcs-img {
@@ -305,12 +313,12 @@
 .fhcs-power-invocation-separator div { width: 6px; }
 
 .fhcs-body-spellbook, .fhcs-body-journal {
-  background-image: url('../artwork/empty-fhcs.png')  !important;
-  background-position: center                         !important;
-  background-repeat: no-repeat                        !important;
-  background-size: contain                            !important;
-  height: 100%                                        !important;
-  width: 100%                                         !important;
+  background-image: url('../artwork/empty-fhcs.min.png')  !important;
+  background-position: center                             !important;
+  background-repeat: no-repeat                            !important;
+  background-size: contain                                !important;
+  height: 100%                                            !important;
+  width: 100%                                             !important;
 }
 
 .fhcs-spellbook, .fhcs-journal {

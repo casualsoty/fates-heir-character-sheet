@@ -1,13 +1,15 @@
-<a class="fhcs-skill-name fhcs-skill-{{skill-id}}-name"
-   style="display: flex; {{#getStyle skill-flag}}{{/getStyle}}">{{skill-flag}}</a>
+<{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-skill-name fhcs-skill-{{skill-id}}-name"
+   style="display: flex; {{#getStyle skill-flag}}{{/getStyle}}">{{skill-flag}}</{{#if @root.owner}}a{{else}}h4{{/if}}>
 <input class="fhcs-skill-input fhcs-skill-{{skill-id}}-input"
        data-skill="{{skill-id}}"
        style="display: none !important;"
        type="text"
        value="{{skill-flag}}">
-<a class="fhcs-skill-ai fhcs-skill-{{skill-id}}-ai"
-   data-skill="{{skill-id}}"
-   data-tooltip="FHCS.EditSkill">
+{{#if @root.owner}}
+  <a class="fhcs-skill-ai fhcs-skill-{{skill-id}}-ai"
+    data-skill="{{skill-id}}"
+    data-tooltip="FHCS.EditSkill">
   <i class="fa-edit fas fhcs-skill-ai fhcs-skill-{{skill-id}}-ai"
-     data-skill="{{skill-id}}"></i>
-</a>
+    data-skill="{{skill-id}}"></i>
+  </a>
+{{/if}}

@@ -1,0 +1,20 @@
+<div class="characteristics flexcol">
+  <label>{{localize 'DND5E.Appearance'}}</label>
+  <textarea name="system.details.appearance">{{system.details.appearance}}</textarea>
+  <label>{{localize 'DND5E.PersonalityTraits'}}</label>
+  <textarea name="system.details.trait">{{system.details.trait}}</textarea>
+  <label>{{localize 'DND5E.Ideals'}}</label>
+  <textarea name="system.details.ideal">{{system.details.ideal}}</textarea>
+  <label>{{localize 'DND5E.Bonds'}}</label>
+  <textarea name="system.details.bond">{{system.details.bond}}</textarea>
+  <label>{{localize 'DND5E.Flaws'}}</label>
+  <textarea name="system.details.flaw">{{system.details.flaw}}</textarea>
+</div>
+<div class="biography">
+  {{editor biographyHTML
+           button=true
+           collaborate=false
+           editable=editable
+           engine="prosemirror"
+           target="system.details.biography.value"}}
+</div>
