@@ -40,6 +40,6 @@ Powers
 Others
   [Done]          Add a rest button that refills current hit points and sets invocations to maximum
   [Done]          Embed the spellbook tab
-  [Not done]      Embed the biography tab as a journal tab
+  [Done]      Embed the biography tab as a journal tab
   Questions:
     Do you want to redesign the spellbook and journal tabs?
