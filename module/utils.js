@@ -17,4 +17,9 @@ export const registerHandlebarsHelpers = _ => {
     }
     return;
   });
+
+  Handlebars.registerHelper('isNotBackpacks', label => {
+    console.log(label)
+    return label !== 'TYPES.Item.backpackPl';
+  });
 }

@@ -3,6 +3,14 @@
       type="text/css">
 <form autocomplete="off"
       class="{{cssClass}}">
+  {{!-- d100 --}}
+  {{#if @root.owner}}
+    <a class="fhcs-d100"
+        data-tooltip="FHCS.D100">
+      <i class="fa-dice-d20 fa-spin fas"></i>
+    </a>
+  {{/if}}
+
   {{!-- header --}}
   <nav class="fhcs-header"
        data-group="primary">
@@ -14,7 +22,7 @@
 
     <a class="fhcs-header-spellbook item"
        data-tab="spellbook"
-       data-tooltip="FHCS.Spellbook">
+       data-tooltip="DND5E.Spellbook">
       <i class="fa-book-sparkles fas"></i>
     </a>
 
@@ -29,77 +37,87 @@
   <div class="fhcs-body">
     {{!-- main --}}
     <div class="fhcs-body-main tab"
-        data-group="primary"
-        data-tab="main">
+         data-group="primary"
+         data-tab="main">
+
+      {{!-- butterflyless --}}
+      <div class="fhcs-butterflyless"></div>
+
       {{!-- img --}}
       <img class="fhcs-img profile"
-          data-edit="img"
-          data-tooltip="{{actor.name}}"
-          src="{{actor.img}}">
+           data-edit="img"
+           data-tooltip="{{actor.name}}"
+           src="{{actor.img}}">
 
       {{!-- name --}}
       <input class="fhcs-name"
-            data-tooltip="{{localize 'FHCS.Name'}}"
-            name="name"
-            type="text"
-            value="{{actor.name}}">
+             data-tooltip="DND5E.Name"
+             name="name"
+             placeholder="..."
+             type="text"
+             value="{{actor.name}}">
 
       {{!-- level --}}
       <input class="fhcs-level"
-            data-tooltip="FHCS.Level"
-            type="number"
-            value="{{actor.flags.fates-heir-character-sheet.level}}">
+             data-tooltip="FHCS.Level"
+             placeholder="..."
+             type="number"
+             value="{{actor.flags.fates-heir-character-sheet.level}}">
 
       {{!-- player-name --}}
       <input class="fhcs-player-name"
-            data-tooltip="FHCS.PlayerName"
-            type="text"
-            value="{{actor.flags.fates-heir-character-sheet.player-name}}">
+             data-tooltip="FHCS.PlayerName"
+             type="text"
+             value="{{actor.flags.fates-heir-character-sheet.player-name}}">
 
       {{!-- rest --}}
       <div class="fhcs-rest">
         <div></div>
         <{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-rest-a"
-          data-tooltip="{{localize 'FHCS.Rest'}}">
+           data-tooltip="FHCS.Rest">
           <i class="fa-moon fas"></i>
         </{{#if @root.owner}}a{{else}}h4{{/if}}>
       </div>
 
       {{!-- hp-value --}}
       <input class="fhcs-hp-value"
-            data-dtype="Number"
-            data-tooltip="FHCS.HitPointsCurrent"
-            name="system.attributes.hp.value"
-            type="number"
-            value="{{system.attributes.hp.value}}">
+             data-dtype="Number"
+             data-tooltip="DND5E.HitPointsCurrent"
+             name="system.attributes.hp.value"
+             placeholder="..."
+             type="number"
+             value="{{system.attributes.hp.value}}">
 
       {{!-- hp-max --}}
       <div class="fhcs-hp-max"
-          data-tooltip="FHCS.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
+           data-tooltip="DND5E.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
 
       {{!-- cp --}}
       <input class="fhcs-cp"
-            data-dtype="Number"
-            data-tooltip="FHCS.Copper"
-            name="system.currency.cp"
-            type="text"
-            value="{{system.currency.cp}}">
+             data-dtype="Number"
+             data-tooltip="FHCS.Copper"
+             name="system.currency.cp"
+             placeholder="..."
+             type="text"
+             value="{{system.currency.cp}}">
 
       {{!-- sp --}}
       <input class="fhcs-sp"
-            data-dtype="Number"
-            data-tooltip="FHCS.Silver"
-            name="system.currency.sp"
-            type="text"
-            value="{{system.currency.sp}}">
+             data-dtype="Number"
+             data-tooltip="FHCS.Silver"
+             name="system.currency.sp"
+             placeholder="..."
+             type="text"
+             value="{{system.currency.sp}}">
 
       {{!-- gp --}}
       <input class="fhcs-gp"
-            data-dtype="Number"
-            data-tooltip="FHCS.Gold"
-            name="system.currency.gp"
-            type="text"
-            value="{{system.currency.gp}}">
+             data-dtype="Number"
+             data-tooltip="FHCS.Gold"
+             name="system.currency.gp"
+             placeholder="..."
+             type="text"
+             value="{{system.currency.gp}}">
 
       {{!-- inventory --}}
       <div class="fhcs-inventory flexcol inventory">
@@ -233,8 +251,12 @@
 
     {{!-- spellbook --}}
     <div class="fhcs-body-spellbook tab"
-        data-group="primary"
-        data-tab="spellbook">
+         data-group="primary"
+         data-tab="spellbook">
+
+      {{!-- butterflyless-empty --}}
+      <div class="fhcs-butterflyless-empty"></div>
+
       <div class="fhcs-spellbook">
         {{> 'fates-heir-character-sheet.spellbook'}}
       </div>
@@ -242,8 +264,12 @@
 
     {{!-- journal --}}
     <div class="fhcs-body-journal tab"
-        data-group="primary"
-        data-tab="journal">
+         data-group="primary"
+         data-tab="journal">
+
+      {{!-- butterflyless-empty --}}
+      <div class="fhcs-butterflyless-empty"></div>
+
       <div class="fhcs-journal flexrow">
         {{> 'fates-heir-character-sheet.journal'}}
       </div>

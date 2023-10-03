@@ -8,9 +8,6 @@ Player name
 HP
   [Done]          Change maximum hit points rule from hit dice + constitution to 8 + @level * (2 + @powerEndurance)
   [Done]          Limit current hit points to maximum hit points
-  Questions:
-    Does leveling up increase the current hit points by 3?
-    Should the maximum hit points be editable? In case an item, skill or power gives some.
 
 Inventory
   [Done]          Embed default inventory with just "Qty", "Charges" and "+ Add"
@@ -34,12 +31,24 @@ Powers
   [Done]          Add an exclusive radio button with "Power" or "Advantage" as choices
   [Done]          Consume an invocation on infused power check
   [Done]          Display a warning before an infused power check at 0 invocations
-  Questions:
-    Should the power names be sorted alphabetically or let them like in the rule sheet?
 
 Others
   [Done]          Add a rest button that refills current hit points and sets invocations to maximum
   [Done]          Embed the spellbook tab
   [Done]          Embed the biography tab as a journal tab
-  Questions:
-    Do you want to redesign the spellbook and journal tabs?
+
+A) A dice icon somewhere that just rolls a d100 without a modifier but idk where on the sheet there is a nice spot for that.. maybe the butterfly at the top? but that would be crazy
+B) I think we can remove "backpacks" from the inventory tab
+C) Fonts on the 2 additional pages
+D) On the Spellcasting sheet, turn the "Casting Stat" into Powers than are linked on sheet 1 (but thats like impossible idk?)
+E) Remove DC, Action, Bonus Action, Reaction, Conc., Ritual, Prepared, Spell School, Cantrips, Spell Usage, Targets (basically make it an copy paste-empty thing, but we will have to test how that reacts in case someone imports a spell for a category that doesnt exist)
+
+yea just have 1 giant list of things you imported basically
+Image
+remove these
+except for the "add" button
+The reason why I want these
+and this is where it gets insane
+
+A) All the DnD lingo (aka DC, Action/Bonus action, spell useage, spell level) was gone
+B) If they could press it and it rolls either with A) a single power * level * 5 or if they can fuse multiple powers with B) all powers * all levels * 5

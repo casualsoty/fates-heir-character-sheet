@@ -31,6 +31,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
     return foundry.utils.mergeObject(CONTEXT, {
       powers: {
+        air: game.i18n.localize('FHCS.Air'),
         alacrity: game.i18n.localize('FHCS.Alacrity'),
         artifice: game.i18n.localize('FHCS.Artifice'),
         beastMastery: game.i18n.localize('FHCS.BeastMastery'),
@@ -40,17 +41,16 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         earth: game.i18n.localize('FHCS.Earth'),
         endurance: game.i18n.localize('FHCS.Endurance'),
         fire: game.i18n.localize('FHCS.Fire'),
-        vitality: game.i18n.localize('FHCS.Vitality'),
         knowledge: game.i18n.localize('FHCS.Knowledge'),
         might: game.i18n.localize('FHCS.Might'),
         moon: game.i18n.localize('FHCS.Moon'),
         nature: game.i18n.localize('FHCS.Nature'),
-        water: game.i18n.localize('FHCS.Water'),
-        air: game.i18n.localize('FHCS.Air'),
         sorcery: game.i18n.localize('FHCS.Sorcery'),
         sun: game.i18n.localize('FHCS.Sun'),
-        weaponry: game.i18n.localize('FHCS.Weaponry'),
-        time: game.i18n.localize('FHCS.Time')
+        time: game.i18n.localize('FHCS.Time'),
+        vitality: game.i18n.localize('FHCS.Vitality'),
+        water: game.i18n.localize('FHCS.Water'),
+        weaponry: game.i18n.localize('FHCS.Weaponry')
       }
     });
   }
@@ -67,6 +67,23 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }
 
     if (this.actor.isOwner) {
+      // d100
+      html.find('.fhcs-d100').on('click mouseenter mouseleave', e => {
+        switch (e.type) {
+          case 'click':
+            this.rollD100();
+            break;
+          case 'mouseenter':
+            html.find('.fhcs-d100').css('opacity', 1);
+            html.find('[class^=fhcs-butterflyless]').css('display', 'block');
+            break;
+          case 'mouseleave':
+            html.find('.fhcs-d100').css('opacity', 0);
+            html.find('[class^=fhcs-butterflyless').css('display', 'none');
+            break;
+        }
+      });
+
       // level
       html.find('.fhcs-level').on('focusout keypress', e => {
         if (html.find('.fhcs-level').val() !== this.actor.getFlag('fates-heir-character-sheet', 'level')) {
@@ -119,6 +136,10 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         html.find('[name="fhcs-power-name-' + e.target.dataset.power + '"]').css('display', 'none');
         this.actor.setFlag('fates-heir-character-sheet', 'power-name-' + e.target.dataset.power, e.target.value);
         html.find('.fhcs-power-name-' + e.target.dataset.power + '-a').html(e.target.value).css('display', 'flex');
+        if (!e.target.value) {
+          this.actor.unsetFlag('fates-heir-character-sheet', 'power-level-' + e.target.dataset.power);
+          this.actor.unsetFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power);
+        }
       });
 
       html.find('.fhcs-power-level').on('focusout keypress', e => {
@@ -240,6 +261,21 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         alias: this.actor.name
       },
       user: game.user.id
+    });
+  }
+
+  /*
+   */
+
+  rollD100 = async _ => {
+    const ROLL = await new Roll('1d100').evaluate();
+
+    return ROLL.toMessage({
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: $('[name=rollMode]').val()
     });
   }
 
