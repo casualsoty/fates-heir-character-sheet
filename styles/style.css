@@ -20,17 +20,20 @@
 .dnd5e.sheet .window-resizable-handle { display: none !important; }
 
 .fhcs-d100 {
-  color: #b7c8d0              !important;
-  display: flex                 !important;
-  font-size: 31px               !important;
-  height: 31px                  !important;
-  justify-content: center       !important;
-  left: 333px                   !important;
+  background-image: url('../artwork/butterfly.gif') !important;
+  background-position: center                       !important;
+  background-repeat: no-repeat                      !important;
+  color: #b7c8d0                                  !important;
+  display: flex                                     !important;
+  font-size: 31px                                   !important;
+  height: 31px                                      !important;
+  justify-content: center                           !important;
+  left: 333px                                       !important;
   opacity: 0;
-  position: absolute            !important;
-  text-shadow: 0 0 10px #000  !important;
-  top: calc(30px + 48px)        !important;
-  width: 34px                   !important;
+  position: absolute                                !important;
+  text-shadow: 0 0 10px #000                      !important;
+  top: calc(30px + 48px)                            !important;
+  width: 34px                                       !important;
 }
 
 .fhcs-header {
@@ -68,18 +71,6 @@
   height: 100%                                      !important;
   width: 100%                                       !important;
 }
-
-.fhcs-butterflyless, .fhcs-butterflyless-empty {
-  background-position: center   !important;
-  background-repeat: no-repeat  !important;
-  background-size: contain      !important;
-  display: none;
-  height: 100%                  !important;
-  width: 100%                   !important;
-}
-
-.fhcs-butterflyless       { background-image: url('../artwork/butterflyless-fhcs.min.png')        !important; }
-.fhcs-butterflyless-empty { background-image: url('../artwork/butterflyless-empty-fhcs.min.png')  !important; }
 
 .fhcs-img {
   border: 0                   !important;

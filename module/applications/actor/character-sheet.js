@@ -68,20 +68,10 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
     if (this.actor.isOwner) {
       // d100
-      html.find('.fhcs-d100').on('click mouseenter mouseleave', e => {
-        switch (e.type) {
-          case 'click':
-            this.rollD100();
-            break;
-          case 'mouseenter':
-            html.find('.fhcs-d100').css('opacity', 1);
-            html.find('[class^=fhcs-butterflyless]').css('display', 'block');
-            break;
-          case 'mouseleave':
-            html.find('.fhcs-d100').css('opacity', 0);
-            html.find('[class^=fhcs-butterflyless').css('display', 'none');
-            break;
-        }
+      html.find('.fhcs-d100').click(this._onRollD100.bind(this));
+
+      html.find('.fhcs-d100').on('mouseenter mouseleave', e => {
+        html.find('.fhcs-d100').css('opacity', e.type === 'mouseenter' ? 1 : 0);
       });
 
       // level
@@ -164,6 +154,34 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';
   }
 
+  /*  Handle rolling a d100.
+   *    @param {Event} e  The originating click event.
+   *    @private
+   */
+  async _onRollD100(e) {
+    new Dialog({
+      buttons: {
+        advantage: {
+          label: game.i18n.localize('DND5E.Advantage'),
+          callback: html => this.rollD100(html, '2d100kh', e.target.innerText + ' (Advantage)')
+        },
+        normal: {
+          label: game.i18n.localize('DND5E.Normal'),
+          callback: html => this.rollD100(html, '1d100', '')
+        },
+        disadvantage: {
+          label: game.i18n.localize('DND5E.Disadvantage'),
+          callback: html => this.rollD100(html, '2d100kl', e.target.innerText + ' (Disadvantage)')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/d100-roll-dialog.hbs', {
+        defaultRollMode: game.settings.get('core', 'rollMode'),
+        rollModes: CONFIG.Dice.rollModes,
+      }),
+      title: 'D100 Roll: ' + this.actor.name
+    }).render(true);
+  }
+
   /*  Handle taking a rest
    *    @param {Event} e      The originating click event.
    */
@@ -237,6 +255,22 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
   /*
    */
+  rollD100 = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    const ROLL = await new Roll(command + BONUS).evaluate();
+
+    return ROLL.toMessage({
+      flavor: 'D100 Roll' + flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name=rollMode]').val()
+    });
+  }
+
+  /*
+   */
   rest = html => {
     const FLAGS = this.actor.flags['fates-heir-character-sheet'];
     const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
@@ -261,21 +295,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         alias: this.actor.name
       },
       user: game.user.id
-    });
-  }
-
-  /*
-   */
-
-  rollD100 = async _ => {
-    const ROLL = await new Roll('1d100').evaluate();
-
-    return ROLL.toMessage({
-      speaker: {
-        alias: this.actor.name
-      }
-    }, {
-      rollMode: $('[name=rollMode]').val()
     });
   }
 

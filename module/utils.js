@@ -3,6 +3,18 @@ export const registerHandlebarsHelpers = _ => {
     return 8 + flags.level * (2 + Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
   });
 
+  Handlebars.registerHelper('getPowers', flags => {
+    let powers = [];
+
+    for (let i = 1; i < 6; i++) {
+      if (flags['power-name-' + i]) {
+        powers.push(flags['power-name-' + i]);
+      }
+    }
+
+    return powers;
+  });
+
   Handlebars.registerHelper('getSeparator', level => {
     return level ? '/' : '';
   });
@@ -19,7 +31,6 @@ export const registerHandlebarsHelpers = _ => {
   });
 
   Handlebars.registerHelper('isNotBackpacks', label => {
-    console.log(label)
     return label !== 'TYPES.Item.backpackPl';
   });
 }

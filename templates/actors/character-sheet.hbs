@@ -7,7 +7,6 @@
   {{#if @root.owner}}
     <a class="fhcs-d100"
         data-tooltip="FHCS.D100">
-      <i class="fa-dice-d20 fa-spin fas"></i>
     </a>
   {{/if}}
 
@@ -39,9 +38,6 @@
     <div class="fhcs-body-main tab"
          data-group="primary"
          data-tab="main">
-
-      {{!-- butterflyless --}}
-      <div class="fhcs-butterflyless"></div>
 
       {{!-- img --}}
       <img class="fhcs-img profile"
@@ -253,10 +249,6 @@
     <div class="fhcs-body-spellbook tab"
          data-group="primary"
          data-tab="spellbook">
-
-      {{!-- butterflyless-empty --}}
-      <div class="fhcs-butterflyless-empty"></div>
-
       <div class="fhcs-spellbook">
         {{> 'fates-heir-character-sheet.spellbook'}}
       </div>
@@ -266,10 +258,6 @@
     <div class="fhcs-body-journal tab"
          data-group="primary"
          data-tab="journal">
-
-      {{!-- butterflyless-empty --}}
-      <div class="fhcs-butterflyless-empty"></div>
-
       <div class="fhcs-journal flexrow">
         {{> 'fates-heir-character-sheet.journal'}}
       </div>

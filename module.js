@@ -15,6 +15,7 @@ Hooks.once('init', _ => {
 
   loadTemplates({
     'fates-heir-character-sheet.character-sheet':   'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs',
+    'fates-heir-character-sheet.d100-roll-dialog':  'modules/fates-heir-character-sheet/templates/chat/d100-roll-dialog.hbs',
     'fates-heir-character-sheet.spellbook':         'modules/fates-heir-character-sheet/templates/actors/parts/actor-spellbook.hbs',
     'fates-heir-character-sheet.journal':           'modules/fates-heir-character-sheet/templates/actors/parts/actor-journal.hbs',
     'fates-heir-character-sheet.rest':              'modules/fates-heir-character-sheet/templates/apps/rest.hbs',
