@@ -1,12 +1,15 @@
 /*  GLOBAL
  */
 
-.border0            { border: 0           !important; } /* fhcs-inventory */
-.border-radius05    { border-radius: .5em !important; } /* fhcs-inventory */
-.color1             { color: #45193d    !important; } /* fhcs-inventory */
-.font-size12        { font-size: 12px     !important; } /* fhcs-inventory */
-.margin0            { margin: 0           !important; } /* fhcs-inventory */
-.padding0           { padding: 0          !important; } /* fhcs-inventory */
+.border0          { border: 0           !important; } /* fhcs-inventory, fhcs-spellbook */
+.border-radius05  { border-radius: .5em !important; } /* fhcs-inventory */
+.color1           { color: #45193d    !important; } /* fhcs-inventory, fhcs-spellbook */
+.font-size12      { font-size: 12px     !important; } /* fhcs-inventory */
+.font-size18      { font-size: 18px     !important; } /* fhcs-spellbook */
+.font-weight-bold { font-weight: bold   !important; } /* fhcs-spellbook */
+.margin0          { margin: 0           !important; } /* fhcs-inventory */
+.padding0         { padding: 0          !important; } /* fhcs-inventory */
+.padding0001      { padding: 0 0 0 1em  !important; } /* fhcs-spellbook */
 
 @font-face {
   font-family: black-chancery;
@@ -232,16 +235,16 @@
   position: absolute          !important;
 }
 
-.fhcs-skill-1   { left: 75px;   top: calc(30px + 824px);  width: 129px; }
-.fhcs-skill-2   { left: 75px;   top: calc(30px + 852px);  width: 129px; }
-.fhcs-skill-3   { left: 75px;   top: calc(30px + 881px);  width: 129px; }
-.fhcs-skill-4   { left: 75px;   top: calc(30px + 910px);  width: 129px; }
-.fhcs-skill-5   { left: 75px;   top: calc(30px + 939px);  width: 129px; }
-.fhcs-skill-6   { left: 208px;  top: calc(30px + 824px);  width: 124px; }
-.fhcs-skill-7   { left: 208px;  top: calc(30px + 852px);  width: 124px; }
-.fhcs-skill-8   { left: 208px;  top: calc(30px + 881px);  width: 124px; }
-.fhcs-skill-9   { left: 208px;  top: calc(30px + 910px);  width: 124px; }
-.fhcs-skill-10  { left: 208px;  top: calc(30px + 939px);  width: 124px; }
+.fhcs-skill-1   { left: 75px  !important; top: calc(30px + 824px) !important; width: 129px !important; }
+.fhcs-skill-2   { left: 75px  !important; top: calc(30px + 852px) !important; width: 129px !important; }
+.fhcs-skill-3   { left: 75px  !important; top: calc(30px + 881px) !important; width: 129px !important; }
+.fhcs-skill-4   { left: 75px  !important; top: calc(30px + 910px) !important; width: 129px !important; }
+.fhcs-skill-5   { left: 75px  !important; top: calc(30px + 939px) !important; width: 129px !important; }
+.fhcs-skill-6   { left: 208px !important; top: calc(30px + 824px) !important; width: 124px !important; }
+.fhcs-skill-7   { left: 208px !important; top: calc(30px + 852px) !important; width: 124px !important; }
+.fhcs-skill-8   { left: 208px !important; top: calc(30px + 881px) !important; width: 124px !important; }
+.fhcs-skill-9   { left: 208px !important; top: calc(30px + 910px) !important; width: 124px !important; }
+.fhcs-skill-10  { left: 208px !important; top: calc(30px + 939px) !important; width: 124px !important; }
 
 .fhcs-skill-name, .fhcs-skill-input {
   align-items: center       !important;
@@ -252,7 +255,7 @@
   width: calc(124px - 26px) !important;
 }
 
-.fhcs-skill-name { padding: 2px 4px; }
+.fhcs-skill-name { padding: 2px 4px !important; }
 
 .fhcs-skill-ai {
   align-items: center     !important;
@@ -273,11 +276,11 @@
   position: absolute          !important;
 }
 
-.fhcs-power-1 { left: calc(403px - 22px); top: calc(30px + 843px);  width: calc(22px + 218px); }
-.fhcs-power-2 { left: calc(403px - 22px); top: calc(30px + 868px);  width: calc(22px + 218px); }
-.fhcs-power-3 { left: calc(403px - 22px); top: calc(30px + 893px);  width: calc(22px + 218px); }
-.fhcs-power-4 { left: calc(403px - 22px); top: calc(30px + 919px);  width: calc(22px + 218px); }
-.fhcs-power-5 { left: calc(403px - 22px); top: calc(30px + 945px);  width: calc(22px + 218px); }
+.fhcs-power-1 { left: calc(403px - 22px) !important; top: calc(30px + 843px) !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-2 { left: calc(403px - 22px) !important; top: calc(30px + 868px) !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-3 { left: calc(403px - 22px) !important; top: calc(30px + 893px) !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-4 { left: calc(403px - 22px) !important; top: calc(30px + 919px) !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-5 { left: calc(403px - 22px) !important; top: calc(30px + 945px) !important;  width: calc(22px + 218px) !important; }
 
 .fhcs-power-ai {
   align-items: center     !important;
@@ -300,9 +303,9 @@
   width: 97px         !important;
 }
 
-.fhcs-power-name { padding-left:7px; }
+.fhcs-power-name { padding-left: 7px !important; }
 
-.fhcs-power-select option { color: #45193d; } 
+.fhcs-power-select option { color: #45193d !important; } 
 
 .fhcs-power-level {
   color: #d0b0a1    !important;
@@ -327,7 +330,7 @@
   margin-top: 1px     !important;
 }
 
-.fhcs-power-invocation-separator div { width: 6px; }
+.fhcs-power-invocation-separator div { width: 6px !important; }
 
 .fhcs-body-spellbook, .fhcs-body-journal {
   background-image: url('../artwork/empty-fhcs.min.png')  !important;
@@ -339,9 +342,28 @@
 }
 
 .fhcs-spellbook, .fhcs-journal {
+  color: #45193d                        !important;
+  font-family: black-chancery             !important;
+  font-size: 22px                         !important;
+  font-weight: bold                       !important;
   height: calc(1018.44px - 150px - 56px)  !important;
   left: 56px                              !important;
+  overflow: auto                          !important;
   position: absolute                      !important;
   top: calc(30px + 150px)                 !important;
   width: calc(720px - 56px * 2)           !important;
+}
+
+.fhcs-spellbook-powers {
+  align-items: center   !important;
+  display: flex         !important;
+  font-size: 20px       !important;
+  font-weight: 900      !important;
+  justify-content: left !important;
+  margin: 1em 0         !important;
+}
+
+.fhcs-spellbook-powers label {
+  color: #45193d  !important;
+  margin-right: 1em !important;
 }

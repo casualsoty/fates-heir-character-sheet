@@ -1,7 +1,7 @@
 <div class="inventory-filters spellbook-filters">
   <div class="form-group spellcasting-ability">
     {{#unless isNPC}}
-      <label>{{localize 'DND5E.Spellcasting'}}</label>
+      <label class="color1">{{localize 'DND5E.Spellcasting'}}</label>
     {{else}}
       <label>{{localize 'DND5E.Level'}}</label>
       {{numberInput system.details.spellLevel
@@ -13,14 +13,11 @@
     {{/unless}}
 
     <div></div>
-    {{#each (getPowers actor.flags.fates-heir-character-sheet) as |power pid|}}
-      <div class="form-group">
-        <label for="{{power}}">{{power}}</label>
-        <input id="{{power}}"
-               type="checkbox">
-      </div>
-    {{/each}}
-
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
     <a class="item-control item-create"
        data-level="0"
        data-preparation-mode="prepared"
@@ -31,12 +28,20 @@
   </div>
 </div>
 
+<div class="fhcs-spellbook-powers">
+  {{#each (getPowers actor.flags.fates-heir-character-sheet) as |power pid|}}
+    <input id="{{power}}"
+           type="checkbox">
+    <label for="{{power}}">{{power}}</label>
+  {{/each}}
+</div>
+
 <ol class="inventory-list items-list">
   {{#each spellbook as |section|}}
     <ol class="item-list">
       {{#each section.spells as |item i|}}
         {{#dnd5e-itemContext item as |ctx|}}
-          <li class="flexrow item {{#if ctx.isExpanded}}expanded{{/if}}"
+          <li class="border0 flexrow item {{#if ctx.isExpanded}}expanded{{/if}}"
               data-item-id="{{item.id}}">
             <div class="flexrow item-name rollable">
               <div aria-label="{{item.name}}"
@@ -44,31 +49,14 @@
                    role="button"
                    style="background-image: url('{{item.img}}')"
                    tabindex="0"></div>
-              <h4>{{item.name}}</h4>
+              <h4 class="color1 font-size18 font-weight-bold padding0001">{{item.name}}</h4>
               {{#if item.system.uses.per}}
                 <div class="item-detail spell-uses">Uses {{item.system.uses.value}} / {{item.system.uses.max}}</div>
-              {{/if}}
-
-              <div class="spell-comps">
-                {{#each item.labels.components.all}}
-                  <span class="spell-component{{#if tag}} tag{{/if}}">{{abbr}}</span>
-                {{/each}}
-              </div>
-            </div>
-
-            <div class="spell-school">{{item.labels.school}}</div>
-            <div class="spell-action">{{item.labels.activation}}</div>
-            <div class="spell-target"
-                 data-tooltip="{{localize 'DND5E.Range'}}: {{item.labels.range}}">
-              {{#if item.labels.target}}
-                {{item.labels.target}}
-              {{else}}
-                {{localize 'DND5E.None'}}
               {{/if}}
             </div>
 
             {{#if @root.owner}}
-              <div class="flexrow item-controls">
+              <div class="color1 flexrow item-controls">
                 {{#if section.canPrepare}}
                   <a class="item-control item-toggle {{ctx.toggleClass}}"
                      data-tooltip="{{ctx.toggleTitle}}">
