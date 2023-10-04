@@ -1,26 +1,12 @@
 export const registerHandlebarsHelpers = _ => {
   Handlebars.registerHelper('getHpMax', flags => {
+    console.debug('Fate\'s Heir Character Sheet | getHpMax(' + flags + ')', flags);
     return 8 + flags.level * (2 + Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
   });
 
-  Handlebars.registerHelper('getPowers', flags => {
-    let powers = [];
-
-    for (let i = 1; i < 6; i++) {
-      if (flags['power-name-' + i]) {
-        powers.push(flags['power-name-' + i]);
-      }
-    }
-
-    return powers;
-  });
-
-  Handlebars.registerHelper('getSeparator', level => {
-    return level ? '/' : '';
-  });
-
   Handlebars.registerHelper('getStyle', skillOrPower => {
-    return skillOrPower ? '' : 'cursor: default; pointer-events: none;';
+    console.debug('Fate\'s Heir Character Sheet | getStyle(' + skillOrPower + ')');
+    return skillOrPower ? '' : ' cursor: default; pointer-events: none;';
   });
 
   Handlebars.registerHelper('getWarning', invocation => {
@@ -32,5 +18,11 @@ export const registerHandlebarsHelpers = _ => {
 
   Handlebars.registerHelper('isNotBackpacks', label => {
     return label !== 'TYPES.Item.backpackPl';
+  });
+
+  Handlebars.registerHelper('isPowerAvailable', (flags, powerName) => {
+    // console.log(flags)
+    // console.log(powerName)
+    // return !Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes(powerName)
   });
 }
