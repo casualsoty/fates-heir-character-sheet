@@ -1,15 +1,13 @@
 /*  GLOBAL
  */
 
-.border0          { border: 0           !important; } /* fhcs-inventory, fhcs-spellbook */
-.border-radius05  { border-radius: .5em !important; } /* fhcs-inventory */
-.color1           { color: #45193d    !important; } /* fhcs-inventory, fhcs-spellbook */
-.font-size12      { font-size: 12px     !important; } /* fhcs-inventory */
-.font-size18      { font-size: 18px     !important; } /* fhcs-spellbook */
-.font-weight-bold { font-weight: bold   !important; } /* fhcs-spellbook */
-.margin0          { margin: 0           !important; } /* fhcs-inventory */
-.padding0         { padding: 0          !important; } /* fhcs-inventory */
-.padding0001      { padding: 0 0 0 1em  !important; } /* fhcs-spellbook */
+.border0          { border: 0                   !important; } /* fhcs-inventory */
+.border-radius05  { border-radius: .5em         !important; } /* fhcs-inventory */
+.color1           { color: #45193d            !important; } /* fhcs-inventory, fhcs-spellbook */
+.font-family      { font-family: black-chancery !important; } /* fhcs-spellbook */
+.font-size12      { font-size: 12px             !important; } /* fhcs-inventory */
+.margin0          { margin: 0                   !important; } /* fhcs-inventory */
+.padding0         { padding: 0                  !important; } /* fhcs-inventory */
 
 @font-face {
   font-family: black-chancery;
@@ -215,6 +213,7 @@
 
 .fhcs-signature-power {
   border: 0                   !important;
+  border-radius: .5em         !important;
   color: #45193d            !important;
   font-family: black-chancery !important;
   font-size: 20px             !important;
@@ -343,27 +342,59 @@
 
 .fhcs-spellbook, .fhcs-journal {
   color: #45193d                        !important;
-  font-family: black-chancery             !important;
   font-size: 22px                         !important;
   font-weight: bold                       !important;
   height: calc(1018.44px - 150px - 56px)  !important;
   left: 56px                              !important;
-  overflow: auto                          !important;
   position: absolute                      !important;
   top: calc(30px + 150px)                 !important;
   width: calc(720px - 56px * 2)           !important;
 }
 
-.fhcs-spellbook-powers {
-  align-items: center   !important;
-  display: flex         !important;
-  font-size: 20px       !important;
-  font-weight: 900      !important;
-  justify-content: left !important;
-  margin: 1em 0         !important;
+.fhcs-spellbook-spells {
+  background: rgba(0, 0, 0, .05)                      !important;
+  border-radius: .5em                                   !important;
+  height: calc(1018.44px - 150px - 56px - 28px - 11px)  !important;
+  margin-top: .5em                                      !important;
+  overflow: auto                                        !important;
+  padding: 0                                            !important;
 }
 
-.fhcs-spellbook-powers label {
-  color: #45193d  !important;
-  margin-right: 1em !important;
+.fhcs-spellbook-spell {
+  border: 0     !important;
+  margin: .5em  !important;
+}
+
+.fhcs-spellbook-spell-name {
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 18px             !important;
+  font-weight: bold           !important;
+  padding: 0 0 0 .5em         !important;
+}
+
+.fhcs-spellbook-spell-cast {
+  display: flex           !important;
+  font-size: 18px         !important;
+  justify-content: center !important;
+}
+
+.fhcs-spellbook-spell-cast-a { color: #45193d !important; }
+
+.item-summary {
+  border-left: rgba(0, 0, 0, .5) solid 1px  !important;
+  border-top: 0                               !important;
+  font-family: black-chancery                 !important;
+  font-size: 16px                             !important;
+  font-weight: bold                           !important;
+  margin: .5em 0                              !important;
+  padding: 0 0 0 1em                          !important;
+}
+
+.item-properties { margin-top: 1em !important; }
+
+.item-properties span {
+  font-family: black-chancery !important;
+  font-size: 14px             !important;
+  font-weight: bold           !important;
 }

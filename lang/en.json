@@ -40,6 +40,7 @@
     "None": "None",
     "Power": "Power",
     "Advantage": "Advantage",
-    "Warning": "No Invocation Charges remaining"
+    "Warning": "No Invocation Charges remaining",
+    "Cast": "Cast"
   }
 }

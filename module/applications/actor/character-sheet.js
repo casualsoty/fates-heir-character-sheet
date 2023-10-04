@@ -124,6 +124,10 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
       html.find('[name^="fhcs-power-name-"]').on('change focusout', e => {
         html.find('[name="fhcs-power-name-' + e.target.dataset.power + '"]').css('display', 'none');
+        if (!this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + e.target.dataset.power) && e.target.value) {
+          this.actor.setFlag('fates-heir-character-sheet', 'power-level-' + e.target.dataset.power, 1);
+          this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power, 1);
+        }
         this.actor.setFlag('fates-heir-character-sheet', 'power-name-' + e.target.dataset.power, e.target.value);
         html.find('.fhcs-power-name-' + e.target.dataset.power + '-a').html(e.target.value).css('display', 'flex');
         if (!e.target.value) {
@@ -143,6 +147,9 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
           this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power, e.target.value);
         }
       });
+
+      // spell
+      html.find('.fhcs-spellbook-spell-cast-a').click(this._onRollSpellCheck.bind(this));
     }
 
     super.activateListeners(html);
@@ -226,7 +233,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       },
       content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/skill-roll-dialog.hbs', {
         defaultRollMode: game.settings.get('core', 'rollMode'),
-        rollModes: CONFIG.Dice.rollModes,
+        rollModes: CONFIG.Dice.rollModes
       }),
       title: e.target.innerText + ' Skill Check: ' + this.actor.name
     }).render(true);
@@ -247,14 +254,54 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs', {
         defaultRollMode: game.settings.get('core', 'rollMode'),
         powerInvocationFlag: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
-        rollModes: CONFIG.Dice.rollModes,
+        rollModes: CONFIG.Dice.rollModes
       }),
       title: e.target.innerText + ' Power Check: ' + this.actor.name
     }).render(true);
   }
 
-  /*
+  /*  Handle rolling a Spell check.
+   *    @override ActorSheet5e
+   *    @param {Event} e  The originating click event.
+   *    @private
    */
+  async _onRollSpellCheck(e) {
+    const POWERS = [];
+
+    for (let i = 1; i < 6; i++) {
+      if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {
+        POWERS.push({
+          i: i === 1 ? 1 : 0,
+          level: this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i),
+          name: this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)
+        });
+      }
+    }
+
+    new Dialog({
+      buttons: {
+        advantage: {
+          label: game.i18n.localize('DND5E.Advantage'),
+          callback: html => this.rollSpell(html, '2d100kh', e.target.dataset.spell + ' Spell Check (Advantage)')
+        },
+        normal: {
+          label: game.i18n.localize('DND5E.Normal'),
+          callback: html => this.rollSpell(html, '1d100', e.target.dataset.spell + ' Spell Check')
+        },
+        disadvantage: {
+          label: game.i18n.localize('DND5E.Disadvantage'),
+          callback: html => this.rollSpell(html, '2d100kl', e.target.dataset.spell + ' Spell Check (Disadvantage)')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/spell-roll-dialog.hbs', {
+        defaultRollMode: game.settings.get('core', 'rollMode'),
+        powers: POWERS,
+        rollModes: CONFIG.Dice.rollModes
+      }),
+      title: e.target.dataset.spell + ' Spell Check: ' + this.actor.name
+    }).render(true);
+  }
+
   rollD100 = async (html, command, flavor) => {
     const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
     const ROLL = await new Roll(command + BONUS).evaluate();
@@ -269,8 +316,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  /*
-   */
   rest = html => {
     const FLAGS = this.actor.flags['fates-heir-character-sheet'];
     const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
@@ -298,8 +343,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  /*
-   */
   rollSkill = async (html, command, flavor) => {
     const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
     const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'level') + ' * 3' + BONUS).evaluate();
@@ -314,8 +357,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  /*
-   */
   rollPower = async (html, powerId, flavor) => {
     const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
     const POWER_LEVEL = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + powerId);
@@ -337,6 +378,26 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }
 
     return roll.toMessage({
+      flavor: flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
+    });
+  }
+
+  rollSpell = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    let powers = '';
+
+    html.find('[name="powers"]').each(function () {
+      powers += this.checked ? ' + ' + this.id + ' * 5' : '';
+    });
+
+    const ROLL = await new Roll(command + powers + BONUS).evaluate();
+
+    return ROLL.toMessage({
       flavor: flavor,
       speaker: {
         alias: this.actor.name

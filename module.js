@@ -23,7 +23,8 @@ Hooks.once('init', _ => {
     'fates-heir-character-sheet.skill':             'modules/fates-heir-character-sheet/templates/actors/parts/actor-skill.hbs',
     'fates-heir-character-sheet.skill-roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/skill-roll-dialog.hbs',
     'fates-heir-character-sheet.power':             'modules/fates-heir-character-sheet/templates/actors/parts/actor-power.hbs',
-    'fates-heir-character-sheet.power-roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs'
+    'fates-heir-character-sheet.power-roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs',
+    'fates-heir-character-sheet.spell-roll-dialog': 'modules/fates-heir-character-sheet/templates/chat/spell-roll-dialog.hbs'
   });
 
   registerHandlebarsHelpers();

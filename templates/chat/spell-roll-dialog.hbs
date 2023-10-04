@@ -4,8 +4,20 @@
     <input disabled
            name="formula"
            type="text"
-           value="1d100 + @bonus">
+           value="1d100 + @powerLevels * 5 + @bonus">
   </div>
+
+  {{#each powers as |power|}}
+    {{#if power}}
+      <div class="form-group">
+        <label for="{{power.name}}">{{#if power.i}}Powers:{{/if}}</label>
+        {{power.name}} Level {{power.level}}
+        <input id="{{power.level}}"
+               name="powers"
+               type="checkbox">
+      </div>
+    {{/if}}
+  {{/each}}
 
   <div class="form-group">
     <label>{{localize 'DND5E.RollSituationalBonus'}}</label>

@@ -1,4 +1,4 @@
-<div class="inventory-filters spellbook-filters">
+<div class="font-family inventory-filters spellbook-filters">
   <div class="form-group spellcasting-ability">
     {{#unless isNPC}}
       <label class="color1">{{localize 'DND5E.Spellcasting'}}</label>
@@ -12,48 +12,52 @@
         step=1}}
     {{/unless}}
 
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <a class="item-control item-create"
-       data-level="0"
-       data-preparation-mode="prepared"
-       data-tooltip="DND5E.SpellCreate"
-       data-type="spell">
-      <i class="fa-plus fas"></i> {{localize 'DND5E.Add'}}
-    </a>
+    {{#if @root.owner}}
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <a class="item-control item-create"
+        data-level="0"
+        data-preparation-mode="prepared"
+        data-tooltip="DND5E.SpellCreate"
+        data-type="spell">
+        <i class="fa-plus fas"></i> {{localize 'DND5E.Add'}}
+      </a>
+    {{/if}}
   </div>
 </div>
 
-<div class="fhcs-spellbook-powers">
-  {{#each (getPowers actor.flags.fates-heir-character-sheet) as |power pid|}}
-    <input id="{{power}}"
-           type="checkbox">
-    <label for="{{power}}">{{power}}</label>
-  {{/each}}
-</div>
-
-<ol class="inventory-list items-list">
-  {{#each spellbook as |section|}}
-    <ol class="item-list">
+<ol class="fhcs-spellbook-spells inventory-list items-list">
+  <ol class="item-list">
+    {{#each spellbook as |section|}}
       {{#each section.spells as |item i|}}
         {{#dnd5e-itemContext item as |ctx|}}
-          <li class="border0 flexrow item {{#if ctx.isExpanded}}expanded{{/if}}"
+          <li class="fhcs-spellbook-spell flexrow item {{#if ctx.isExpanded}}expanded{{/if}}"
               data-item-id="{{item.id}}">
             <div class="flexrow item-name rollable">
               <div aria-label="{{item.name}}"
-                   class="item-image"
+                   class="border-radius05 item-image"
                    role="button"
                    style="background-image: url('{{item.img}}')"
                    tabindex="0"></div>
-              <h4 class="color1 font-size18 font-weight-bold padding0001">{{item.name}}</h4>
+              <h4 class="fhcs-spellbook-spell-name">{{item.name}}</h4>
               {{#if item.system.uses.per}}
                 <div class="item-detail spell-uses">Uses {{item.system.uses.value}} / {{item.system.uses.max}}</div>
               {{/if}}
             </div>
+
+            {{#if @root.owner}}
+              <div class="fhcs-spellbook-spell-cast">
+                <a class="fhcs-spellbook-spell-cast-a item-control"
+                  data-tooltip="{{localize 'FHCS.Cast'}} {{item.name}}">
+                  <i class="fa-dice-d20 fas"
+                     data-spell="{{item.name}}"></i>
+                </a>
+              </div>
+            {{/if}}
 
             {{#if @root.owner}}
               <div class="color1 flexrow item-controls">
@@ -80,28 +84,6 @@
           </li>
         {{/dnd5e-itemContext}}
       {{/each}}
-    </ol>
-  {{else}}
-    {{#if owner}}
-      {{#if filters.spellbook.size}}
-        <li class="flexrow item">
-          <p class="notes">{{localize 'DND5E.FilterNoSpells'}}</p>
-        </li>
-      {{else}}
-        <li class="flexrow inventory-header item spellbook-empty spellbook-header">
-          <div class="flexrow item-controls">
-            <a class="item-control item-create"
-               data-level="{{lvl}}"
-               data-tooltip="DND5E.SpellCreate"
-               data-type="spell">
-              <i class="fa-plus fas"></i> {{localize 'DND5E.SpellAdd'}}
-            </a>
-          </div>
-        </li>
-        <li class="flexrow item">
-          <p class="notes">{{localize 'DND5E.NoSpellLevels'}}</p>
-        </li>
-      {{/if}}
-    {{/if}}
-  {{/each}}
+    {{/each}}
+  </ol>
 </ol>
