@@ -19,10 +19,4 @@ export const registerHandlebarsHelpers = _ => {
   Handlebars.registerHelper('isNotBackpacks', label => {
     return label !== 'TYPES.Item.backpackPl';
   });
-
-  Handlebars.registerHelper('isPowerAvailable', (flags, powerName) => {
-    // console.log(flags)
-    // console.log(powerName)
-    // return !Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes(powerName)
-  });
 }

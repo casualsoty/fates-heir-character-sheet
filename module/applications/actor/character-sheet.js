@@ -98,6 +98,9 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         this.actor.setFlag('fates-heir-character-sheet', 'signature-power', html.find('.fhcs-signature-power').val());
       });
 
+      // initiative
+      html.find('.fhcs-initiative').click(this._onInitiativeRoll.bind(this));
+
       // skill
       html.find('.fhcs-skill-name').click(this._onRollSkillCheck.bind(this));
 
@@ -210,6 +213,34 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }).render(true);
   }
 
+  /*  Handle rolling Initiative.
+   *    @param {Event} e  The originating click event.
+   *    @private
+   */
+    async _onInitiativeRoll(e) {
+      new Dialog({
+        buttons: {
+          advantage: {
+            label: game.i18n.localize('DND5E.Advantage'),
+            callback: html => this.rollInitiative(html, '2d100kh', ' (Advantage)')
+          },
+          normal: {
+            label: game.i18n.localize('DND5E.Normal'),
+            callback: html => this.rollInitiative(html, '1d100', '')
+          },
+          disadvantage: {
+            label: game.i18n.localize('DND5E.Disadvantage'),
+            callback: html => this.rollInitiative(html, '2d100kl', ' (Disadvantage)')
+          }
+        },
+        content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/initiative-roll-dialog.hbs', {
+          defaultRollMode: game.settings.get('core', 'rollMode'),
+          rollModes: CONFIG.Dice.rollModes
+        }),
+        title: 'Initiative Roll: ' + this.actor.name
+      }).render(true);
+    }
+
   /*  Handle rolling a Skill check.
    *    @override ActorSheet5e
    *    @param {Event} e  The originating click event.
@@ -261,7 +292,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   }
 
   /*  Handle rolling a Spell check.
-   *    @override ActorSheet5e
    *    @param {Event} e  The originating click event.
    *    @private
    */
@@ -340,6 +370,35 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
         alias: this.actor.name
       },
       user: game.user.id
+    });
+  }
+
+  rollInitiative = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    let alacrityLevel = 0;
+
+    for (let i = 1; i < 6; i++) {
+      if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i) === 'Alacrity') {
+        alacrityLevel = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i);
+      }
+    }
+
+    const ROLL = await new Roll(command + ' + ' + alacrityLevel + ' * 5' + BONUS).evaluate();
+
+
+    if (!game.combat.getCombatantByActor(this.actor.id)?._id) {
+      await this.actor.getActiveTokens()[0].toggleCombat();
+    }
+
+    game.combat.setInitiative(game.combat.getCombatantByActor(this.actor.id)._id, ROLL.total);
+
+    return ROLL.toMessage({
+      flavor: this.actor.name + ' rolls for Initiative!' + flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
     });
   }
 

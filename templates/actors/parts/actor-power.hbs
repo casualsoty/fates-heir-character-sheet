@@ -17,10 +17,8 @@
         name="fhcs-power-name-{{power-id}}"
         style="display: none;">
   <option></option>
-  {{#each powers as |power|}}
-    {{#isPowerAvailable flags}}
+  {{#each powers as | power |}}
       <option value="{{power}}">{{power}}</option>
-    {{/isPowerAvailable}}
   {{/each}}
 </select>
 

@@ -227,6 +227,19 @@
   width: 621px                !important;
 }
 
+.fhcs-initiative {
+  align-items: center     !important;
+  color: #97574d        !important;
+  display: flex           !important;
+  font-size: 22px         !important;
+  height: 27px            !important;
+  justify-content: center !important;
+  left: 444px             !important;
+  position: absolute      !important;
+  top: calc(30px + 775px) !important;
+  width: 27px             !important;
+}
+
 .fhcs-skill {
   color: #d0b0a1            !important;
   font-family: black-chancery !important;

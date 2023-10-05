@@ -124,6 +124,12 @@
       <textarea class="fhcs-signature-power"
                 data-tooltip="FHCS.SignaturePower">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
 
+      {{!-- initiative --}}
+      <{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-initiative"
+         data-tooltip="FHCS.InitiativeRoll">
+        <i class="fa-swords fas"></i>
+      </{{#if @root.owner}}a{{else}}h4{{/if}}>
+
       {{!-- skill-1 --}}
       <div class="fhcs-skill fhcs-skill-1">
         {{> 'fates-heir-character-sheet.skill'
@@ -197,7 +203,6 @@
       {{!-- power-1 --}}
       <div class="fhcs-power fhcs-power-1">
         {{> 'fates-heir-character-sheet.power'
-          flags=actor.flags.fates-heir-character-sheet
           power-id=1
           power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-1
           power-level-flag=actor.flags.fates-heir-character-sheet.power-level-1
@@ -208,7 +213,6 @@
       {{!-- power-2 --}}
       <div class="fhcs-power fhcs-power-2">
         {{> 'fates-heir-character-sheet.power'
-          flags=actor.flags.fates-heir-character-sheet
           power-id=2
           power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-2
           power-level-flag=actor.flags.fates-heir-character-sheet.power-level-2
@@ -219,7 +223,6 @@
       {{!-- power-3 --}}
       <div class="fhcs-power fhcs-power-3">
         {{> 'fates-heir-character-sheet.power'
-          flags=actor.flags.fates-heir-character-sheet
           power-id=3
           power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-3
           power-level-flag=actor.flags.fates-heir-character-sheet.power-level-3
@@ -230,7 +233,6 @@
       {{!-- power-4 --}}
       <div class="fhcs-power fhcs-power-4">
         {{> 'fates-heir-character-sheet.power'
-          flags=actor.flags.fates-heir-character-sheet
           power-id=4
           power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-4
           power-level-flag=actor.flags.fates-heir-character-sheet.power-level-4
@@ -241,7 +243,6 @@
       {{!-- power-5 --}}
       <div class="fhcs-power fhcs-power-5">
         {{> 'fates-heir-character-sheet.power'
-          flags=actor.flags.fates-heir-character-sheet
           power-id=5
           power-invocation-flag=actor.flags.fates-heir-character-sheet.power-invocation-5
           power-level-flag=actor.flags.fates-heir-character-sheet.power-level-5
