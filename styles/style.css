@@ -33,7 +33,7 @@
   opacity: 0;
   position: absolute                                !important;
   text-shadow: 0 0 10px #000                      !important;
-  top: calc(30px + 48px)                            !important;
+  top: 48px                                         !important;
   width: 34px                                       !important;
 }
 
@@ -47,7 +47,7 @@
   justify-content: end      !important;
   left: 563px               !important;
   position: absolute        !important;
-  top: calc(30px + 69px)    !important;
+  top: 69px               !important;
   width: 104px              !important;
 }
 
@@ -60,16 +60,16 @@
 .fhcs-header a.active { opacity: 1 !important; }
 
 .fhcs-body {
-  height: 100%  !important;
-  width: 100%   !important;
+  overflow-y: overlay !important;
+  position: relative  !important;
+  width: 100%         !important;
 }
 
 .fhcs-body-main {
-  background-image: url('../artwork/fhcs.min.png');
-  background-position: center                       !important;
+  background-image: url('../artwork/fhcs.min.png')  !important;
   background-repeat: no-repeat                      !important;
-  background-size: contain                          !important;
-  height: 100%                                      !important;
+  background-size: fill                             !important;
+  height: 1018.4516129px                            !important;
   width: 100%                                       !important;
 }
 
@@ -79,8 +79,8 @@
   height: 242px               !important;
   left: 56px                  !important;
   object-fit: contain         !important;
-  position: absolute          !important;
-  top: calc(30px + 150px)     !important;
+  position: relative          !important;
+  top: 150px                  !important;
   width: 242px                !important;
 }
 
@@ -92,7 +92,7 @@
   height: 26px                !important;
   left: 420px                 !important;
   position: absolute          !important;
-  top: calc(30px + 214px)     !important;
+  top: 214px                  !important;
   width: 243px                !important;
 }
 
@@ -104,7 +104,7 @@
   height: 26px                !important;
   left: 415px                 !important;
   position: absolute          !important;
-  top: calc(30px + 252px)     !important;
+  top: 252px                  !important;
   width: 248px                !important;
 }
 
@@ -116,7 +116,7 @@
   height: 26px                !important;
   left: 480px                 !important;
   position: absolute          !important;
-  top: calc(30px + 292px)     !important;
+  top: 292px                  !important;
   width: 183px                !important;
 }
 
@@ -130,7 +130,7 @@
   justify-content: space-around !important;
   left: 0px                     !important;
   position: absolute            !important;
-  top: calc(30px + 417px)       !important;
+  top: 417px                    !important;
   width: 50px                   !important;
 }
 
@@ -143,7 +143,7 @@
   left: 91px                  !important;
   position: absolute          !important;
   text-align: center          !important;
-  top: calc(30px + 453px)     !important;
+  top: 453px                  !important;
   width: calc(24px + 12px)    !important;
 }
 
@@ -156,7 +156,7 @@
   left: calc(121px - 12px)    !important;
   position: absolute          !important;
   text-align: center          !important;
-  top: calc(30px + 481px)     !important;
+  top: 481px                  !important;
   width: calc(24px + 12px)    !important;
 }
 
@@ -170,7 +170,7 @@
   left: 176px                 !important;
   position: absolute          !important;
   text-align: center          !important;
-  top: calc(30px + 497px)     !important;
+  top: 497px                  !important;
   width: 44px                 !important;
 }
 
@@ -184,7 +184,7 @@
   left: 228px                 !important;
   position: absolute          !important;
   text-align: center          !important;
-  top: calc(30px + 497px)     !important;
+  top: 497px                  !important;
   width: 44px                 !important;
 }
 
@@ -198,17 +198,17 @@
   left: 278px                 !important;
   position: absolute          !important;
   text-align: center          !important;
-  top: calc(30px + 497px)     !important;
+  top: 497px                  !important;
   width: 44px                 !important;
 }
 
 .fhcs-inventory {
-  height: 118px           !important;
-  left: 340px             !important;
-  position: absolute      !important;
-  overflow: auto          !important;
-  top: calc(30px + 417px) !important;
-  width: 295px            !important;
+  height: 118px       !important;
+  left: 340px         !important;
+  position: absolute  !important;
+  overflow: auto      !important;
+  top: 417px          !important;
+  width: 295px        !important;
 }
 
 .fhcs-signature-power {
@@ -223,7 +223,7 @@
   position: absolute          !important;
   resize: none                !important;
   text-align: center          !important;
-  top: calc(30px + 642px)     !important;
+  top: 642px                  !important;
   width: 621px                !important;
 }
 
@@ -236,7 +236,7 @@
   justify-content: center !important;
   left: 444px             !important;
   position: absolute      !important;
-  top: calc(30px + 775px) !important;
+  top: 775px              !important;
   width: 27px             !important;
 }
 
@@ -247,16 +247,16 @@
   position: absolute          !important;
 }
 
-.fhcs-skill-1   { left: 75px  !important; top: calc(30px + 824px) !important; width: 129px !important; }
-.fhcs-skill-2   { left: 75px  !important; top: calc(30px + 852px) !important; width: 129px !important; }
-.fhcs-skill-3   { left: 75px  !important; top: calc(30px + 881px) !important; width: 129px !important; }
-.fhcs-skill-4   { left: 75px  !important; top: calc(30px + 910px) !important; width: 129px !important; }
-.fhcs-skill-5   { left: 75px  !important; top: calc(30px + 939px) !important; width: 129px !important; }
-.fhcs-skill-6   { left: 208px !important; top: calc(30px + 824px) !important; width: 124px !important; }
-.fhcs-skill-7   { left: 208px !important; top: calc(30px + 852px) !important; width: 124px !important; }
-.fhcs-skill-8   { left: 208px !important; top: calc(30px + 881px) !important; width: 124px !important; }
-.fhcs-skill-9   { left: 208px !important; top: calc(30px + 910px) !important; width: 124px !important; }
-.fhcs-skill-10  { left: 208px !important; top: calc(30px + 939px) !important; width: 124px !important; }
+.fhcs-skill-1   { left: 75px  !important; top: 824px !important; width: 129px !important; }
+.fhcs-skill-2   { left: 75px  !important; top: 852px !important; width: 129px !important; }
+.fhcs-skill-3   { left: 75px  !important; top: 881px !important; width: 129px !important; }
+.fhcs-skill-4   { left: 75px  !important; top: 910px !important; width: 129px !important; }
+.fhcs-skill-5   { left: 75px  !important; top: 939px !important; width: 129px !important; }
+.fhcs-skill-6   { left: 208px !important; top: 824px !important; width: 124px !important; }
+.fhcs-skill-7   { left: 208px !important; top: 852px !important; width: 124px !important; }
+.fhcs-skill-8   { left: 208px !important; top: 881px !important; width: 124px !important; }
+.fhcs-skill-9   { left: 208px !important; top: 910px !important; width: 124px !important; }
+.fhcs-skill-10  { left: 208px !important; top: 939px !important; width: 124px !important; }
 
 .fhcs-skill-name, .fhcs-skill-input {
   align-items: center       !important;
@@ -288,11 +288,11 @@
   position: absolute          !important;
 }
 
-.fhcs-power-1 { left: calc(403px - 22px) !important; top: calc(30px + 843px) !important;  width: calc(22px + 218px) !important; }
-.fhcs-power-2 { left: calc(403px - 22px) !important; top: calc(30px + 868px) !important;  width: calc(22px + 218px) !important; }
-.fhcs-power-3 { left: calc(403px - 22px) !important; top: calc(30px + 893px) !important;  width: calc(22px + 218px) !important; }
-.fhcs-power-4 { left: calc(403px - 22px) !important; top: calc(30px + 919px) !important;  width: calc(22px + 218px) !important; }
-.fhcs-power-5 { left: calc(403px - 22px) !important; top: calc(30px + 945px) !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-1 { left: calc(403px - 22px) !important; top: 843px !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-2 { left: calc(403px - 22px) !important; top: 868px !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-3 { left: calc(403px - 22px) !important; top: 893px !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-4 { left: calc(403px - 22px) !important; top: 919px !important;  width: calc(22px + 218px) !important; }
+.fhcs-power-5 { left: calc(403px - 22px) !important; top: 945px !important;  width: calc(22px + 218px) !important; }
 
 .fhcs-power-ai {
   align-items: center     !important;
@@ -345,11 +345,10 @@
 .fhcs-power-invocation-separator div { width: 6px !important; }
 
 .fhcs-body-spellbook, .fhcs-body-journal {
-  background-image: url('../artwork/empty-fhcs.min.png')  !important;
-  background-position: center                             !important;
+  background-image: url('../artwork/empty-fhcs.min.png')  !important; 
   background-repeat: no-repeat                            !important;
-  background-size: contain                                !important;
-  height: 100%                                            !important;
+  background-size: fill                                   !important;
+  height: 1000px                                          !important;
   width: 100%                                             !important;
 }
 
@@ -360,7 +359,7 @@
   height: calc(1018.44px - 150px - 56px)  !important;
   left: 56px                              !important;
   position: absolute                      !important;
-  top: calc(30px + 150px)                 !important;
+  top: 150px                              !important;
   width: calc(720px - 56px * 2)           !important;
 }
 

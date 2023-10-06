@@ -14,7 +14,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['actor', 'character', 'dnd5e', 'fhcs', 'sheet'],
-      height: 30 + (3508 * 720 / 2480),
+      height: window.innerHeight < 30 + (3508 * 720 / 2480) ? 30 + 720 : 30 + (3508 * 720 / 2480),
       tabs : [{
         contentSelector: '.fhcs-body',
         initial: 'main',
@@ -58,6 +58,8 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   /*  @inheritDoc ActorSheet5eCharacter
    */
   activateListeners(html) {
+    html.find('.fhcs-body').css('height', window.innerHeight < 30  + (3508 * 720 / 2480) ?  '720px' : '1018.4516129px');
+
     // power
     for (let i = 1; i < 6; i++) {
       if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {
@@ -346,7 +348,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  rest = html => {
+  rest = async html => {
     const FLAGS = this.actor.flags['fates-heir-character-sheet'];
     const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
     const HP_VALUE = this.actor.system.attributes.hp.value;
