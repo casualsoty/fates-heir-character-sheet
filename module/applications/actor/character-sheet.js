@@ -31,26 +31,26 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
     return foundry.utils.mergeObject(CONTEXT, {
       powers: {
-        air: game.i18n.localize('FHCS.Air'),
-        alacrity: game.i18n.localize('FHCS.Alacrity'),
-        artifice: game.i18n.localize('FHCS.Artifice'),
+        air:          game.i18n.localize('FHCS.Air'),
+        alacrity:     game.i18n.localize('FHCS.Alacrity'),
+        artifice:     game.i18n.localize('FHCS.Artifice'),
         beastMastery: game.i18n.localize('FHCS.BeastMastery'),
-        command: game.i18n.localize('FHCS.Command'),
-        death: game.i18n.localize('FHCS.Death'),
-        deception: game.i18n.localize('FHCS.Deception'),
-        earth: game.i18n.localize('FHCS.Earth'),
-        endurance: game.i18n.localize('FHCS.Endurance'),
-        fire: game.i18n.localize('FHCS.Fire'),
-        knowledge: game.i18n.localize('FHCS.Knowledge'),
-        might: game.i18n.localize('FHCS.Might'),
-        moon: game.i18n.localize('FHCS.Moon'),
-        nature: game.i18n.localize('FHCS.Nature'),
-        sorcery: game.i18n.localize('FHCS.Sorcery'),
-        sun: game.i18n.localize('FHCS.Sun'),
-        time: game.i18n.localize('FHCS.Time'),
-        vitality: game.i18n.localize('FHCS.Vitality'),
-        water: game.i18n.localize('FHCS.Water'),
-        weaponry: game.i18n.localize('FHCS.Weaponry')
+        command:      game.i18n.localize('FHCS.Command'),
+        death:        game.i18n.localize('FHCS.Death'),
+        deception:    game.i18n.localize('FHCS.Deception'),
+        earth:        game.i18n.localize('FHCS.Earth'),
+        endurance:    game.i18n.localize('FHCS.Endurance'),
+        fire:         game.i18n.localize('FHCS.Fire'),
+        knowledge:    game.i18n.localize('FHCS.Knowledge'),
+        might:        game.i18n.localize('FHCS.Might'),
+        moon:         game.i18n.localize('FHCS.Moon'),
+        nature:       game.i18n.localize('FHCS.Nature'),
+        sorcery:      game.i18n.localize('FHCS.Sorcery'),
+        sun:          game.i18n.localize('FHCS.Sun'),
+        time:         game.i18n.localize('FHCS.Time'),
+        vitality:     game.i18n.localize('FHCS.Vitality'),
+        water:        game.i18n.localize('FHCS.Water'),
+        weaponry:     game.i18n.localize('FHCS.Weaponry')
       }
     });
   }
