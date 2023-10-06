@@ -58,8 +58,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   /*  @inheritDoc ActorSheet5eCharacter
    */
   activateListeners(html) {
-    html.find('.fhcs-body').css('height', window.innerHeight < 30  + (3508 * 720 / 2480) ?  '720px' : '1018.4516129px');
-
     // power
     for (let i = 1; i < 6; i++) {
       if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {

@@ -17,8 +17,19 @@
 /*  CLASSES
 */
 
-.dnd5e.sheet .window-content          { padding: 0    !important; }
-.dnd5e.sheet .window-resizable-handle { display: none !important; }
+.dnd5e.sheet .window-content  { padding: 0  !important; }
+
+.fhcs {
+  display: flex           !important;
+  justify-content: center !important;
+}
+
+.fhcs-body {
+  height: auto        !important;
+  overflow-y: overlay !important;
+  position: relative  !important;
+  width: 720px        !important;
+}
 
 .fhcs-d100 {
   background-image: url('../artwork/butterfly.gif') !important;
@@ -58,12 +69,6 @@
 }
 
 .fhcs-header a.active { opacity: 1 !important; }
-
-.fhcs-body {
-  overflow-y: overlay !important;
-  position: relative  !important;
-  width: 100%         !important;
-}
 
 .fhcs-body-main {
   background-image: url('../artwork/fhcs.min.png')  !important;
