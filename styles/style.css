@@ -350,7 +350,7 @@
 .fhcs-power-invocation-separator div { width: 6px !important; }
 
 .fhcs-body-spellbook, .fhcs-body-journal {
-  background-image: url('../artwork/empty-fhcs.min.png')  !important; 
+  background-image: url('../artwork/header-fhcs.min.png') !important; 
   background-repeat: no-repeat                            !important;
   background-size: fill                                   !important;
   height: 1000px                                          !important;
