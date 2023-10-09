@@ -352,8 +352,9 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     const HP_VALUE = this.actor.system.attributes.hp.value;
 
     this.actor._rest(0, html.find('[name="new-day"]').is(':checked'), 1, 0, HP_MAX).then(_ => {
-      $('#' + this.id).find('.fhcs-hp-value').val(HP_MAX);
-      this.actor.system.attributes.hp.value = HP_MAX;
+      this.actor.update({
+        'data.attributes.hp.value': HP_MAX
+      })
     });
 
     for (let i = 1; i < 6; i++) {
