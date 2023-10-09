@@ -27,14 +27,15 @@ section:has(.fhcs) {
   /* background-image: url('../artwork/empty-fhcs.max.png')  !important; */
   background-position: center                             !important;
   display: flex                                           !important;
-  min-height: 1018.4516129px                              !important;
+  min-height: 1018px                                      !important;
   justify-content: center                                 !important;
 }
 
 .fhcs-body {
-  height: 1018.4516129px  !important;
-  position: relative      !important;
-  width: 720px            !important;
+  box-shadow: 0 0 9px 0 #000  !important;
+  height: 1018px                !important;
+  position: relative            !important;
+  width: 720px                  !important;
 }
 
 .fhcs-d100 {
@@ -417,3 +418,17 @@ section:has(.fhcs) {
   font-size: 14px             !important;
   font-weight: bold           !important;
 }
+
+.fhcs-journal-characteristics label {
+  font-family: black-chancery !important;
+  font-size: 18px             !important;
+  font-weight: bold           !important;
+}
+
+.fhcs-journal-characteristics textarea {
+  border: 0                   !important;
+  font-family: black-chancery !important;
+  font-size: 14px             !important;
+}
+
+.fhcs-journal-biography { font-family: black-chancery !important; }

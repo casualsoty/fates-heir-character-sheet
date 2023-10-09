@@ -64,6 +64,7 @@
       {{!-- player-name --}}
       <input class="fhcs-player-name"
              data-tooltip="FHCS.PlayerName"
+             placeholder="..."
              type="text"
              value="{{actor.flags.fates-heir-character-sheet.player-name}}">
 
@@ -123,7 +124,8 @@
 
       {{!-- signature-power --}}
       <textarea class="fhcs-signature-power"
-                data-tooltip="FHCS.SignaturePower">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
+                data-tooltip="FHCS.SignaturePower"
+                placeholder="...">{{actor.flags.fates-heir-character-sheet.signature-power}}</textarea>
 
       {{!-- initiative --}}
       <{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-initiative"
