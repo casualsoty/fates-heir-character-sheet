@@ -13,7 +13,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['actor', 'character', 'dnd5e', 'fhcs', 'sheet'],
+      classes: ['actor', 'character', 'dnd5e', 'sheet'],
       height: window.innerHeight < 30 + (3508 * 720 / 2480) ? 30 + 720 : 30 + (3508 * 720 / 2480),
       tabs : [{
         contentSelector: '.fhcs-body',

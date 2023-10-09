@@ -17,18 +17,24 @@
 /*  CLASSES
 */
 
-.dnd5e.sheet .window-content  { padding: 0  !important; }
+section:has(.fhcs) {
+  overflow-y: overlay !important;
+  padding: 0          !important;
+}
 
 .fhcs {
-  display: flex           !important;
-  justify-content: center !important;
+  align-items: center                                     !important;
+  /* background-image: url('../artwork/empty-fhcs.max.png')  !important; */
+  background-position: center                             !important;
+  display: flex                                           !important;
+  min-height: 1018.4516129px                              !important;
+  justify-content: center                                 !important;
 }
 
 .fhcs-body {
-  height: auto        !important;
-  overflow-y: overlay !important;
-  position: relative  !important;
-  width: 720px        !important;
+  height: 1018.4516129px  !important;
+  position: relative      !important;
+  width: 720px            !important;
 }
 
 .fhcs-d100 {
@@ -74,8 +80,6 @@
   background-image: url('../artwork/fhcs.min.png')  !important;
   background-repeat: no-repeat                      !important;
   background-size: fill                             !important;
-  height: 1018.4516129px                            !important;
-  width: 100%                                       !important;
 }
 
 .fhcs-img {
@@ -353,8 +357,6 @@
   background-image: url('../artwork/header-fhcs.min.png') !important; 
   background-repeat: no-repeat                            !important;
   background-size: fill                                   !important;
-  height: 1000px                                          !important;
-  width: 100%                                             !important;
 }
 
 .fhcs-spellbook, .fhcs-journal {
