@@ -29,7 +29,7 @@
       {{!-- body --}}
       <ol class="item-list">
         {{#each section.items as | item iid |}}
-          {{#dnd5e-itemContext item as |ctx|}}
+          {{#dnd5e-itemContext item as | ctx |}}
             <li {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}
                 class="border0 flexrow item padding0 {{#if ctx.isExpanded}}expanded{{/if}} {{section.css}}"
                 data-item-id="{{item.id}}">

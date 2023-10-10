@@ -7,7 +7,7 @@
            value="1d100 + @powerLevels * 5 + @bonus">
   </div>
 
-  {{#each powers as |power|}}
+  {{#each powers as | power |}}
     {{#if power}}
       <div class="form-group">
         <label for="{{power.name}}">{{#if power.i}}Powers:{{/if}}</label>

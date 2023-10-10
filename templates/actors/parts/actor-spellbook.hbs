@@ -32,9 +32,9 @@
 
 <ol class="fhcs-spellbook-spells inventory-list items-list">
   <ol class="item-list">
-    {{#each spellbook as |section|}}
-      {{#each section.spells as |item i|}}
-        {{#dnd5e-itemContext item as |ctx|}}
+    {{#each spellbook as | section |}}
+      {{#each section.spells as | item |}}
+        {{#dnd5e-itemContext item as | ctx |}}
           <li class="fhcs-spellbook-spell flexrow item {{#if ctx.isExpanded}}expanded{{/if}}"
               data-item-id="{{item.id}}">
             <div class="flexrow item-name rollable"
