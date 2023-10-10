@@ -1,4 +1,4 @@
-/*  An Actor sheet for player character type actors.
+/*  An Actor sheet for player character type actors and NPC type characters.
  */
 export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet5eCharacter {
   constructor(...args) {
@@ -7,13 +7,15 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     if (!this.actor.getFlag('fates-heir-character-sheet', 'level')) {
       this.actor.setFlag('fates-heir-character-sheet', 'level', 1);
     }
+
+    console.debug('Fate\'s Heir Character Sheet | Actor sheet created and initialized', this);
   }
 
-  /*  @inheritDoc ActorSheet5eCharacter
+  /*  @inheritDoc ActorSheet5eCharacter.defaultOptions
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['actor', 'character', 'dnd5e', 'sheet'],
+      classes: ['actor', 'character', 'dnd5e', 'npc', 'sheet'],
       height: window.innerHeight < 30 + (3508 * 720 / 2480) ? 30 + 720 : 30 + (3508 * 720 / 2480),
       tabs : [{
         contentSelector: '.fhcs-body',
@@ -24,7 +26,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  /*  @override ActorSheet5eCharacter
+  /*  @inheritDoc ActorSheet5eCharacter.getData
    */
   async getData(options={}) {
     const CONTEXT = await super.getData(options);
@@ -55,13 +57,12 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     });
   }
 
-  /*  @inheritDoc ActorSheet5eCharacter
+  /*  @inheritDoc ActorSheet5eCharacter.activateListeners
    */
   activateListeners(html) {
-    if (this.actor.isOwner) {
+    if (this.isEditable) {
       // d100
       html.find('.fhcs-d100').click(this._onRollD100.bind(this));
-
       html.find('.fhcs-d100').on('mouseenter mouseleave', e => {
         html.find('.fhcs-d100').css('opacity', e.type === 'mouseenter' ? 1 : 0);
       });
@@ -276,7 +277,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       },
       content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/power-roll-dialog.hbs', {
         defaultRollMode: game.settings.get('core', 'rollMode'),
-        powerInvocationFlag: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
+        invocationCharges: this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power),
         rollModes: CONFIG.Dice.rollModes
       }),
       title: e.target.innerText + ' Power Check: ' + this.actor.name

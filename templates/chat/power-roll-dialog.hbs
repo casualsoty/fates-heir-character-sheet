@@ -25,7 +25,9 @@
       <label for="advantage">{{localize 'FHCS.Advantage'}}</label>
     </div>
     
-    {{#getWarning powerInvocationFlag}}{{/getWarning}}
+    {{#if (equals invocationCharges '0')}}
+      <p class="notes">{{localize 'FHCS.Warning'}}</p>
+    {{/if}}
   </div>
 
   <div class="form-group">

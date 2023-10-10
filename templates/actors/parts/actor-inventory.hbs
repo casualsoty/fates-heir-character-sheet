@@ -1,6 +1,7 @@
 <ol class="color1 inventory-list items-list padding0">
-  {{#each sections as |section sid|}}
-    {{#if (isNotBackpacks section.label)}}
+  {{#each sections as | section |}}
+    {{#if (equals section.label 'TYPES.Item.backpackPl')}}
+    {{else}}
       {{!-- header --}}
       <li class="border0 flexrow items-header margin0">
         <h3 class="flexrow item-name">{{localize section.label}}</h3>
@@ -18,7 +19,7 @@
             <a class="item-control item-create"
               data-action="itemCreate"
               data-tooltip="DND5E.ItemCreate"
-              {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+              {{#each section.dataset as | v k |}}data-{{k}}="{{v}}"{{/each}}>
               <i class="fa-plus fas"></i> {{localize 'DND5E.Add'}}
             </a>
           </div>
@@ -27,7 +28,7 @@
 
       {{!-- body --}}
       <ol class="item-list">
-        {{#each section.items as |item iid|}}
+        {{#each section.items as | item iid |}}
           {{#dnd5e-itemContext item as |ctx|}}
             <li {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}
                 class="border0 flexrow item padding0 {{#if ctx.isExpanded}}expanded{{/if}} {{section.css}}"
