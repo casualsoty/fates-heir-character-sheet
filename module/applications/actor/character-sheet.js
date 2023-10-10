@@ -96,7 +96,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
       // skill
       html.find('.fhcs-skill-name').click(this._onRollSkillCheck.bind(this));
-
       html.find('.fhcs-skill-input').on('focusout keypress', e => {
         if (e.type === 'focusout' || e.which === 13) {
           html.find('.fhcs-skill-' + e.target.dataset.skill + '-input').css('display', 'none');
@@ -112,7 +111,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
 
       // power
       html.find('.fhcs-power-name').click(this._onRollPowerCheck.bind(this));
-
       html.find('.fhcs-power-ai').on('click', e => {
         html.find('.fhcs-power-name-' + e.target.dataset.power + '-a').css('display', 'none');
         html.find('[name="fhcs-power-name-' + e.target.dataset.power + '"]').css('display', 'block').focus();
@@ -124,6 +122,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
           this.actor.setFlag('fates-heir-character-sheet', 'power-level-' + e.target.dataset.power, 1);
           this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + e.target.dataset.power, 1);
         }
+
         this.actor.setFlag('fates-heir-character-sheet', 'power-name-' + e.target.dataset.power, e.target.value);
         html.find('.fhcs-power-name-' + e.target.dataset.power + '-a').html(e.target.value).css('display', 'flex');
         if (!e.target.value) {
@@ -184,9 +183,23 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       title: 'D100 Roll: ' + this.actor.name
     }).render(true);
   }
+  
+  rollD100 = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    const ROLL = await new Roll(command + BONUS).evaluate();
+
+    return ROLL.toMessage({
+      flavor: 'D100 Roll' + flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name=rollMode]').val()
+    });
+  }
 
   /*  Handle taking a rest
-   *    @param {Event} e      The originating click event.
+   *    @param {Event} e  The originating click event.
    */
   async _onRest(e) {
     new Dialog({
@@ -206,33 +219,90 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }).render(true);
   }
 
+  rest = async html => {
+    const FLAGS = this.actor.flags['fates-heir-character-sheet'];
+    const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
+    const HP_VALUE = this.actor.system.attributes.hp.value;
+
+    this.actor._rest(0, html.find('[name="new-day"]').is(':checked'), 1, 0, HP_MAX).then(_ => {
+      this.actor.update({
+        'data.attributes.hp.value': HP_MAX
+      })
+    });
+
+    for (let i = 1; i < 6; i++) {
+      this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + i, this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i));
+    }
+
+    ChatMessage.create({
+      content: HP_VALUE < HP_MAX ?
+        this.actor.name + ' ' + game.i18n.localize('FHCS.RestLongContent1') + (HP_MAX - HP_VALUE) + game.i18n.localize('FHCS.RestLongContent2') :
+        this.actor.name + game.i18n.localize('FHCS.RestShortContent'),
+      flavor: html.find('[name="new-day"]').is(':checked') ? game.i18n.localize('FHCS.RestFlavorOvernight') : game.i18n.localize('FHCS.RestFlavorNormal'),
+      speaker: {
+        actor: this.actor,
+        alias: this.actor.name
+      },
+      user: game.user.id
+    });
+  }
+
   /*  Handle rolling Initiative.
    *    @param {Event} e  The originating click event.
    *    @private
    */
-    async _onInitiativeRoll(e) {
-      new Dialog({
-        buttons: {
-          advantage: {
-            label: game.i18n.localize('DND5E.Advantage'),
-            callback: html => this.rollInitiative(html, '2d100kh', ' (Advantage)')
-          },
-          normal: {
-            label: game.i18n.localize('DND5E.Normal'),
-            callback: html => this.rollInitiative(html, '1d100', '')
-          },
-          disadvantage: {
-            label: game.i18n.localize('DND5E.Disadvantage'),
-            callback: html => this.rollInitiative(html, '2d100kl', ' (Disadvantage)')
-          }
+  async _onInitiativeRoll(e) {
+    new Dialog({
+      buttons: {
+        advantage: {
+          label: game.i18n.localize('DND5E.Advantage'),
+          callback: html => this.rollInitiative(html, '2d100kh', ' (Advantage)')
         },
-        content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/initiative-roll-dialog.hbs', {
-          defaultRollMode: game.settings.get('core', 'rollMode'),
-          rollModes: CONFIG.Dice.rollModes
-        }),
-        title: 'Initiative Roll: ' + this.actor.name
-      }).render(true);
+        normal: {
+          label: game.i18n.localize('DND5E.Normal'),
+          callback: html => this.rollInitiative(html, '1d100', '')
+        },
+        disadvantage: {
+          label: game.i18n.localize('DND5E.Disadvantage'),
+          callback: html => this.rollInitiative(html, '2d100kl', ' (Disadvantage)')
+        }
+      },
+      content: await renderTemplate('modules/fates-heir-character-sheet/templates/chat/initiative-roll-dialog.hbs', {
+        defaultRollMode: game.settings.get('core', 'rollMode'),
+        rollModes: CONFIG.Dice.rollModes
+      }),
+      title: 'Initiative Roll: ' + this.actor.name
+    }).render(true);
+  }
+  
+  rollInitiative = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    let alacrityLevel = 0;
+
+    for (let i = 1; i < 6; i++) {
+      if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i) === 'Alacrity') {
+        alacrityLevel = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i);
+      }
     }
+
+    const ROLL = await new Roll(command + ' + ' + alacrityLevel + ' * 5' + BONUS).evaluate();
+
+
+    if (!game.combat.getCombatantByActor(this.actor.id)?._id) {
+      await this.actor.getActiveTokens()[0].toggleCombat();
+    }
+
+    game.combat.setInitiative(game.combat.getCombatantByActor(this.actor.id)._id, ROLL.total);
+
+    return ROLL.toMessage({
+      flavor: this.actor.name + ' rolls for Initiative!' + flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
+    });
+  }
 
   /*  Handle rolling a Skill check.
    *    @override ActorSheet5e
@@ -263,6 +333,20 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     }).render(true);
   }
 
+  rollSkill = async (html, command, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'level') + ' * 3' + BONUS).evaluate();
+
+    return ROLL.toMessage({
+      flavor: flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
+    });
+  }
+
   /*  Handle rolling a Power check.
    *    @param {Event} e  The originating click event.
    *    @private
@@ -282,6 +366,36 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       }),
       title: e.target.innerText + ' Power Check: ' + this.actor.name
     }).render(true);
+  }
+
+  rollPower = async (html, powerId, flavor) => {
+    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
+    const POWER_LEVEL = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + powerId);
+    const POWER_INVOCATION = this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + powerId);
+    let roll = '';
+
+    switch (html.find('[name="invocation"]:checked').attr('id')) {
+      case 'none':
+        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
+        break;
+      case 'power':
+        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 1) * 5' + BONUS).evaluate();
+        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
+        break;
+      case 'advantage':
+        roll = await new Roll('2d100kh + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
+        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
+        break;
+    }
+
+    return roll.toMessage({
+      flavor: flavor,
+      speaker: {
+        alias: this.actor.name
+      }
+    }, {
+      rollMode: html.find('[name="rollMode"]').val()
+    });
   }
 
   /*  Handle rolling a Spell check.
@@ -323,121 +437,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
       }),
       title: e.target.dataset.spell + ' Spell Check: ' + this.actor.name
     }).render(true);
-  }
-
-  rollD100 = async (html, command, flavor) => {
-    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
-    const ROLL = await new Roll(command + BONUS).evaluate();
-
-    return ROLL.toMessage({
-      flavor: 'D100 Roll' + flavor,
-      speaker: {
-        alias: this.actor.name
-      }
-    }, {
-      rollMode: html.find('[name=rollMode]').val()
-    });
-  }
-
-  rest = async html => {
-    const FLAGS = this.actor.flags['fates-heir-character-sheet'];
-    const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
-    const HP_VALUE = this.actor.system.attributes.hp.value;
-
-    this.actor._rest(0, html.find('[name="new-day"]').is(':checked'), 1, 0, HP_MAX).then(_ => {
-      this.actor.update({
-        'data.attributes.hp.value': HP_MAX
-      })
-    });
-
-    for (let i = 1; i < 6; i++) {
-      this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + i, this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i));
-    }
-
-    ChatMessage.create({
-      content: HP_VALUE < HP_MAX ?
-        this.actor.name + ' ' + game.i18n.localize('FHCS.RestLongContent1') + (HP_MAX - HP_VALUE) + game.i18n.localize('FHCS.RestLongContent2') :
-        this.actor.name + game.i18n.localize('FHCS.RestShortContent'),
-      flavor: html.find('[name="new-day"]').is(':checked') ? game.i18n.localize('FHCS.RestFlavorOvernight') : game.i18n.localize('FHCS.RestFlavorNormal'),
-      speaker: {
-        actor: this.actor,
-        alias: this.actor.name
-      },
-      user: game.user.id
-    });
-  }
-
-  rollInitiative = async (html, command, flavor) => {
-    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
-    let alacrityLevel = 0;
-
-    for (let i = 1; i < 6; i++) {
-      if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i) === 'Alacrity') {
-        alacrityLevel = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + i);
-      }
-    }
-
-    const ROLL = await new Roll(command + ' + ' + alacrityLevel + ' * 5' + BONUS).evaluate();
-
-
-    if (!game.combat.getCombatantByActor(this.actor.id)?._id) {
-      await this.actor.getActiveTokens()[0].toggleCombat();
-    }
-
-    game.combat.setInitiative(game.combat.getCombatantByActor(this.actor.id)._id, ROLL.total);
-
-    return ROLL.toMessage({
-      flavor: this.actor.name + ' rolls for Initiative!' + flavor,
-      speaker: {
-        alias: this.actor.name
-      }
-    }, {
-      rollMode: html.find('[name="rollMode"]').val()
-    });
-  }
-
-  rollSkill = async (html, command, flavor) => {
-    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
-    const ROLL = await new Roll(command + ' + ' + this.actor.getFlag('fates-heir-character-sheet', 'level') + ' * 3' + BONUS).evaluate();
-
-    return ROLL.toMessage({
-      flavor: flavor,
-      speaker: {
-        alias: this.actor.name
-      }
-    }, {
-      rollMode: html.find('[name="rollMode"]').val()
-    });
-  }
-
-  rollPower = async (html, powerId, flavor) => {
-    const BONUS = html.find('[name="bonus"]').val() ? ' + ' + html.find('[name="bonus"]').val() : '';
-    const POWER_LEVEL = this.actor.getFlag('fates-heir-character-sheet', 'power-level-' + powerId);
-    const POWER_INVOCATION = this.actor.getFlag('fates-heir-character-sheet', 'power-invocation-' + powerId);
-    let roll = '';
-
-    switch (html.find('[name="invocation"]:checked').attr('id')) {
-      case 'none':
-        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
-        break;
-      case 'power':
-        roll = await new Roll('1d100 + (' + POWER_LEVEL + ' + 1) * 5' + BONUS).evaluate();
-        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
-        break;
-      case 'advantage':
-        roll = await new Roll('2d100kh + (' + POWER_LEVEL + ' + 0) * 5' + BONUS).evaluate();
-        this.actor.setFlag('fates-heir-character-sheet', 'power-invocation-' + powerId, POWER_INVOCATION > 0 ? POWER_INVOCATION - 1 : 0);
-        break;
-    }
-
-    return roll.toMessage({
-      flavor: flavor,
-      speaker: {
-        alias: this.actor.name
-      }
-    }, {
-      rollMode: html.find('[name="rollMode"]').val()
-    });
   }
 
   rollSpell = async (html, command, flavor) => {
