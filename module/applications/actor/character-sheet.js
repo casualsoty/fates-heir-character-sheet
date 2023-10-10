@@ -305,7 +305,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   }
 
   /*  Handle rolling a Skill check.
-   *    @override ActorSheet5e
+   *    @override ActorSheet5e._onRollSkillCheck
    *    @param {Event} e  The originating click event.
    *    @private
    */
