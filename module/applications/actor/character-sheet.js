@@ -151,7 +151,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     super.activateListeners(html);
   }
 
-  /*  @override ActorSheet5e
+  /*  @override ActorSheet5e.template
    */
   get template() {
     return 'modules/fates-heir-character-sheet/templates/actors/character-sheet.hbs';

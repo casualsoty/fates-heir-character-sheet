@@ -15,4 +15,6 @@ Hooks.once('init', _ => {
 
   utils.loadHandlebarsTemplates();
   utils.registerHandlebarsHelpers();
+
+  console.debug('Fate\'s Heir Character Sheet | Module initialized');
 });
