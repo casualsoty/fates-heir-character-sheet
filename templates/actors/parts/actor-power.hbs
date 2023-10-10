@@ -9,36 +9,32 @@
   <div class="fhcs-power-ai"></div>
 {{/if}}
 
-<{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-power-name fhcs-power-name-{{power-id}}-a"
-  data-power="{{power-id}}"
-  style="display: flex;{{#getStyle power-name-flag}}{{/getStyle}}"></{{#if @root.owner}}a{{else}}h4{{/if}}>
+<{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-power-name fhcs-power-name-{{power-id}}-a{{#if power-name-flag}}{{else}} unclickable{{/if}}"
+  data-power="{{power-id}}">{{power-name-flag}}</{{#if @root.owner}}a{{else}}h4{{/if}}>
 <select class="fhcs-power-select"
         data-power="{{power-id}}"
-        name="fhcs-power-name-{{power-id}}"
-        style="display: none;">
+        name="fhcs-power-name-{{power-id}}">
   <option></option>
   {{#each powers as | power |}}
-      <option value="{{power}}">{{power}}</option>
-  {{/each}}
+    <option value="{{power}}"
+            {{#if (equals power ../power-name-flag)}}selected{{/if}}>{{power}}</option>
+  {{/each}} 
 </select>
 
-<input class="fhcs-power-level"
+<input class="fhcs-power-level{{#if power-name-flag}}{{else}} unclickable{{/if}}"
        data-power="{{power-id}}"
        max="10"
-       style="{{#getStyle power-name-flag}}{{/getStyle}}"
        type="number"
        value="{{power-level-flag}}">
-<input class="fhcs-power-invocation fhcs-power-invocation-input"
+<input class="fhcs-power-invocation fhcs-power-invocation-input{{#if power-name-flag}}{{else}} unclickable{{/if}}"
        data-power="{{power-id}}"
        max="{{power-level-flag}}"
-       style="{{#getStyle power-name-flag}}{{/getStyle}}"
        type="number"
        value="{{power-invocation-flag}}">
 <div class="fhcs-power-invocation-separator">
   <div>{{#if power-level-flag}}/{{/if}}</div>
 </div>
 
-<input class="fhcs-power-invocation-input"
-       disabled
+<input class="fhcs-power-invocation-input unclickable"
        type="number"
        value="{{power-level-flag}}">

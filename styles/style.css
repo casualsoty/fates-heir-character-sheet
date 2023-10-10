@@ -8,6 +8,8 @@
 .font-size12      { font-size: 12px             !important; } /* fhcs-inventory */
 .margin0          { margin: 0                   !important; } /* fhcs-inventory */
 .padding0         { padding: 0                  !important; } /* fhcs-inventory */
+.unclickable      { cursor: default             !important;
+                    pointer-events: none        !important; } /* fhcs-power */
 
 @font-face {
   font-family: black-chancery;
@@ -277,7 +279,12 @@ section:has(.fhcs) {
   width: calc(124px - 26px) !important;
 }
 
-.fhcs-skill-name { padding: 2px 4px !important; }
+.fhcs-skill-name {
+  display: flex;
+  padding: 2px 4px  !important;
+}
+
+.fhcs-skill-input { display: none; }
 
 .fhcs-skill-ai {
   align-items: center     !important;
@@ -325,7 +332,12 @@ section:has(.fhcs) {
   width: 97px         !important;
 }
 
-.fhcs-power-name { padding-left: 7px !important; }
+.fhcs-power-name {
+  display: flex;
+  padding-left: 7px !important;
+}
+
+.fhcs-power-select { display: none; }
 
 .fhcs-power-select option { color: #45193d !important; } 
 

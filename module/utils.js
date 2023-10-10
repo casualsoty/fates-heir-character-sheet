@@ -1,12 +1,12 @@
 export const registerHandlebarsHelpers = _ => {
+  Handlebars.registerHelper('equals', (variable1, variable2) => {
+    console.debug('Fate\'s Heir Character Sheet | equals(' + variable1 + ', ' + variable2 + ')');
+    return variable1 === variable2;
+  });
+
   Handlebars.registerHelper('getHpMax', flags => {
     console.debug('Fate\'s Heir Character Sheet | getHpMax(' + flags + ')', flags);
     return 8 + flags.level * (2 + Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
-  });
-
-  Handlebars.registerHelper('getStyle', skillOrPowerName => {
-    console.debug('Fate\'s Heir Character Sheet | getStyle(' + skillOrPowerName + ')');
-    return skillOrPowerName ? '' : ' cursor: default; pointer-events: none;';
   });
 
   Handlebars.registerHelper('getWarning', invocationCharges => {

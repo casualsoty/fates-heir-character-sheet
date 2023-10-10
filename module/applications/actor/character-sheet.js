@@ -58,14 +58,6 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   /*  @inheritDoc ActorSheet5eCharacter
    */
   activateListeners(html) {
-    // power
-    for (let i = 1; i < 6; i++) {
-      if (this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i)) {
-        html.find('.fhcs-power-name-' + i + '-a').html(this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i));
-        html.find('[name="fhcs-power-name-' + i + '"] option[value="' + this.actor.getFlag('fates-heir-character-sheet', 'power-name-' + i) + '"]').prop('selected', true);
-      }
-    }
-
     if (this.actor.isOwner) {
       // d100
       html.find('.fhcs-d100').click(this._onRollD100.bind(this));

@@ -1,8 +1,8 @@
-<{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-skill-name fhcs-skill-{{skill-id}}-name"
-   style="display: flex; {{#getStyle skill-flag}}{{/getStyle}}">{{skill-flag}}</{{#if @root.owner}}a{{else}}h4{{/if}}>
+<{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-skill-name fhcs-skill-{{skill-id}}-name{{#if skill-flag}}{{else}} unclickable{{/if}}">
+  {{skill-flag}}
+</{{#if @root.owner}}a{{else}}h4{{/if}}>
 <input class="fhcs-skill-input fhcs-skill-{{skill-id}}-input"
        data-skill="{{skill-id}}"
-       style="display: none !important;"
        type="text"
        value="{{skill-flag}}">
 {{#if @root.owner}}
