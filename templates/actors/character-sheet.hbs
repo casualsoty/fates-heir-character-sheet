@@ -7,33 +7,31 @@
   {{!-- body --}}
   <div class="fhcs-body">
     {{!-- d100 --}}
-      {{#if @root.owner}}
-        <a class="fhcs-d100"
-            data-tooltip="FHCS.D100">
-        </a>
-      {{/if}}
+    <{{#if @root.owner}}a{{else}}h4{{/if}} class="fhcs-d100"
+        data-tooltip="FHCS.D100">
+    </{{#if @root.owner}}a{{else}}h4{{/if}}>
 
-      {{!-- header --}}
-      <nav class="fhcs-header"
-          data-group="primary">
-        <a class="active fhcs-header-main item"
-          data-tab="main"
-          data-tooltip="{{actor.name}}">
-          <i class="active fa-user fas"></i>
-        </a>
+    {{!-- header --}}
+    <nav class="fhcs-header"
+        data-group="primary">
+      <a class="active fhcs-header-main item"
+        data-tab="main"
+        data-tooltip="{{actor.name}}">
+        <i class="active fa-user fas"></i>
+      </a>
 
-        <a class="fhcs-header-spellbook item"
-          data-tab="spellbook"
-          data-tooltip="DND5E.Spellbook">
-          <i class="fa-book-sparkles fas"></i>
-        </a>
+      <a class="fhcs-header-spellbook item"
+        data-tab="spellbook"
+        data-tooltip="DND5E.Spellbook">
+        <i class="fa-book-sparkles fas"></i>
+      </a>
 
-        <a class="fhcs-header-journal item"
-          data-tab="journal"
-          data-tooltip="FHCS.Journal">
-          <i class="fa-feather-pointed fas"></i>
-        </a>
-      </nav>
+      <a class="fhcs-header-journal item"
+        data-tab="journal"
+        data-tooltip="FHCS.Journal">
+        <i class="fa-feather-pointed fas"></i>
+      </a>
+    </nav>
 
     {{!-- main --}}
     <div class="fhcs-body-main tab{{#if (equals actor.type 'character')}} fhcs-body-main-character{{else}} fhcs-body-main-npc{{/if}}"

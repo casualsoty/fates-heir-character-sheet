@@ -3,9 +3,9 @@
     {{#unless isNPC}}
       <label class="color1">{{localize 'DND5E.Spellcasting'}}</label>
     {{else}}
-      <label>{{localize 'DND5E.Level'}}</label>
+      <label class="color1">{{localize 'DND5E.Level'}}</label>
       {{numberInput system.details.spellLevel
-        class="spellcasting-level"
+        class="color1 font-weight-bold spellcasting-level"
         min=0
         name="system.details.spellLevel"
         placeholder="0"

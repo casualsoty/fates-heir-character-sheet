@@ -6,6 +6,7 @@
 .color1           { color: #45193d            !important; } /* fhcs-inventory, fhcs-spellbook */
 .font-family      { font-family: black-chancery !important; } /* fhcs-spellbook */
 .font-size12      { font-size: 12px             !important; } /* fhcs-inventory */
+.font-weight-bold { font-weight: bold           !important; } /* fhcs-spellbook */
 .margin0          { margin: 0                   !important; } /* fhcs-inventory */
 .padding0         { padding: 0                  !important; } /* fhcs-inventory */
 .unclickable      { cursor: default             !important;
