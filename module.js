@@ -9,6 +9,7 @@ import * as utils from './module/utils.js';
 
 Hooks.once('init', _ => {
   Actors.registerSheet('dnd5e', FatesHeirCharacterSheet, {
+    label: 'Fates\'s Heir Character Sheet',
     makeDefault: true,
     types: ['character', 'npc']
   });

@@ -28,8 +28,11 @@ export const registerHandlebarsHelpers = _ => {
     return a === b;
   });
 
-  Handlebars.registerHelper('getHpMax', flags => {
-    return 8 + flags.level * (2 + Object.entries(flags).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
+  Handlebars.registerHelper('getHpMax', actor => {
+    const FLAGS = actor.flags['fates-heir-character-sheet'];
+    const ENDURANCE = Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance');
+
+    return actor.type === "character" ? 8 + FLAGS.level * (2 + ENDURANCE) : FLAGS.level * (5 + ENDURANCE * 2);
   });
 
   console.debug('Fate\'s Heir Character Sheet | Handlebars helpers registered');

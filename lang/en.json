@@ -2,6 +2,8 @@
   "FHCS": {
     "D100": "Roll a d100",
     "Journal": "Journal",
+    "CR": "CR:",
+    "ChallengeRating": "Challenge Rating",
     "Level": "Level",
     "PlayerName": "Player Name",
     "Rest": "Rest",

@@ -5,7 +5,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
     super(...args);
 
     if (!this.actor.getFlag('fates-heir-character-sheet', 'level')) {
-      this.actor.setFlag('fates-heir-character-sheet', 'level', 1);
+      this.actor.setFlag('fates-heir-character-sheet', 'level', this.actor.type === 'npc' ? this.actor.system.details.cr : 1);
     }
 
     console.debug('Fate\'s Heir Character Sheet | Actor sheet created and initialized', this);
@@ -15,7 +15,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['actor', 'character', 'dnd5e', 'npc', 'sheet'],
+      classes: ['actor', 'character', 'dnd5e', 'fates-heir-character-sheet', 'npc', 'sheet'],
       height: window.innerHeight < 30 + (3508 * 720 / 2480) ? 30 + 720 : 30 + (3508 * 720 / 2480),
       tabs : [{
         contentSelector: '.fhcs-body',
@@ -220,8 +220,7 @@ export class FatesHeirCharacterSheet extends dnd5e.applications.actor.ActorSheet
   }
 
   rest = async html => {
-    const FLAGS = this.actor.flags['fates-heir-character-sheet'];
-    const HP_MAX = 8 + FLAGS.level * (2 + Object.entries(FLAGS).filter(key => String(key).startsWith('power-name-')).map(power => power[1]).includes('Endurance'));
+    const HP_MAX = Handlebars.helpers.getHpMax(this.actor);
     const HP_VALUE = this.actor.system.attributes.hp.value;
 
     this.actor._rest(0, html.find('[name="new-day"]').is(':checked'), 1, 0, HP_MAX).then(_ => {

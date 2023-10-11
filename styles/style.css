@@ -19,6 +19,11 @@
 /*  CLASSES
 */
 
+.fates-heir-character-sheet {
+  margin: 0         !important;
+  min-width: 720px  !important;
+}
+
 section:has(.fhcs) {
   overflow-y: overlay !important;
   padding: 0          !important;
@@ -26,7 +31,6 @@ section:has(.fhcs) {
 
 .fhcs {
   align-items: center                                     !important;
-  /* background-image: url('../artwork/empty-fhcs.max.png')  !important; */
   background-position: center                             !important;
   display: flex                                           !important;
   min-height: 1018px                                      !important;
@@ -67,7 +71,7 @@ section:has(.fhcs) {
   justify-content: end      !important;
   left: 563px               !important;
   position: absolute        !important;
-  top: 69px               !important;
+  top: 69px                 !important;
   width: 104px              !important;
 }
 
@@ -80,10 +84,12 @@ section:has(.fhcs) {
 .fhcs-header a.active { opacity: 1 !important; }
 
 .fhcs-body-main {
-  background-image: url('../artwork/fhcs.min.png')  !important;
-  background-repeat: no-repeat                      !important;
-  background-size: fill                             !important;
+  background-repeat: no-repeat  !important;
+  background-size: fill         !important;
 }
+
+.fhcs-body-main-character { background-image: url('../artwork/fhcs-character.min.png')  !important; }
+.fhcs-body-main-npc       { background-image: url('../artwork/fhcs-npc.min.png')        !important; }
 
 .fhcs-img {
   border: 0                   !important;
@@ -106,6 +112,17 @@ section:has(.fhcs) {
   position: absolute          !important;
   top: 214px                  !important;
   width: 243px                !important;
+}
+
+.fhcs-cr {
+  color: #45193d            !important;
+  font-family: black-chancery !important;
+  font-size: 22px             !important;
+  font-weight: bold           !important;
+  height: 26px                !important;
+  left: 358px                 !important;
+  position: absolute          !important;
+  top: 255px                  !important;
 }
 
 .fhcs-level {

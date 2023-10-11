@@ -36,7 +36,7 @@
       </nav>
 
     {{!-- main --}}
-    <div class="fhcs-body-main tab"
+    <div class="fhcs-body-main tab{{#if (equals actor.type 'character')}} fhcs-body-main-character{{else}} fhcs-body-main-npc{{/if}}"
          data-group="primary"
          data-tab="main">
 
@@ -54,19 +54,26 @@
              type="text"
              value="{{actor.name}}">
 
+      {{!-- cr --}}
+      {{#if (equals actor.type 'npc')}}
+        <div class="fhcs-cr">{{localize 'FHCS.CR'}}</div>
+      {{/if}}
+
       {{!-- level --}}
       <input class="fhcs-level"
-             data-tooltip="FHCS.Level"
+             data-tooltip="{{#if (equals actor.type 'character')}}FHCS.Level{{else}}FHCS.ChallengeRating{{/if}}"
              placeholder="..."
              type="number"
              value="{{actor.flags.fates-heir-character-sheet.level}}">
 
       {{!-- player-name --}}
-      <input class="fhcs-player-name"
-             data-tooltip="FHCS.PlayerName"
-             placeholder="..."
-             type="text"
-             value="{{actor.flags.fates-heir-character-sheet.player-name}}">
+      {{#if (equals actor.type 'character')}}
+        <input class="fhcs-player-name"
+              data-tooltip="FHCS.PlayerName"
+              placeholder="..."
+              type="text"
+              value="{{actor.flags.fates-heir-character-sheet.player-name}}">
+      {{/if}}
 
       {{!-- rest --}}
       <div class="fhcs-rest">
@@ -88,7 +95,7 @@
 
       {{!-- hp-max --}}
       <div class="fhcs-hp-max"
-           data-tooltip="DND5E.HitPointsMax">{{getHpMax actor.flags.fates-heir-character-sheet}}</div>
+           data-tooltip="DND5E.HitPointsMax">{{getHpMax actor}}</div>
 
       {{!-- cp --}}
       <input class="fhcs-cp"
